@@ -19,15 +19,15 @@ define( 'CHILD_THEME_ASTRA_CHILD_VERSION', '1.0.0' );
  //echo get_stylesheet_directory_uri() . '/style.css';
 function child_enqueue_styles() {
 	wp_enqueue_style( 'astra-child-theme-css', get_stylesheet_directory_uri() . '/style.css', array('astra-theme-css'), CHILD_THEME_ASTRA_CHILD_VERSION, 'all' );
-	wp_enqueue_style( 'astra-child-ie-editor-css', get_stylesheet_directory_uri() . '/assets/css/ie-editor.css');
-	wp_enqueue_style( 'astra-child-ie-css', get_stylesheet_directory_uri() . '/assets/css/ie.css');
+	// wp_enqueue_style( 'astra-child-ie-editor-css', get_stylesheet_directory_uri() . '/assets/css/ie-editor.css');
+	// wp_enqueue_style( 'astra-child-ie-css', get_stylesheet_directory_uri() . '/assets/css/ie.css');
 
-	wp_enqueue_style( 'astra-child-custom-color-overrides-css', get_stylesheet_directory_uri() . '/assets/css/custom-color-overrides.css');
-	wp_enqueue_style( 'astra-child-print-css', get_stylesheet_directory_uri() . '/assets/css/print.css');
-	wp_enqueue_style( 'astra-child-style-dark-mode-rtl-css', get_stylesheet_directory_uri() . '/assets/css/style-dark-mode-rtl.css');
-	wp_enqueue_style( 'astra-child-style-dark-mode-css', get_stylesheet_directory_uri() . '/assets/css/style-dark-mode.css');
-	wp_enqueue_style( 'astra-child-style-editor-customizer-css', get_stylesheet_directory_uri() . '/assets/css/style-editor-customizer.css');
-	wp_enqueue_style( 'astra-child-style-editor-css', get_stylesheet_directory_uri() . '/assets/css/style-editor.css');
+	// wp_enqueue_style( 'astra-child-custom-color-overrides-css', get_stylesheet_directory_uri() . '/assets/css/custom-color-overrides.css');
+	// wp_enqueue_style( 'astra-child-print-css', get_stylesheet_directory_uri() . '/assets/css/print.css');
+	// wp_enqueue_style( 'astra-child-style-dark-mode-rtl-css', get_stylesheet_directory_uri() . '/assets/css/style-dark-mode-rtl.css');
+	// wp_enqueue_style( 'astra-child-style-dark-mode-css', get_stylesheet_directory_uri() . '/assets/css/style-dark-mode.css');
+	// wp_enqueue_style( 'astra-child-style-editor-customizer-css', get_stylesheet_directory_uri() . '/assets/css/style-editor-customizer.css');
+	// wp_enqueue_style( 'astra-child-style-editor-css', get_stylesheet_directory_uri() . '/assets/css/style-editor.css');
 
 	//wp_enqueue_script( 'astra-child-script-bootstrap.min', get_stylesheet_directory_uri() . '/assets/js/bootstrap.min.js');
 	//wp_enqueue_script( 'astra-child-script-customize', get_stylesheet_directory_uri() . '/assets/js/customize.js');
@@ -99,7 +99,7 @@ function product_init() {
     );
     register_post_type( 'product', $args );
 
-    // register taxonomy
+    
     register_taxonomy('product_category', 'product', array('hierarchical' => true, 'label' => 'Reservation Category', 'query_var' => true, 'rewrite' => array( 'slug' => 'product-category' )));
 }
 add_action( 'init', 'product_init' );
