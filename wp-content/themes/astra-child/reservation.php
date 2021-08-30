@@ -40,7 +40,7 @@
                                         ?>
                                       </select>
                                     </div>
-                                    <div class="form-group col-sm-12 bold">
+                                    <div class="form-group col-sm-12 bold long-box">
                                       <label for="accommodation">Accommodation<sup></label>
                                       <select class="form-control" name="accommodation" id="accommodation" required>
                                         <option value="0">All Room Types</option>
@@ -70,7 +70,9 @@
                             </fieldset>
                             <fieldset id="step-two">
                                 <div class="form-card">
-                                    <h2 class="fs-title">Add Ons</h2>
+                                    <h2 class="fs-title">Upgrade Your Stay with these Add Ons</h2>
+                                    <span class="card-sub-head">Choose the quantity of each item for each day of your stay.
+                                    </span>
                                     <div class="row available_addons">
 
                                     </div>
