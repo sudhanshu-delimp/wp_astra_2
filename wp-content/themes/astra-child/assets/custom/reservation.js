@@ -5,15 +5,19 @@ jQuery("#arrival_date").datepicker({
   numberOfMonths: 2,
   showButtonPanel: true,
   dateFormat:'mm-dd-yy',
-  changeMonth: true,
-  changeYear: true,
-  yearRange: "-5:+0",
+  // changeMonth: true,
+  // changeYear: true,
+  // yearRange: "-5:+0"
+  showOn: "button",
+  buttonImage: wp_base_url+"/wp-content/uploads/2021/08/datepicker.png",
+  buttonImageOnly: true,
+  //buttonText: "Select date"
 });
 jQuery('#arrival_date').datepicker('setDate', 'today');
 
 var current_fs, next_fs, previous_fs; //fieldsets
 var opacity;
-
+var selected_activity_data = [],selected_addon_data = [];
 jQuery(".next-step").click(function(){
   current_fs = jQuery(this).parent();
   next_fs = jQuery(this).parent().next();
@@ -24,12 +28,14 @@ jQuery(".next-step").click(function(){
       var selected_date_data = process_step_one();
     } break;
     case 'step-two':{
-      var selected_addon_data = process_step_two();
-      console.log(selected_addon_data);
+      selected_addon_data = process_step_two();
     } break;
     case 'step-three':{
-      // var selected_activity_data = process_step_three();
-      // console.log(selected_activity_data);
+      selected_activity_data = process_step_three();
+      console.log("selected_addon_data");
+      console.log(selected_addon_data);
+      console.log("selected_activity_data");
+      console.log(selected_activity_data);
     } break;
   }
   //Add Class Active
@@ -136,7 +142,25 @@ var process_step_two = function(){
     }
   });
   get_activity_list();
-  return JSON.stringify(addons);
+  return addons;
+}
+
+var process_step_three = function(){
+  var activities = [];
+  if(jQuery(".selected-actvities").length > 0){
+    jQuery('.selected-actvities').each(function(index, ele){
+      var element = jQuery(ele);
+      var activity_data = {};
+      activity_data['activity_id'] = element.find("input[name=activity_id]").val();
+      activity_data['selected_date'] = element.find("input[name=selected_date]").val();
+      activity_data['selected_time'] = element.find("input[name=selected_time]").val();
+      activity_data['selected_quantity'] = element.find("input[name=selected_quantity]").val();
+      activity_data['selected_price'] = element.find("input[name=selected_price]").val();
+      activity_data['total_price'] = parseInt(activity_data['selected_price'])*parseInt(activity_data['selected_quantity']);
+      activities.push(activity_data);
+  });
+  }
+  return activities;
 }
 
 var get_activity_list = function(){

@@ -34,6 +34,7 @@ if ( ! defined( 'ABSPATH' ) ) {
 ?>
 <script type="text/javascript">
 	var admin_ajax_url = "<?php echo admin_url('admin-ajax.php'); ?>";
+	var wp_base_url = "<?php echo get_site_url(); ?>"
 </script>
 	</body>
 </html>
