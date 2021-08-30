@@ -18,7 +18,7 @@
                                 <li class="active" id="account"><strong>Dates</strong></li>
                                 <li id="personal"><strong>Add Ons</strong></li>
                                 <li id="payment"><strong>Activities</strong></li>
-                                <li id="confirm"><strong>Finish</strong></li>
+                                <li id="confirm"><strong>Guest Details</strong></li>
                             </ul> <!-- fieldsets -->
                             <fieldset id="step-one">
                                 <div class="form-card">
@@ -80,20 +80,118 @@
 
                                     </div>
                                 </div>
-                                <input type="button" name="previous" class="previous action-button-previous" value="Previous" /> <input type="button" name="make_payment" step="step-three" class="next-step action-button" value="Confirm" />
+                                <input type="button" name="previous" class="previous action-button-previous" value="Previous" /> <input type="button" name="next" step="step-three" class="next-step action-button" value="Next Step" />
                             </fieldset>
-                            <fieldset>
-                                <div class="form-card">
-                                    <h2 class="fs-title text-center">Success !</h2> <br><br>
-                                    <div class="row justify-content-center">
-                                        <div class="col-3"> <img src="https://img.icons8.com/color/96/000000/ok--v2.png" class="fit-image"> </div>
-                                    </div> <br><br>
-                                    <div class="row justify-content-center">
-                                        <div class="col-7 text-center">
-                                            <h5>You Have Successfully Signed Up</h5>
-                                        </div>
-                                    </div>
-                                </div>
+                            <fieldset id="step-four">
+                              <div class="form-card">
+                              <h2 class="fs-title">Guest Details</h2>
+                              <p>Please enter Guest information then click 'Continue'. Required fields look like this</p>
+                              <form class="needs-validation user-form" novalidate>
+                              <div class="form-row user-row">
+                              <div>
+                              <label for="validationCustom01">First name</label>
+                              <input type="text" class="form-control" id="validationCustom01" required>
+                              </div>
+
+                              <div>
+                              <label for="validationCustom02">Last name</label>
+                              <input type="text" class="form-control" id="validationCustom02" required>
+                              </div>
+
+                              <div>
+                              <label for="validationCustom03">Address</label>
+                              <input type="text" id="validationCustom3" class="form-control" required>
+                              </div>
+
+                              <div>
+                              <label for="validationCustom04">Address</label>
+                              <input type="text" id="validationCustom4" class="form-control">
+                              </div>
+
+                              <div class="thre-col">
+                              <label for="validationCustom05">City</label>
+                              <input type="text" class="form-control" id="validationCustom05" required>
+                              </div>
+
+                              <div class="ful-col thre-col">
+                              <label for="validationCustom06">State/Province</label>
+                              <select name="state" id="state">
+                              <option value="AB  ">Alberta </option>
+                              <option value="AK  ">Alaska </option>
+                              <option value="AL  ">Alabama </option>
+                              <option value="AR  ">Arkansas </option>
+                              <option value="AZ  ">Arizona </option>
+                              <option value="BC  ">British Columbia </option>
+                              <option value="CA  ">California </option>
+                              <option value="CO  ">Colorado </option>
+                              <option value="CT  ">Connecticut </option>
+                              <option value="DC  ">District of Columbia </option>
+                              <option value="DE  ">Delaware </option>
+                              <option value="FL  ">Florida </option>
+                              <option value="GA  ">Georgia </option>
+                              <option value="GU  ">Guam </option>
+                              <option value="HI  ">Hawaii </option>
+                              <option value="IA  ">Iowa </option>
+                              <option value="ID  ">Idaho </option>
+                              <option value="IL  ">Illinois </option>
+                              <option value="IN  ">Indiana </option>
+                              <option value="KS  ">Kansas </option>
+                              <option value="KY  ">Kentucky </option>
+                              <option value="LA  ">Louisiana </option>
+                              <option value="MA  ">Massachusetts </option>
+                              <option value="MB  ">Manitoba </option>
+                              <option value="MD  ">Maryland </option>
+                              <option value="ME  ">Maine </option>
+                              <option value="MI  ">Michigan </option>
+                              <option value="MN  ">Minnesota </option>
+                              <option value="MO  ">Missouri </option>
+                              <option value="MS  ">Mississippi </option>
+                              <option value="MT  ">Montana </option>
+                              <option value="NA  ">International </option>
+                              <option value="NB  ">New Brunswick </option>
+                              <option value="NC  ">North Carolina </option>
+                              <option value="ND  ">North Dakota </option>
+                              <option value="NE  ">Nebraska </option>
+                              <option value="NF  ">Newfoundland </option>
+                              <option value="NH  ">New Hampshire </option>
+                              <option value="NJ  ">New Jersey </option>
+                              <option value="NM  ">New Mexico </option>
+                              <option value="NS  ">Nova Scotia </option>
+                              </select>
+                              </div>
+
+                              <div class="thre-col">
+                              <label for="validationCustom07">Zip/Postal Code</label>
+                              <input type="text" class="form-control" id="validationCustom07" required>
+                              </div>
+
+                              <div>
+                              <label for="validationCustom08">Country</label>
+                              <input type="text" class="form-control" id="validationCustom08"  required>
+                              </div>
+
+                              <div>
+                              <label for="validationCustom09">Phone Number</label>
+                              <input type="text" name="mobileNumber" id="validationCustom09" required>
+                              </div>
+
+                              <div>
+                              <label for="validationCustom10">Mobile Phone</label>
+                              <input type="text" name="mobileNumber" id="validationCustom10">
+                              </div>
+
+                              <div>
+                              <label for="validationCustom11">E-mail Address</label>
+                              <input type="email" id="validationCustom11" class="form-control" required>
+                              </div>
+                              <div>
+                              <button class="btn btn-primary" type="submit">Submit form</button>
+                              </div>
+                              </div>
+                              </form>
+
+                              </div>
+                                <input type="button" name="previous" class="previous action-button-previous" value="Previous" /> <input type="button" name="make_payment" step="step-four" class="next-step action-button" value="Confirm" />
                             </fieldset>
                         </form>
                     </div>

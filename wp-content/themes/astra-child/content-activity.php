@@ -14,7 +14,7 @@ while($add_ons->have_posts()):$add_ons->the_post();
     <div class="card-body">
     <h5 class="card-title"><?php the_title();?></h5>
     <p class="card-text"><?php the_content();?></p>
-          <div class="row selected-actvities" id="activity-box-<?php echo get_the_ID(); ?>">
+          <div id="activity-box-<?php echo get_the_ID(); ?>">
 
           </div>
           <div class="row">
