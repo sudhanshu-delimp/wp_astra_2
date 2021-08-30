@@ -200,15 +200,17 @@ select.list-dt:focus {
   padding: 2px
 }
 
-#progressbar li:after {
-  content: '';
-  width: 100%;
-  height: 2px;
-  background: lightgray;
-  position: absolute;
-  left: 0;
-  top: 25px;
-  z-index: -1
+#progress_bar li:after, #progress_bar li:before {
+    width: 0;
+    height: 0;
+    display: block;
+    border: 13px solid transparent;
+    border-left-color: #fff;
+    position: absolute;
+    top: 0;
+    left: 121px;
+    content: "" !important;
+    z-index: 200;
 }
 
 #progressbar li.active:before,
@@ -220,3 +222,179 @@ select.list-dt:focus {
   width: 100%;
   object-fit: cover
 }
+.elementor-sticky--effects {
+    background: #fefff2;
+}
+.elementor-sticky--effects .elementor-icon-list-text {
+    color: #181818 !important;
+}
+.elementor-sticky--effects i {
+    color: #181818 !important;
+}
+
+/* user form */
+
+
+#msform input:focus, #msform textarea:focus {
+    font-weight: 400 !important;
+    border: 1px solid #000 !important;
+}
+.user-row input {
+    width: auto;
+    background: transparent;
+    border: 1px solid #bebebe !important;
+    min-width: 236px !important;
+    max-width: 315px;
+    height: 37px;
+    padding: 7px !important;
+    color: #181818 !important;
+}
+.user-row {
+    display: flex;
+    justify-content: space-between;
+    flex-wrap: wrap;
+    flex-direction: row;
+    align-items: center;
+    gap: 1%;
+}
+.user-row > div {
+    width: 48%;
+}
+.user-row > div input {
+    max-width: 100%;
+}
+.user-row div:last-child {
+    width: 100%;
+}
+.ful-col select#state {
+    background: transparent;
+    width: auto;
+    border: 1px solid #bebebe !important;
+    height: 37px;
+    padding: 7px !important;
+    color: #181818 !important;
+}
+.user-row > div label {
+    font-size: 16px;
+    color: #181818;
+    font-weight: 500;
+}
+.user-row .btn-primary {
+    background: #000;
+    border: none;
+    padding: 11px 25px;
+    font-size: 16px;
+    text-transform: uppercase;
+}
+.thre-col {
+    width: 31.33% !important;
+}
+.ful-col {
+    
+    margin-bottom: 25px;
+    display: flex;
+    flex-direction: column;
+}
+.form-contain .form-group label {
+    min-width: 260px;
+    font-size: 18px;
+    color: #181818;
+}
+.form-contain .form-group {
+    display: flex;
+    align-items: center;
+}
+.form-contain .form-group input {
+    width: auto !important;
+    min-width: 100px;
+    margin-bottom: 0 !important;
+}
+.form-contain .form-group select {
+    width: auto !important;
+    min-width: 100px;
+    background: transparent;
+    border: 1px solid #bebebe !important;
+    padding: 7px !important;
+    height: 37px;
+    vertical-align: middle;
+    color: #181818 !important;
+    border-radius: 0;
+    box-shadow: inset 0 1px 1px rgb(0 0 0 / 8%);
+}
+.form-contain {
+    margin-top: 2em;
+}
+.reserve-user input {
+    background: transparent;
+    border: 1px solid #bebebe !important;
+    padding: 7px !important;
+    height: 37px;
+    vertical-align: middle;
+    color: #181818 !important;
+    box-shadow: inset 0 1px 1px rgb(0 0 0 / 8%);
+}
+.bold label {
+    font-weight: 600;
+}
+.page-template-reservation {
+    background: #fff;
+}
+#msform fieldset .form-card {
+    box-shadow: none;
+}
+div#grad1 {
+    background-image: none !important;
+    padding-top: 7em;
+}
+
+
+ul#progressbar {
+    display: flex;
+    width: 100%;
+    
+    -moz-border-radius: 10px;
+    -webkit-border-radius: 10px;
+    border-radius: 10px;
+    margin-top: 10px;
+    margin-bottom: 30px;
+    font-weight: 700;
+    font-size: 11px;
+    line-height: 13px;
+    color: #000;
+    position: relative;
+    text-transform: uppercase;
+    align-items: center;
+    justify-content: center;
+    background-color: #f3f1ef !important;
+    box-shadow: inset 0 0 5px #343434;
+    
+}
+#progressbar .active {
+    color: #fff;
+    background: #66d7de;
+}
+#progressbar li {
+    padding: 7px;
+}
+
+
+ul#progressbar li:after {
+    width: 0;
+    height: 0;
+    display: block;
+    border: 13px solid transparent;
+    border-left-color: #fff;
+    position: absolute;
+    top: 14%;
+    right: -9%;
+    content: "" !important;
+    z-index: 200;
+}
+ul#progressbar li:before {
+    content: "" !important;
+    width: 0;
+    height: 0;
+    background: transparent;
+}
+
+/* user form end*/

@@ -8,8 +8,8 @@
     <div class="row justify-content-center mt-0">
         <div class="col-11 col-sm-12 col-md-12 col-lg-12 text-center p-0 mt-3 mb-2">
             <div class="card px-0 pt-4 pb-0 mt-3 mb-3">
-                <h2><strong>Sign Up Your User Account</strong></h2>
-                <p>Fill all form field to go to next step</p>
+                <h2><strong>Reservations</strong></h2>
+                
                 <div class="row">
                     <div class="col-md-12 mx-0">
                         <form id="msform">
@@ -21,13 +21,16 @@
                                 <li id="confirm"><strong>Guest Details</strong></li>
                             </ul> <!-- fieldsets -->
                             <fieldset id="step-one">
-                                <div class="form-card">
-                                    <h2 class="fs-title">Dates</h2>
-                                    <div class="form-group col-sm-12">
+                                <div class="form-card reserve-user">
+                                    <h2 class="fs-title">Check Room Availability</h2>
+                                    <span><b>When making room reservations, we have a two night minimum for Garden Bungalows and a four-night minimum for Waterfront Bungalows.</b><br>
+                                      Please select below and then click 'Check Now'.</span>
+                                    <div class="form-contain">
+                                      <div class="form-group col-sm-12 bold">
                                       <label for="arrival_date">Arrival Date<sup></label>
                                       <input class="form-control" name="arrival_date" type="text" id="arrival_date" placeholder="Select Arrival Date" autocomplete="off" required>
                                     </div>
-                                    <div class="form-group col-sm-12">
+                                    <div class="form-group col-sm-12 bold">
                                       <label for="number_of_night">Number of Nights<sup></label>
                                       <select class="form-control" name="number_of_night" id="number_of_night" required>
                                         <?php
@@ -37,13 +40,13 @@
                                         ?>
                                       </select>
                                     </div>
-                                    <div class="form-group col-sm-12">
+                                    <div class="form-group col-sm-12 bold">
                                       <label for="accommodation">Accommodation<sup></label>
                                       <select class="form-control" name="accommodation" id="accommodation" required>
                                         <option value="0">All Room Types</option>
                                       </select>
                                     </div>
-                                    <div class="form-group col-sm-12">
+                                    <div class="form-group col-sm-12 bold">
                                       <label for="adults_per_room">Adults per Room<sup></label>
                                       <select class="form-control" name="adults_per_room" id="adults_per_room" required>
                                         <?php
@@ -55,12 +58,13 @@
                                     </div>
                                     <div class="form-group col-sm-12">
                                       <label for="promo_code">Promo Code<sup></label>
-                                      <input class="form-control" name="promo_code" type="text" id="promo_code" placeholder="Enter Promo Code" autocomplete="off" required>
+                                      <input class="form-control" name="promo_code" type="text" id="promo_code"  autocomplete="off" required>
                                     </div>
                                     <div class="form-group col-sm-12">
                                       <label for="agent_iata_number">Agents IATA Number<sup></label>
-                                      <input class="form-control" name="agent_iata_number" type="text" id="agent_iata_number" placeholder="Enter Agents IATA Number" autocomplete="off" required>
+                                      <input class="form-control" name="agent_iata_number" type="text" id="agent_iata_number"  autocomplete="off" required>
                                     </div>
+                                </div>
                                 </div>
                                 <input type="button" name="next" step="step-one" class="next-step action-button" value="Next Step" />
                             </fieldset>
