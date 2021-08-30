@@ -18,89 +18,102 @@ define( 'CHILD_THEME_ASTRA_CHILD_VERSION', '1.0.0' );
  */
  //echo get_stylesheet_directory_uri() . '/style.css';
 function child_enqueue_styles() {
-	wp_enqueue_style( 'astra-child-theme-css', get_stylesheet_directory_uri() . '/style.css', array('astra-theme-css'), CHILD_THEME_ASTRA_CHILD_VERSION, 'all' );
-	// wp_enqueue_style( 'astra-child-ie-editor-css', get_stylesheet_directory_uri() . '/assets/css/ie-editor.css');
-	// wp_enqueue_style( 'astra-child-ie-css', get_stylesheet_directory_uri() . '/assets/css/ie.css');
+	wp_enqueue_style( 'astra-child-bootstrap.min-css', 'https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css', array('astra-theme-css'), CHILD_THEME_ASTRA_CHILD_VERSION, 'all' );
+	wp_enqueue_style( 'astra-child-font-awesome-css', 'https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.0.3/css/font-awesome.css', array('astra-theme-css'), CHILD_THEME_ASTRA_CHILD_VERSION, 'all' );
+	wp_enqueue_style( 'astra-child-jquery-ui-css','//code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css', array('astra-theme-css'));
+	wp_enqueue_style( 'astra-child-theme-css', get_stylesheet_directory_uri() . '/style.css', array('astra-theme-css'));
 
-	// wp_enqueue_style( 'astra-child-custom-color-overrides-css', get_stylesheet_directory_uri() . '/assets/css/custom-color-overrides.css');
-	// wp_enqueue_style( 'astra-child-print-css', get_stylesheet_directory_uri() . '/assets/css/print.css');
-	// wp_enqueue_style( 'astra-child-style-dark-mode-rtl-css', get_stylesheet_directory_uri() . '/assets/css/style-dark-mode-rtl.css');
-	// wp_enqueue_style( 'astra-child-style-dark-mode-css', get_stylesheet_directory_uri() . '/assets/css/style-dark-mode.css');
-	// wp_enqueue_style( 'astra-child-style-editor-customizer-css', get_stylesheet_directory_uri() . '/assets/css/style-editor-customizer.css');
-	// wp_enqueue_style( 'astra-child-style-editor-css', get_stylesheet_directory_uri() . '/assets/css/style-editor.css');
+	wp_enqueue_script( 'astra-child-bootstrap.min-script', 'https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js', array('jquery'), CHILD_THEME_ASTRA_CHILD_VERSION, true );
+	wp_enqueue_script( 'astra-child-jquery.validate-script', get_stylesheet_directory_uri().'/assets/custom/jquery.validate.js', array('jquery'), CHILD_THEME_ASTRA_CHILD_VERSION, true );
+	wp_enqueue_script( 'astra-child-jquery.form-script', get_stylesheet_directory_uri().'/assets/custom/jquery.form.js', array('jquery'), CHILD_THEME_ASTRA_CHILD_VERSION, true );
+	wp_enqueue_script( 'astra-child-custom-main-script', get_stylesheet_directory_uri().'/assets/custom/custom-main.js', array('jquery'), CHILD_THEME_ASTRA_CHILD_VERSION, true );
+	wp_enqueue_script( 'astra-child-jquery-ui-script', 'https://code.jquery.com/ui/1.12.1/jquery-ui.js', array('jquery'), CHILD_THEME_ASTRA_CHILD_VERSION, true );
 
-	//wp_enqueue_script( 'astra-child-script-bootstrap.min', get_stylesheet_directory_uri() . '/assets/js/bootstrap.min.js');
-	//wp_enqueue_script( 'astra-child-script-customize', get_stylesheet_directory_uri() . '/assets/js/customize.js');
-	//wp_enqueue_script( 'astra-child-script-customize-helpers', get_stylesheet_directory_uri() . '/assets/js/customize-helpers.js');
+	wp_enqueue_script( 'astra-child-reservation-script', get_stylesheet_directory_uri().'/assets/custom/reservation.js', array('jquery'), CHILD_THEME_ASTRA_CHILD_VERSION, true );
+}
+add_action( 'wp_enqueue_scripts', 'child_enqueue_styles', 100 );
 
-	//wp_enqueue_script( 'astra-child-script-customize-preview', get_stylesheet_directory_uri() . '/assets/js/customize-preview.js');
-	//wp_enqueue_script( 'astra-child-script-dark-mode-toggler', get_stylesheet_directory_uri() . '/assets/js/dark-mode-toggler.js');
-	//wp_enqueue_script( 'astra-child-script-editor', get_stylesheet_directory_uri() . '/assets/js/editor.js');
-	//wp_enqueue_script( 'astra-child-script-editor-dark-mode-support', get_stylesheet_directory_uri() . '/assets/js/editor-dark-mode-support.js');
-	// wp_enqueue_script( 'astra-child-script-hello-editor', get_stylesheet_directory_uri() . '/assets/js/hello-editor.js');
-	// wp_enqueue_script( 'astra-child-script-hello-editor.min', get_stylesheet_directory_uri() . '/assets/js/hello-editor.min.js');
-	//wp_enqueue_script( 'astra-child-script-hello-frontend', get_stylesheet_directory_uri() . '/assets/js/hello-frontend.js');
-	//wp_enqueue_script( 'astra-child-script-hello-frontend.min', get_stylesheet_directory_uri() . '/assets/js/hello-frontend.min.js');
-	//wp_enqueue_script( 'astra-child-script-jquery.3.3.1.min', get_stylesheet_directory_uri() . '/assets/js/jquery.3.3.1.min.js');
-	//wp_enqueue_script( 'astra-child-script-owl.carousel.min', get_stylesheet_directory_uri() . '/assets/js/owl.carousel.min.js');
-	//wp_enqueue_script( 'astra-child-script-palette-colorpicker', get_stylesheet_directory_uri() . '/assets/js/palette-colorpicker.js');
-	//wp_enqueue_script( 'astra-child-script-polyfills', get_stylesheet_directory_uri() . '/assets/js/polyfills.js');
-	//wp_enqueue_script( 'astra-child-script-popper.min', get_stylesheet_directory_uri() . '/assets/js/popper.min.js');
-	//wp_enqueue_script( 'astra-child-script-primary-navigation', get_stylesheet_directory_uri() . '/assets/js/primary-navigation.js');
-	//wp_enqueue_script( 'astra-child-script-responsive-embeds', get_stylesheet_directory_uri() . '/assets/js/responsive-embeds.js');
-	//wp_enqueue_script( 'astra-child-script-skip-link-focus-fix', get_stylesheet_directory_uri() . '/assets/js/skip-link-focus-fix.js');
-
+/*start custom functions*/
+function getDateTime($datetime='',$format='Y-m-d H:i:s') {
+	$format = trim($format)=='' ? 'Y-m-d H:i:s' : $format;
+	$datetime = (trim($datetime)=='') ? date($format) : $datetime;
+	return date($format,strtotime($datetime));
 }
 
-add_action( 'wp_enqueue_scripts', 'child_enqueue_styles', 15 );
-
-/*pre developer code*/
-function product_init() {
-    // set up product labels
-    $labels = array(
-        'name' => 'Reservations',
-        'singular_name' => 'Reservation',
-        'add_new' => 'Add New Reservation',
-        'add_new_item' => 'Add New Reservation',
-        'edit_item' => 'Edit Reservation',
-        'new_item' => 'New Reservation',
-        'all_items' => 'All Reservation',
-        'view_item' => 'View Reservation',
-        'search_items' => 'Search Reservations',
-        'not_found' =>  'No Reservations Found',
-        'not_found_in_trash' => 'No Reservations found in Trash',
-        'parent_item_colon' => '',
-        'menu_name' => 'Reservation',
-    );
-
-    // register post type
-    $args = array(
-        'labels' => $labels,
-        'public' => true,
-        'has_archive' => true,
-        'show_ui' => true,
-        'capability_type' => 'post',
-        'hierarchical' => false,
-        'rewrite' => array('slug' => 'product'),
-        'query_var' => true,
-        'menu_icon' => 'dashicons-randomize',
-        'supports' => array(
-            'title',
-            'editor',
-            'excerpt',
-            'trackbacks',
-            'custom-fields',
-            'comments',
-            'revisions',
-            'thumbnail',
-            'author',
-            'page-attributes'
-        )
-    );
-    register_post_type( 'product', $args );
-
-    
-    register_taxonomy('product_category', 'product', array('hierarchical' => true, 'label' => 'Reservation Category', 'query_var' => true, 'rewrite' => array( 'slug' => 'product-category' )));
+function dateDiffInDays($date1, $date2){
+  $diff = strtotime($date2) - strtotime($date1);
+  return abs(round($diff / 86400));
 }
-add_action( 'init', 'product_init' );
+
+function getNextDate($current_date,$day){
+  return date('Y-m-d', strtotime('+ '.($day-1).' day'.$current_date));
+}
+
+function getDatesFromRange($start, $end, $format = 'Y-m-d') {
+  $array = array();
+  $interval = new DateInterval('P1D');
+  $realEnd = new DateTime($end);
+  $realEnd->add($interval);
+  $period = new DatePeriod(new DateTime($start), $interval, $realEnd);
+  foreach($period as $date) {
+    $array[] = $date->format($format);
+  }
+  return $array;
+}
+
+function sendResponse($data=array()){
+  header('Content-Type: application/json');
+  echo json_encode($data);
+  exit();
+}
+/* end custom functions*/
+
+/*start reservation process functions*/
+function process_step_one(){
+	$data = [];
+	$data['check_in_date'] = getDateTime($_POST['arrival_date'], 'Y-m-d');
+	$data['check_out_date'] = getNextDate($_POST['arrival_date'], intval($_POST['number_of_night']));
+	$data['date_range'] = getDatesFromRange($data['check_in_date'],$data['check_out_date']);
+  ob_start();
+  get_template_part('content-addon',null,['date_range'=>$data['date_range']]);
+  $available_addons = ob_get_clean();
+  $data['available_addons'] = $available_addons;
+	sendResponse($data);
+}
+
+function get_activity_list(){
+	$data = [];
+	$data['check_in_date'] = getDateTime($_POST['arrival_date'], 'Y-m-d');
+	$data['check_out_date'] = getNextDate($_POST['arrival_date'], intval($_POST['number_of_night']));
+	$data['date_range'] = getDatesFromRange($data['check_in_date'],$data['check_out_date']);
+  ob_start();
+  get_template_part('content-activity',null,['date_range'=>$data['date_range']]);
+  $available_activities = ob_get_clean();
+  $data['available_activities'] = $available_activities;
+	sendResponse($data);
+}
+
+function add_activity_in_queue(){
+	$data = [];
+	$activity_id = $_POST['activity_id'];
+	$selected_date = $_POST['selected_date'];
+	$selected_time = $_POST['selected_time'];
+	$selected_quantity = $_POST['selected_quantity'];
+	$selected_price = $_POST['selected_price'];
+	ob_start();
+  get_template_part('content-activity-queue',null,['activity_id'=>$activity_id,'selected_date'=>$selected_date,'selected_time'=>$selected_time,'selected_quantity'=>$selected_quantity,'selected_price'=>$selected_price]);
+  $activity_content = ob_get_clean();
+  $data['activity_content'] = $activity_content;
+	sendResponse($data);
+}
+
+add_action('wp_ajax_process_step_one', 'process_step_one');
+add_action('wp_ajax_nopriv_process_step_one', 'process_step_one');
+add_action('wp_ajax_get_activity_list', 'get_activity_list');
+add_action('wp_ajax_nopriv_get_activity_list', 'get_activity_list');
+add_action('wp_ajax_add_activity_in_queue', 'add_activity_in_queue');
+add_action('wp_ajax_nopriv_add_activity_in_queue', 'add_activity_in_queue');
+
+/*end reservation process functions*/
+
 //dd_filter('acf/settings/remove_wp_meta_box', '__return_false');
