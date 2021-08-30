@@ -251,18 +251,17 @@ select.list-dt:focus {
 }
 .user-row {
     display: flex;
-    justify-content: space-between;
     flex-wrap: wrap;
     flex-direction: row;
-    align-items: center;
     gap: 1%;
+    margin-top: 2em;
 }
 .user-row > div {
-    width: 48%;
+    width: 100%;
+    display: flex;
+    
 }
-.user-row > div input {
-    max-width: 100%;
-}
+
 .user-row div:last-child {
     width: 100%;
 }
@@ -274,10 +273,21 @@ select.list-dt:focus {
     padding: 7px !important;
     color: #181818 !important;
 }
+.req label {
+    font-weight: 700 !important;
+    position: relative;
+}
 .user-row > div label {
-    font-size: 16px;
+    font-size: 18px;
     color: #181818;
     font-weight: 500;
+    min-width: 142px;
+}
+.user-row .select {
+    width: 300px !important;
+}
+.user-row input {
+    min-width: 300px !important;
 }
 .user-row .btn-primary {
     background: #000;
@@ -287,13 +297,17 @@ select.list-dt:focus {
     text-transform: uppercase;
 }
 .thre-col {
-    width: 31.33% !important;
+    width: 45.33% !important;
+}
+.available_addons .card-body .row .col-sm-4 {
+    flex: auto !important;
+    max-width: max-content !important;
 }
 .ful-col {
     
     margin-bottom: 25px;
     display: flex;
-    flex-direction: column;
+    
 }
 .form-contain .form-group label {
     min-width: 260px;
@@ -359,6 +373,31 @@ div#grad1 {
     color: #181818;
     font-size: 18px;
 }
+h2.main-head {
+    font-size: 50px;
+    color: #181818;
+    display: inline-block;
+    position: relative;
+}
+h2.main-head:before {
+    content: "";
+    position: absolute;
+    border-bottom: 1px solid #66d7de;
+    width: 38%;
+    left: 0;
+    right: 0;
+    margin: 0 auto;
+    bottom: -0.5em;
+}
+ul#progressbar {
+    margin-top: 5.5em !important;
+}
+#progressbar li:last-child:before {
+    display: none;
+}
+#progressbar li:last-child:after {
+    display: none;
+}
 input.next-step.action-button {
     background: #66d7de !important;
     padding: 13px 20px !important;
@@ -389,12 +428,14 @@ ul#progressbar {
     background: #66d7de;
 }
 #progressbar li {
-    padding: 7px;
+    padding: 8px;
 }
 ul#progressbar .active:after {
     border-left-color: #66d7de;
 }
-
+img.ui-datepicker-trigger {
+    margin-left: 3px;
+}
 ul#progressbar li:after {
     width: 0;
     height: 0;
@@ -456,7 +497,7 @@ a.ui-state-default:hover {
     height: 40px;
 }
 div#ui-datepicker-div {
-    width: 35% !important;
+    width: 700px !important;
 }
 .ui-datepicker td span, .ui-datepicker td a {
     height: 40px;
@@ -464,17 +505,12 @@ div#ui-datepicker-div {
     line-height: 29px;
 }
 .available_addons .card {
-    display: flex;
-    justify-content: space-between;
-    flex-wrap: wrap;
-    flex-direction: row;
+   
     border: 1px solid #eee;
     margin-bottom: 1.5em;
     border-radius: 0;
 }
-.available_addons .card > div {
-    width: 48%;
-}
+
 .add-head {
     background: #f3f1ef;
     padding: 10px;
@@ -507,7 +543,7 @@ span.card-sub-head {
     border-radius: 0;
 }
 select {
-    background: transparent;
+    background: #fff !important;
     border: 1px solid #bebebe !important;
     padding: 7px !important;
     height: 37px;
@@ -521,4 +557,57 @@ select {
     padding: 13px 20px !important;
     width: 184px !important;
 }
+.available_addons .card-pic img {
+    width: 25%;
+    float: left;
+}
+.available_addons .card-pic p {
+    width: 72%;
+    float: right;
+    margin-left: 3%;
+}
+.card-wrap {
+    background: #f3f1ef;
+    padding: 20px 10px 30px 10px;
+}
+.card-pic img {
+    width: 25%;
+    float: left;
+}
+.card-pic p {
+    width: 72%;
+    float: right;
+    margin-left: 3%;
+}
+.available_activities .card-body {
+    display: flex;
+    flex-direction: inherit;
+}
+.available_activities .card-body .row {
+    margin-top: 1em !important;
+}
+.available_activities .card-body {
+    padding: 0;
+}
+.available_activities .card {
+    background: #f3f1ef;
+    padding: 20px 10px 30px 10px;
+    margin-bottom: 2em;
+    border-radius: 0;
+    color: #181818;
+    font-size: 16px;
+}
+h5.card-title {
+    font-size: 26px;
+    color: #181818;
+}
+.card-pic p {
+    color: #181818;
+    font-size: 16px;
+}
+.remove-activity {
+    background-color: #181818;
+    border-color: #181818;
+}
+
 /* user form end*/

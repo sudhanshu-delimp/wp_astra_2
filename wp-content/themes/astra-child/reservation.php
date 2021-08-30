@@ -8,7 +8,7 @@
     <div class="row justify-content-center mt-0">
         <div class="col-11 col-sm-12 col-md-12 col-lg-12 text-center p-0 mt-3 mb-2">
             <div class="card px-0 pt-4 pb-0 mt-3 mb-3">
-                <h2><strong>Reservations</strong></h2>
+                <h2 class="main-head">Reservations</h2>
                 
                 <div class="row">
                     <div class="col-md-12 mx-0">
@@ -81,7 +81,8 @@
                             </fieldset>
                             <fieldset id="step-three">
                                 <div class="form-card">
-                                    <h2 class="fs-title">Activities</h2>
+                                    <h2 class="fs-title">Check Activities Availability</h2>
+
                                     <div class="row available_activities">
 
                                     </div>
@@ -91,20 +92,22 @@
                             <fieldset id="step-four">
                               <div class="form-card">
                               <h2 class="fs-title">Guest Details</h2>
-                              <p>Please enter Guest information then click 'Continue'. Required fields look like this</p>
+                             
+                              <span class="card-sub-head">Please enter Guest information then click 'Continue'. Required fields look like this
+                              </span>
                               <form class="needs-validation user-form" novalidate>
                               <div class="form-row user-row">
-                              <div>
+                              <div class="req">
                               <label for="validationCustom01">First name</label>
                               <input type="text" class="form-control" id="validationCustom01" required>
                               </div>
 
-                              <div>
+                              <div class="req">
                               <label for="validationCustom02">Last name</label>
                               <input type="text" class="form-control" id="validationCustom02" required>
                               </div>
 
-                              <div>
+                              <div class="req">
                               <label for="validationCustom03">Address</label>
                               <input type="text" id="validationCustom3" class="form-control" required>
                               </div>
@@ -114,12 +117,12 @@
                               <input type="text" id="validationCustom4" class="form-control">
                               </div>
 
-                              <div class="thre-col">
+                              <div class="thre-col req">
                               <label for="validationCustom05">City</label>
                               <input type="text" class="form-control" id="validationCustom05" required>
                               </div>
 
-                              <div class="ful-col thre-col">
+                              <div class="ful-col thre-col req">
                               <label for="validationCustom06">State/Province</label>
                               <select name="state" id="state">
                               <option value="AB  ">Alberta </option>
@@ -166,17 +169,17 @@
                               </select>
                               </div>
 
-                              <div class="thre-col">
+                              <div class="thre-col req">
                               <label for="validationCustom07">Zip/Postal Code</label>
                               <input type="text" class="form-control" id="validationCustom07" required>
                               </div>
 
-                              <div>
+                              <div class="thre-col">
                               <label for="validationCustom08">Country</label>
                               <input type="text" class="form-control" id="validationCustom08"  required>
                               </div>
 
-                              <div>
+                              <div class="req">
                               <label for="validationCustom09">Phone Number</label>
                               <input type="text" name="mobileNumber" id="validationCustom09" required>
                               </div>
@@ -186,13 +189,11 @@
                               <input type="text" name="mobileNumber" id="validationCustom10">
                               </div>
 
-                              <div>
+                              <div class="req">
                               <label for="validationCustom11">E-mail Address</label>
                               <input type="email" id="validationCustom11" class="form-control" required>
                               </div>
-                              <div>
-                              <button class="btn btn-primary" type="submit">Submit form</button>
-                              </div>
+                             
                               </div>
                               </form>
 

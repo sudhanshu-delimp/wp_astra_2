@@ -10,10 +10,11 @@ while($add_ons->have_posts()):$add_ons->the_post();
     $time = explode("|",$time);
 ?>
 <div class="card">
-    <img src="<?php echo $add_on_image;?>" class="card-img-top" alt="...">
+<h5 class="card-title"><?php the_title();?></h5>
     <div class="card-body">
-    <h5 class="card-title"><?php the_title();?></h5>
-    <p class="card-text"><?php the_content();?></p>
+    <div class="card-pic">
+    <img src="<?php echo $add_on_image;?>" class="card-img-top" alt="...">
+    <p class="card-text"><?php the_content();?></p></div>
           <div id="activity-box-<?php echo get_the_ID(); ?>">
 
           </div>

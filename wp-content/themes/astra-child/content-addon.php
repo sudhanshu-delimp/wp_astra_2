@@ -8,12 +8,11 @@ while($add_ons->have_posts()):$add_ons->the_post();
     $price = get_post_meta( get_the_ID(), 'price_',true);
 ?>
 <div class="card">
-    
-    <div class="card-body">
-    <div class="add-head">
-    <h5 class="card-title"><?php the_title();?></h5>
+<div class="card-wrap">
+<h5 class="card-title"><?php the_title();?></h5>
     <div class="card-pic"><img src="<?php echo $add_on_image;?>" class="card-img-top" alt="...">
-    <p class="card-text"><?php the_content();?></p></div>
+    <p class="card-text"><?php the_content();?></p></div></div>
+    <div class="card-body">
     <div class="row">
       <div class="col-sm-4">
         All Days
