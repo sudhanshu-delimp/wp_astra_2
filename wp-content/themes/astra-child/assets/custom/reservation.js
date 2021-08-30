@@ -187,6 +187,8 @@ jQuery(document).on('change','.choose-date',function(){
   var element = jQuery(this).find('option:selected');
   var activity_id = element.attr("activity-id");
   if(jQuery.trim(element.val()) !== ""){
+    var selectobject = document.getElementById("time-"+activity_id);
+    console.log(selectobject.length);
     jQuery(".time-"+activity_id).removeAttr('disabled');
   }
   else{
