@@ -385,16 +385,22 @@ ul#progressbar li:after {
     border: 13px solid transparent;
     border-left-color: #fff;
     position: absolute;
-    top: 14%;
+    top: -2%;
     right: -9%;
     content: "" !important;
     z-index: 200;
 }
 ul#progressbar li:before {
-    content: "" !important;
     width: 0;
     height: 0;
-    background: transparent;
+    display: block;
+    border: 13px solid transparent;
+    border-left-color: #fff;
+    position: absolute;
+    top: 0;
+    left: 121px;
+    content: "" !important;
+    z-index: 200;
 }
 
 /* user form end*/
