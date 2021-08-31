@@ -78,7 +78,7 @@ function process_step_one(){
   get_template_part('content-addon',null,['date_range'=>$data['date_range']]);
   $available_addons = ob_get_clean();
   $data['available_addons'] = $available_addons;
-	sendResponse($data);
+  sendResponse($data);
 }
 
 function get_activity_list(){
@@ -108,7 +108,17 @@ function add_activity_in_queue(){
 }
 
 function show_booking_preview(){
-	$data['message'] = "Hello";
+	$check_in_date= getDateTime($_POST['arrival_date'], 'Y-m-d');
+	$check_out_date = getNextDate($_POST['arrival_date'], intval($_POST['number_of_night']));
+	$number_of_night = intval($_POST['number_of_night']);
+	$adults_per_room = intval($_POST['adults_per_room']);
+	$user_data = $_POST['user_data'];
+	$selected_activity_data = $_POST['selected_activity_data'];
+	$selected_addon_data = $_POST['selected_addon_data'];
+	ob_start();
+	get_template_part('content-booking-preview',null,['check_in_date'=>$check_in_date,'check_out_date'=>$check_out_date,'number_of_night'=>$number_of_night,'adults_per_room'=>$adults_per_room,'user_data'=>$user_data,'selected_activity_data'=>$selected_activity_data ,'selected_addon_data'=>$selected_addon_data]);
+	$available_preview = ob_get_clean();
+	$data['available_preview'] = $available_preview;
 	sendResponse($data);
 }
 

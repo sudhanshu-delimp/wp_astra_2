@@ -1,3 +1,4 @@
+var selected_date_data = [], elected_activity_data = [], selected_addon_data = [] , user_data = [];
 jQuery(document).ready(function(){
 
 jQuery("#arrival_date").datepicker({
@@ -17,7 +18,7 @@ jQuery('#arrival_date').datepicker('setDate', 'today');
 
 var current_fs, next_fs, previous_fs; //fieldsets
 var opacity;
-var selected_activity_data = [],selected_addon_data = [] , user_data = [];
+
 jQuery(".next-step").click(function(){
   current_fs = jQuery(this).parent();
   next_fs = jQuery(this).parent().next();
@@ -27,6 +28,7 @@ jQuery(".next-step").click(function(){
   switch(step_number){
     case 'step-one':{
       var selected_date_data = process_step_one();
+      console.log(selected_date_data);
     } break;
     case 'step-two':{
       selected_addon_data = process_step_two();
@@ -41,7 +43,7 @@ jQuery(".next-step").click(function(){
       }
       else{
         console.log("continue...");
-        process_step_five();
+        get_preview_data();
       }
       // console.log("user_data");
       // console.log(user_data);
@@ -51,7 +53,7 @@ jQuery(".next-step").click(function(){
       // console.log(selected_addon_data);
     } break;
     case 'step-five':{
-      
+      make_booking();
     } break;
   }
   //Add Class Active
@@ -220,9 +222,16 @@ var process_step_four = function(){
   return user;
 }
 
-var process_step_five = function(){
+var get_preview_data = function(){
   var data = {};
   data['action'] = 'show_booking_preview';
+  data['arrival_date'] = getDateFormat(jQuery("#arrival_date").val());
+  data['number_of_night'] = jQuery("#number_of_night").val();
+  data['adults_per_room'] = jQuery("#adults_per_room").val();
+  data['user_data'] = user_data;
+  data['selected_addon_data'] = selected_addon_data;
+  data['selected_activity_data'] = selected_activity_data;
+  console.log(data);
   jQuery.ajax({
     url:admin_ajax_url,
     type: "POST",
@@ -233,10 +242,13 @@ var process_step_five = function(){
     },
     success: function(response){
       console.log(response);
-      // jQuery(".available_activities").html(response.available_activities);
-      // jQuery(".all-time").attr("disabled","disabled");
+       jQuery(".available_preview").html(response.available_preview);
     }
   });
+}
+
+var make_booking = function(){
+
 }
 
 var get_activity_list = function(){

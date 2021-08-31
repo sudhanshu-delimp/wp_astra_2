@@ -221,11 +221,12 @@
                       look
                       like this
                     </span>
-                    
-5
+                    <div class="row available_preview load">
+
+                    </div>
                   </div>
                   <input type="button" name="previous" class="previous action-button-previous" value="Previous" />
-                  <input type="button" name="next" step="step-five" class="next-step action-button" value="Next Step" />
+                  <input type="button" name="next" step="step-five" class="next-step action-button" value="Confirm" />
                 </fieldset>
                
               </div>
