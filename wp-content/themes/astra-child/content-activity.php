@@ -38,6 +38,14 @@ while($add_ons->have_posts()):$add_ons->the_post();
           }
           ?>
           </select>
+          <select name="time-<?php echo get_the_ID(); ?>-<?php echo $date; ?>" id="time-hide-<?php echo get_the_ID(); ?>" class="form-control time-hide-<?php echo get_the_ID(); ?> invisible">
+          <option value="" activity-id="<?php echo get_the_ID(); ?>">Select Time</option>
+          <?php
+          foreach($time as $tym){
+            echo '<option value="'.$tym.'" activity-id="'.get_the_ID().'">'.$tym.'</option>';
+          }
+          ?>
+          </select>
           </div>
           <div class="form-group col-sm-3 invisible div-<?php echo get_the_ID(); ?>">
           <select name="quantity-<?php echo get_the_ID(); ?>" id="quantity-<?php echo get_the_ID(); ?>" class="form-control quantity-<?php echo get_the_ID(); ?> all-quantity">

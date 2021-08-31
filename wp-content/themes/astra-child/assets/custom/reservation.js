@@ -37,7 +37,7 @@ jQuery(".next-step").click(function(){
     case 'step-four':{
       user_data = process_step_four();
       console.log(user_data);
-      //return false;
+      return false;
     } break;
   }
   //Add Class Active
@@ -192,20 +192,16 @@ var process_step_four = function(){
       //jQuery(form).ajaxSubmit(form_options);
     }
   });
+  var user = [];
   if (form.valid() === true) {
-      var user = [];
       var x = jQuery('form').serializeArray();
       if(Array.isArray(x)){
         jQuery.each(x, function(index, field){
           user[field.name] = field.value;
         });
       }
-      return user;
   }
-  else{
-    return false;
-  }
-  
+  return user;
 }
 
 var get_activity_list = function(){
@@ -232,8 +228,25 @@ jQuery(document).on('change','.choose-date',function(){
   var element = jQuery(this).find('option:selected');
   var activity_id = element.attr("activity-id");
   if(jQuery.trim(element.val()) !== ""){
-    var selectobject = document.getElementById("time-"+activity_id);
-    console.log(selectobject.length);
+    var init_options = jQuery("#time-hide-"+activity_id).html();
+    jQuery("#time-"+activity_id).html(init_options);
+    /*code for remove already slected time for the same day */
+    if(jQuery("#activity-box-"+activity_id+" .selected-actvities").length > 0){
+      jQuery("#activity-box-"+activity_id+" .selected-actvities").each(function(index, ele){
+        var child_element = jQuery(ele);
+        var selected_date = jQuery.trim(child_element.find("input[name=selected_date]").val());
+        var selected_time = jQuery.trim(child_element.find("input[name=selected_time]").val());
+        var selectobject = document.getElementById("time-"+activity_id);
+        for (var i=0; i<selectobject.length; i++) {
+          if(jQuery.trim(selectobject.options[i].value) == selected_time && selected_date == jQuery.trim(element.val())){
+            selectobject.remove(i);
+          }
+        }
+      });
+    }else{
+      console.log("not exist");
+    }
+    /*end code */
     jQuery(".time-"+activity_id).removeAttr('disabled');
   }
   else{
@@ -295,6 +308,9 @@ var addActivityInQueue = function(activity_id, selected_date, selected_time, sel
       /*Reset and disable quantity select field */
       jQuery(".div-"+activity_id).addClass('invisible');
       jQuery(".quantity-"+activity_id).val("");
+
+      var init_options = jQuery("#time-hide-"+activity_id).html();
+      jQuery("#time-"+activity_id).html(init_options);
     }
   });
 }
@@ -302,5 +318,10 @@ var addActivityInQueue = function(activity_id, selected_date, selected_time, sel
 jQuery(document).on('click','.remove-activity',function(e){
   e.preventDefault();
   var element = jQuery(this);
+  var activity_id = element.parent().parent().find("input[name=activity_id]").val();
   element.parent().parent().remove();
+
+  var init_options = jQuery("#time-hide-"+activity_id).html();
+  jQuery("#time-"+activity_id).html(init_options);
+  jQuery("#date-"+activity_id).val("");
 });
