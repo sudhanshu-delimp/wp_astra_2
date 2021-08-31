@@ -10,7 +10,7 @@ while($add_ons->have_posts()):$add_ons->the_post();
 <div class="card">
 <div class="card-wrap">
 <h5 class="card-title"><?php the_title();?></h5>
-    <div class="card-pic"><img src="<?php echo $add_on_image;?>" class="card-img-top" alt="...">
+    <div class="card-pic"><?php if(!empty($add_on_image)){ ?> <img src="<?php echo $add_on_image;?>" class="card-img-top" alt="..."> <?php } ?>
     <p class="card-text"><?php the_content();?></p></div></div>
     <div class="card-body">
     <div class="row">
