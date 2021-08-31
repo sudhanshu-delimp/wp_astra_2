@@ -17,12 +17,13 @@ jQuery('#arrival_date').datepicker('setDate', 'today');
 
 var current_fs, next_fs, previous_fs; //fieldsets
 var opacity;
-var selected_activity_data = [],selected_addon_data = [];
+var selected_activity_data = [],selected_addon_data = [] , user_data = [];
 jQuery(".next-step").click(function(){
   current_fs = jQuery(this).parent();
   next_fs = jQuery(this).parent().next();
 
   var step_number = jQuery(this).attr('step');
+  console.log(step_number);
   switch(step_number){
     case 'step-one':{
       var selected_date_data = process_step_one();
@@ -32,10 +33,11 @@ jQuery(".next-step").click(function(){
     } break;
     case 'step-three':{
       selected_activity_data = process_step_three();
-      console.log("selected_addon_data");
-      console.log(selected_addon_data);
-      console.log("selected_activity_data");
-      console.log(selected_activity_data);
+    } break;
+    case 'step-four':{
+      user_data = process_step_four();
+      console.log(user_data);
+      //return false;
     } break;
   }
   //Add Class Active
@@ -161,6 +163,49 @@ var process_step_three = function(){
   });
   }
   return activities;
+}
+
+var process_step_four = function(){
+  var form = jQuery("#user_detail");
+  form.validate({
+    errorClass: "text-danger",
+    errorElement: "p",
+    errorPlacement: function(error, element) {
+      var par = jQuery(element).parent();
+      error.insertAfter(par);
+    },
+    rules: {
+      email: {
+        required: true,
+      },
+      phone: {
+        required: true,
+        number: true
+      }
+    },
+    messages: {
+      // email: {
+      //   remote: "The email is already taken"
+      // }
+    },
+    submitHandler: function(form) {
+      //jQuery(form).ajaxSubmit(form_options);
+    }
+  });
+  if (form.valid() === true) {
+      var user = [];
+      var x = jQuery('form').serializeArray();
+      if(Array.isArray(x)){
+        jQuery.each(x, function(index, field){
+          user[field.name] = field.value;
+        });
+      }
+      return user;
+  }
+  else{
+    return false;
+  }
+  
 }
 
 var get_activity_list = function(){
