@@ -36,8 +36,18 @@ jQuery(".next-step").click(function(){
     } break;
     case 'step-four':{
       user_data = process_step_four();
-      console.log(user_data);
-      return false;
+      if(user_data.length === 0){
+        return false;
+      }
+      // console.log("user_data");
+      // console.log(user_data);
+      // console.log("selected_activity_data");
+      // console.log(selected_activity_data);
+      // console.log("selected_addon_data");
+      // console.log(selected_addon_data);
+    } break;
+    case 'step-five':{
+      process_step_five();
     } break;
   }
   //Add Class Active
@@ -172,7 +182,7 @@ var process_step_four = function(){
     errorElement: "p",
     errorPlacement: function(error, element) {
       var par = jQuery(element).parent();
-      error.insertAfter(par);
+      error.appendTo(par);
     },
     rules: {
       email: {
@@ -202,6 +212,25 @@ var process_step_four = function(){
       }
   }
   return user;
+}
+
+var process_step_five = function(){
+  var data = {};
+  data['action'] = 'show_booking_preview';
+  jQuery.ajax({
+    url:admin_ajax_url,
+    type: "POST",
+    data: data,
+    dataType:'json',
+    beforeSend: function(){
+      jQuery(".available_activities").html('<i class="fa fa-spinner fa-pulse fa-3x fa-fw"></i><span class="sr-only">Loading...</span>');
+    },
+    success: function(response){
+      console.log(response);
+      // jQuery(".available_activities").html(response.available_activities);
+      // jQuery(".all-time").attr("disabled","disabled");
+    }
+  });
 }
 
 var get_activity_list = function(){
