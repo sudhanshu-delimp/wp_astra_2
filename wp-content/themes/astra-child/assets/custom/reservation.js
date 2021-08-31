@@ -39,6 +39,10 @@ jQuery(".next-step").click(function(){
       if(user_data.length === 0){
         return false;
       }
+      else{
+        console.log("continue...");
+        process_step_five();
+      }
       // console.log("user_data");
       // console.log(user_data);
       // console.log("selected_activity_data");
@@ -47,7 +51,7 @@ jQuery(".next-step").click(function(){
       // console.log(selected_addon_data);
     } break;
     case 'step-five':{
-      process_step_five();
+      
     } break;
   }
   //Add Class Active
@@ -207,7 +211,9 @@ var process_step_four = function(){
       var x = jQuery('form').serializeArray();
       if(Array.isArray(x)){
         jQuery.each(x, function(index, field){
-          user[field.name] = field.value;
+          var user_data = {};
+          user_data[field.name] = field.value;
+          user.push(user_data);
         });
       }
   }

@@ -104,6 +104,11 @@ function add_activity_in_queue(){
   get_template_part('content-activity-queue',null,['activity_id'=>$activity_id,'selected_date'=>$selected_date,'selected_time'=>$selected_time,'selected_quantity'=>$selected_quantity,'selected_price'=>$selected_price]);
   $activity_content = ob_get_clean();
   $data['activity_content'] = $activity_content;
+  sendResponse($data);
+}
+
+function show_booking_preview(){
+	$data['message'] = "Hello";
 	sendResponse($data);
 }
 
@@ -113,6 +118,9 @@ add_action('wp_ajax_get_activity_list', 'get_activity_list');
 add_action('wp_ajax_nopriv_get_activity_list', 'get_activity_list');
 add_action('wp_ajax_add_activity_in_queue', 'add_activity_in_queue');
 add_action('wp_ajax_nopriv_add_activity_in_queue', 'add_activity_in_queue');
+add_action('wp_ajax_show_booking_preview', 'show_booking_preview');
+add_action('wp_ajax_nopriv_show_booking_preview', 'show_booking_preview');
+
 
 /*end reservation process functions*/
 
