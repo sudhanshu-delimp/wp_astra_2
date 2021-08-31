@@ -242,23 +242,29 @@ select.list-dt:focus {
     width: auto;
     background: transparent;
     border: 1px solid #bebebe !important;
-    min-width: 236px !important;
-    max-width: 315px;
     height: 37px;
     padding: 7px !important;
     color: #181818 !important;
+    width: 32% !important;
+    margin-left: 20px;
+    
 }
 .user-row {
     display: flex;
     flex-wrap: wrap;
     flex-direction: row;
-    gap: 1%;
+    gap: 3%;
     margin-top: 2em;
 }
 .user-row > div {
+    display: inline-flex;
     width: 100%;
-    display: flex;
-    
+}
+.thre-col {
+    width: 45% !important;
+}
+.thre-col input {
+    width: 100% !important;
 }
 
 .user-row div:last-child {
@@ -280,14 +286,11 @@ select.list-dt:focus {
     font-size: 18px;
     color: #181818;
     font-weight: 500;
-    min-width: 142px;
 }
 .user-row .select {
     width: 300px !important;
 }
-.user-row input {
-    min-width: 300px !important;
-}
+
 .user-row .btn-primary {
     background: #000;
     border: none;
@@ -295,18 +298,16 @@ select.list-dt:focus {
     font-size: 16px;
     text-transform: uppercase;
 }
-.thre-col {
-    width: 45.33% !important;
-}
+
 .available_addons .card-body .row .col-sm-4 {
     flex: auto !important;
     max-width: max-content !important;
 }
 .ful-col {
-    
-    margin-bottom: 25px;
-    display: flex;
-    
+display: flex;   
+}
+.input-wrap input {
+    margin-bottom: 0 !important;
 }
 .form-contain .form-group label {
     min-width: 260px;
@@ -658,3 +659,90 @@ input.next-step.action-button {
 img.ui-datepicker-trigger {
     padding-left: 5px;
 }
+table, td, th {
+    border: none;
+}
+.reserve-user .form-contain .form-group {
+    padding-left: 0;
+    padding-right: 0;
+}
+.thre-col select {
+    margin-left: 20px;
+}
+.user-row div {
+    position: relative;
+}
+.user-row span {
+    min-width: 142px;
+}
+.req label {
+    position: relative;
+}
+.req label:before {
+    content: "*";
+    right: 0;
+    position: absolute;
+    transform: translate(11px, -3px);
+}
+p.text-danger {
+    padding-left: 20px;
+}
+/* loader */
+.load {
+    justify-content: center;
+}
+.fa-spinner {
+    font-size: 70px !important;
+    opacity: 0.65;
+}
+/* loader end */
+
+/* media query */
+@media only screen and (max-width:1090px){
+    div#ui-datepicker-div {
+        width: auto !important;
+    }
+}
+@media only screen and (max-width:1024px){
+    ul#progressbar {
+        width: 90% !important;
+    }
+}
+@media only screen and (max-width:767px){
+    .user-row {
+        flex-direction: column;
+    }
+    .user-row input {
+        width: 100% !important;
+    }
+    .thre-col {
+        width: 100% !important;
+    }
+    .user-row > div {
+        display: block;
+        width: 100%;
+    }
+    .thre-col select {
+        margin-left: 0;
+        width: 100% !important;
+    }
+    .user-row input {
+        margin-left: 0;
+    }
+    ul#progressbar {
+        display: none !important;
+    }
+    .form-contain .form-group label {
+        min-width: auto !important;
+    }
+    .form-contain .form-group select {
+        width: 100% !important;
+    }
+    .form-contain .form-group input {
+        min-width: 100% !important;
+    }
+    .form-contain .form-group {
+        display: block;
+    }
+}
+/* media query end */

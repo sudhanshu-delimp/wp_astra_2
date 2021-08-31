@@ -80,7 +80,7 @@
                     <h2 class="fs-title">Upgrade Your Stay with these Add Ons</h2>
                     <span class="card-sub-head">Choose the quantity of each item for each day of your stay.
                     </span>
-                    <div class="row available_addons">
+                    <div class="row available_addons load">
 
                     </div>
                   </div>
@@ -91,7 +91,7 @@
                   <div class="form-card">
                     <h2 class="fs-title">Check Activities Availability</h2>
 
-                    <div class="row available_activities">
+                    <div class="row available_activities load">
 
                     </div>
                   </div>
@@ -110,33 +110,33 @@
                     <form class="user-form" id="user_detail" method="post">
                       <div class="form-row user-row">
                       <div class="req">
-                      <label for="first_name">First name</label>
-                      <input type="text" name="first_name" class="form-control" id="first_name" required>
+                      <span><label for="first_name">First name</label></span>
+                      <div class="input-wrap"><input type="text" name="first_name" class="form-control" id="first_name" required></div>
                       </div>
                       
                       <div class="req">
-                      <label for="last_name">Last name</label>
-                      <input type="text" name="last_name" class="form-control" id="last_name" required>
+                      <span><label for="last_name">Last name</label></span>
+                      <div class="input-wrap"><input type="text" name="last_name" class="form-control" id="last_name" required></div>
                       </div>
                       
                       <div class="req">
-                      <label for="address_one">Address</label>
-                      <input type="text" name="address_one" id="address_one" class="form-control" required>
+                      <span><label for="address_one">Address</label></span>
+                      <div class="input-wrap"><input type="text" name="address_one" id="address_one" class="form-control" required></div>
                       </div>
                       
                       <div>
-                      <label for="address_two">Address</label>
-                      <input type="text" name="address_two" id="address_two" class="form-control">
+                      <span><label for="address_two">Address</label></span>
+                      <div class="input-wrap"><input type="text" name="address_two" id="address_two" class="form-control"></div>
                       </div>
                       
                       <div class="thre-col req">
-                      <label for="city">City</label>
-                      <input type="text" name="city" id="city" class="form-control" required>
+                      <span><label for="city">City</label></span>
+                      <div class="input-wrap"><input type="text" name="city" id="city" class="form-control" required></div>
                       </div>
                       
                       <div class="ful-col thre-col req">
-                      <label for="state">State/Province</label>
-                      <select name="state" id="state" class="form-control" required>
+                      <span><label for="state">State/Province</label></span>
+                      <div class="input-wrap"> <select name="state" id="state" class="form-control" required>
                       <option value="AB">Alberta </option>
                       <option value="AK">Alaska </option>
                       <option value="AL">Alabama </option>
@@ -178,32 +178,32 @@
                       <option value="NJ">New Jersey </option>
                       <option value="NM">New Mexico </option>
                       <option value="NS">Nova Scotia </option>
-                      </select>
+                      </select></div>
                       </div>
                       
                       <div class="thre-col req">
-                      <label for="zip_code">Zip/Postal Code</label>
-                      <input type="text" name="zip_code" class="form-control" id="zip_code" required>
+                      <span><label for="zip_code">Zip/Postal Code</label></span>
+                      <div class="input-wrap"><input type="text" name="zip_code" class="form-control" id="zip_code" required></div>
                       </div>
                       
                       <div class="thre-col">
-                      <label for="country">Country</label>
-                      <input type="text" name="country" class="form-control" id="country" required>
+                      <span><label for="country">Country</label></span>
+                      <div class="input-wrap"><input type="text" name="country" class="form-control" id="country" required></div>
                       </div>
                       
                       <div class="req">
-                      <label for="phone">Phone Number</label>
-                      <input type="text" name="phone" id="phone" required>
+                      <span><label for="phone">Phone Number</label></span>
+                      <div class="input-wrap"><input type="text" name="phone" id="phone" required></div>
                       </div>
                       
                       <div>
-                      <label for="mobile">Mobile Phone</label>
-                      <input type="text" name="mobile" id="mobile">
+                      <span><label for="mobile">Mobile Phone</label></span>
+                      <div class="input-wrap"><input type="text" name="mobile" id="mobile"></div>
                       </div>
                       
                       <div class="req">
-                      <label for="email">E-mail Address</label>
-                      <input type="email" name="email" id="email" class="form-control" required>
+                      <span><label for="email">E-mail Address</label></span>
+                      <div class="input-wrap"><input type="email" name="email" id="email" class="form-control" required></div>
                       </div>
                       
                       </div>
