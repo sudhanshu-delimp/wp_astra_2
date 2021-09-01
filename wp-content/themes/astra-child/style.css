@@ -765,3 +765,100 @@ Template: astra
       }
   }
   /* media query end */
+
+  /*alam css  */
+  .booking_preview .boooking_details_data {
+    display: grid;
+    grid-template-columns: repeat(2,1fr);
+    gap: 15px;
+    width: 100%;
+  }
+  .booking_preview .boooking_details_data h3 {
+      font-size: 18px;
+  }
+  .booking_preview .boooking_details_data h5 {
+    font-size: 16px;
+}
+.booking_preview .booking_title h3 {
+    font-size: 22px;
+    margin: 20px 0px;
+}
+.booking_add_ons {
+    background-color: #F1F1F1;
+    padding: 15px;
+    margin-bottom: 8px;
+}
+.booking_add_ons h3 {
+    font-size: 22px;
+    margin: 0px 0 15px;
+}
+.booking_add_ons .charges_entry {
+    display: grid;
+    grid-template-columns: repeat(2,1fr);
+    gap: 10px;
+   
+}
+.facilities_ct {
+    display: flex;
+    gap: 15px;
+}
+.facilities_ct .facilities_img {
+    width: 40%;
+}
+.facilities_ct .facilities_data {
+    width: fit-content;
+}
+.facilities_details_date {
+    display: flex;
+    gap: 30px;
+    margin-top: 20px;
+}
+.facilities_details_date div span {
+    font-size: 18px;
+    color: #333;
+}
+.data_second {
+    margin-top: 30px;
+}
+.booking_policy h3 {
+    font-size: 22px;
+    margin-top: 25px;
+}
+.booking_policy .form-check input {
+    width: auto !important;
+    margin-top: 5px !important;
+}
+
+@media screen and (max-width:767px) {
+    #msform fieldset .form-card {
+        padding: 20px 0px;
+        margin: 0px;
+        width: 100%;
+    }
+    .facilities_ct .facilities_img {
+        width: 40%;
+    }
+    .facilities_ct .facilities_data {
+        width: 60%;
+    }
+}
+@media screen and (max-width:500px) {
+    .facilities_ct {
+        flex-direction: column;
+    }
+    .facilities_ct .facilities_img {
+        width: 100%;
+    }
+    .facilities_ct .facilities_data {
+        width: 100%;
+    }
+    .facilities_details_date {
+        gap: 10px;
+    
+    flex-wrap: wrap;
+    }
+    .booking_preview .boooking_details_data h3 {
+        font-size: 16px;
+    }
+}
+  /* alam css end */

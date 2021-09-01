@@ -215,13 +215,13 @@
                 </fieldset>
                 <fieldset id="step-five">
                   <div class="form-card">
-                    <h2 class="fs-title">Guest Details</h2>
+                    <h2 class="fs-title">Booking Preview</h2>
 
                     <span class="card-sub-head">Please enter Guest information then click 'Continue'. Required fields
                       look
                       like this
                     </span>
-                    <div class="row available_preview load">
+                    <div class=" available_preview load">
 
                     </div>
                   </div>
