@@ -12,8 +12,7 @@ while($add_ons->have_posts()):$add_ons->the_post();
 <div class="card">
 <h5 class="card-title"><?php the_title();?></h5>
     <div class="card-body">
-    <div class="card-pic">
-    <div class="card-pic"><?php if(!empty($add_on_image)){ ?> <img src="<?php echo $add_on_image;?>" class="card-img-top" alt="..."> <?php } ?>
+   <div class="card-pic"><?php if(!empty($add_on_image)){ ?> <img src="<?php echo $add_on_image;?>" class="card-img-top" alt="..."> <?php } ?>
     <p class="card-text"><?php the_content();?></p></div>
           <div id="activity-box-<?php echo get_the_ID(); ?>">
 

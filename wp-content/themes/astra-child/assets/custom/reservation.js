@@ -54,6 +54,7 @@ jQuery(".next-step").click(function(){
     } break;
     case 'step-five':{
       make_booking();
+      return false;
     } break;
   }
   //Add Class Active
@@ -242,13 +243,34 @@ var get_preview_data = function(){
     },
     success: function(response){
       console.log(response);
-       jQuery(".available_preview").html(response.available_preview);
+       //jQuery(".available_preview").html(response.available_preview);
     }
   });
 }
 
 var make_booking = function(){
-
+  var data = {};
+  data['action'] = 'make_booking';
+  data['arrival_date'] = getDateFormat(jQuery("#arrival_date").val());
+  data['number_of_night'] = jQuery("#number_of_night").val();
+  data['adults_per_room'] = jQuery("#adults_per_room").val();
+  data['user_data'] = user_data;
+  data['selected_addon_data'] = selected_addon_data;
+  data['selected_activity_data'] = selected_activity_data;
+  console.log(data);
+  jQuery.ajax({
+    url:admin_ajax_url,
+    type: "POST",
+    data: data,
+    dataType:'json',
+    beforeSend: function(){
+      jQuery(".available_activities").html('<i class="fa fa-spinner fa-pulse fa-3x fa-fw"></i><span class="sr-only">Loading...</span>');
+    },
+    success: function(response){
+      console.log(response);
+       //jQuery(".available_preview").html(response.available_preview);
+    }
+  });
 }
 
 var get_activity_list = function(){

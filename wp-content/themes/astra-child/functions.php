@@ -122,6 +122,29 @@ function show_booking_preview(){
 	sendResponse($data);
 }
 
+function make_booking(){
+	global $wpdb;
+	$insert = [];
+	$check_in_date = getDateTime($_POST['arrival_date'], 'Y-m-d');
+	$check_out_date = getNextDate($_POST['arrival_date'], intval($_POST['number_of_night']));
+	$number_of_night = intval($_POST['number_of_night']);
+	$adults_per_room = intval($_POST['adults_per_room']);
+	$user_data = $_POST['user_data'];
+	$selected_activity_data = $_POST['selected_activity_data'];
+	$selected_addon_data = $_POST['selected_addon_data'];
+	$insert['check_in_date'] = $check_in_date;
+	$insert['check_out_date'] = $check_out_date;
+	$insert['number_of_night'] = $number_of_night;
+	$insert['adults_per_room'] = $adults_per_room;
+	$insert['user_data'] = json_encode($user_data);
+	$insert['addon_data'] = json_encode($selected_addon_data);
+	$insert['addon_data'] = json_encode($selected_addon_data);
+	$insert['activity_data'] = json_encode($selected_activity_data);
+	$insert['status'] = '1';
+	$response = $wpdb->insert('wp_reservations', $insert);
+	sendResponse($response);
+}
+
 add_action('wp_ajax_process_step_one', 'process_step_one');
 add_action('wp_ajax_nopriv_process_step_one', 'process_step_one');
 add_action('wp_ajax_get_activity_list', 'get_activity_list');
@@ -130,7 +153,8 @@ add_action('wp_ajax_add_activity_in_queue', 'add_activity_in_queue');
 add_action('wp_ajax_nopriv_add_activity_in_queue', 'add_activity_in_queue');
 add_action('wp_ajax_show_booking_preview', 'show_booking_preview');
 add_action('wp_ajax_nopriv_show_booking_preview', 'show_booking_preview');
-
+add_action('wp_ajax_make_booking', 'make_booking');
+add_action('wp_ajax_nopriv_make_booking', 'make_booking');
 
 /*end reservation process functions*/
 
