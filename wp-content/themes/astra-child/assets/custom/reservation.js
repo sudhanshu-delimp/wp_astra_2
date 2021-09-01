@@ -1,4 +1,6 @@
-var selected_date_data = [], elected_activity_data = [], selected_addon_data = [] , user_data = [];
+var selected_date_data = [], elected_activity_data = [], selected_addon_data = [] , user_data = {}, selected_date_data = {};
+var current_fs, next_fs, previous_fs; //fieldsets
+var opacity;
 jQuery(document).ready(function(){
 
 jQuery("#arrival_date").datepicker({
@@ -16,8 +18,7 @@ jQuery("#arrival_date").datepicker({
 });
 jQuery('#arrival_date').datepicker('setDate', 'today');
 
-var current_fs, next_fs, previous_fs; //fieldsets
-var opacity;
+
 
 jQuery(".next-step").click(function(){
   current_fs = jQuery(this).parent();
@@ -27,8 +28,8 @@ jQuery(".next-step").click(function(){
   console.log(step_number);
   switch(step_number){
     case 'step-one':{
-      var selected_date_data = process_step_one();
-      console.log(selected_date_data);
+      process_step_one();
+      return false;
     } break;
     case 'step-two':{
       selected_addon_data = process_step_two();
@@ -38,19 +39,14 @@ jQuery(".next-step").click(function(){
     } break;
     case 'step-four':{
       user_data = process_step_four();
-      if(user_data.length === 0){
+      if(Object.keys(user_data).length == 0){
         return false;
       }
       else{
-        console.log("continue...");
+        //console.log(selected_date_data);
+        //console.log(Object.keys(selected_date_data).length);
         get_preview_data();
       }
-      // console.log("user_data");
-      // console.log(user_data);
-      // console.log("selected_activity_data");
-      // console.log(selected_activity_data);
-      // console.log("selected_addon_data");
-      // console.log(selected_addon_data);
     } break;
     case 'step-five':{
       make_booking();
@@ -107,7 +103,7 @@ duration: 600
 
 
 jQuery(".submit").click(function(){
-  console.log("submit");
+  //console.log("submit");
   return false;
 })
 
@@ -129,6 +125,7 @@ var process_step_one = function(){
   data['action'] = 'process_step_one';
   data['arrival_date'] = getDateFormat(jQuery("#arrival_date").val());
   data['number_of_night'] = jQuery("#number_of_night").val();
+  data['adults_per_room'] = jQuery("#adults_per_room").val();
   jQuery.ajax({
     url:admin_ajax_url,
     type: "POST",
@@ -138,7 +135,34 @@ var process_step_one = function(){
       jQuery(".available_addons").html('<i class="fa fa-spinner fa-pulse fa-3x fa-fw"></i><span class="sr-only">Loading...</span>');
     },
     success: function(response){
-      jQuery(".available_addons").html(response.available_addons);
+      if(response.status === '1'){
+        jQuery(".available_addons").html(response.available_addons);
+        selected_date_data = response.selected_date_data;
+        console.log(response);
+
+        //Add Class Active
+        jQuery("#progressbar li").eq(jQuery("fieldset").index(next_fs)).addClass("active");
+
+        //show the next fieldset
+        next_fs.show();
+        //hide the current fieldset with style
+        current_fs.animate({opacity: 0}, {
+        step: function(now) {
+        // for making fielset appear animation
+        opacity = 1 - now;
+
+        current_fs.css({
+        'display': 'none',
+        'position': 'relative'
+        });
+        next_fs.css({'opacity': opacity});
+        },
+        duration: 600
+        });
+      }
+      else{
+        return false;
+      }
     }
   });
  }
@@ -209,17 +233,20 @@ var process_step_four = function(){
       //jQuery(form).ajaxSubmit(form_options);
     }
   });
-  var user = [];
+  var user = {};
   if (form.valid() === true) {
+    console.log("++++++++++++++++++++++++++++++++++++++");
       var x = jQuery('form').serializeArray();
       if(Array.isArray(x)){
         jQuery.each(x, function(index, field){
           var user_data = {};
-          user_data[field.name] = field.value;
-          user.push(user_data);
+          //user_data[field.name] = field.value;
+          //user.push(user_data);
+          user[field.name] = field.value;
         });
       }
   }
+  //user = JSON.stringify(user);
   return user;
 }
 
@@ -232,7 +259,6 @@ var get_preview_data = function(){
   data['user_data'] = user_data;
   data['selected_addon_data'] = selected_addon_data;
   data['selected_activity_data'] = selected_activity_data;
-  console.log(data);
   jQuery.ajax({
     url:admin_ajax_url,
     type: "POST",
@@ -240,6 +266,7 @@ var get_preview_data = function(){
     dataType:'json',
     beforeSend: function(){
       jQuery(".available_activities").html('<i class="fa fa-spinner fa-pulse fa-3x fa-fw"></i><span class="sr-only">Loading...</span>');
+      console.log(data);
     },
     success: function(response){
       console.log(response);
@@ -257,7 +284,7 @@ var make_booking = function(){
   data['user_data'] = user_data;
   data['selected_addon_data'] = selected_addon_data;
   data['selected_activity_data'] = selected_activity_data;
-  console.log(data);
+  
   jQuery.ajax({
     url:admin_ajax_url,
     type: "POST",
@@ -265,6 +292,7 @@ var make_booking = function(){
     dataType:'json',
     beforeSend: function(){
       jQuery(".available_activities").html('<i class="fa fa-spinner fa-pulse fa-3x fa-fw"></i><span class="sr-only">Loading...</span>');
+      console.log(data);
     },
     success: function(response){
       console.log(response);
