@@ -49,6 +49,72 @@ function getNextDate($current_date,$day){
   return date('Y-m-d', strtotime('+ '.($day-1).' day'.$current_date));
 }
 
+function print_this($array,$flag=0){
+	echo '<pre>';
+	print_r($array);
+	if($flag == 1){
+		die;
+	}
+}
+
+function getAddonDataCollection($addons){
+	if(!empty($addons)){
+        $main_addon_array = [];
+        foreach($addons as $keys=>$values){
+          $addon_array = [];
+          if(isset($main_addon_array[$values['addon_id']])){
+            $addon_attribute['date'] = $values['date'];
+            $addon_attribute['quantity'] = $values['quantity'];
+            $addon_attribute['price'] = $values['price'];
+            $addon_attribute['total_price'] = $values['total_price'];
+            array_push($main_addon_array[$values['addon_id']]['attribute'],$addon_attribute);
+          }
+          else{
+            $addon_array['addon_id'] = $values['addon_id'];
+            $addon_attribute['date'] = $values['date'];
+            $addon_attribute['quantity'] = $values['quantity'];
+            $addon_attribute['price'] = $values['price'];
+            $addon_attribute['total_price'] = $values['total_price'];
+            $addon_array['attribute'] = [];
+            array_push($addon_array['attribute'],$addon_attribute);
+            $main_addon_array[$values['addon_id']] = $addon_array;
+          }
+         // echo $values['addon_id'];
+        }
+        return $main_addon_array;
+      }
+}
+
+function getActivityDataCollection($activities){
+	if(!empty($activities)){
+        $main_activity_array = [];
+        foreach($activities as $keys=>$values){
+          $activity_array = [];
+          if(isset($main_activity_array[$values['activity_id']])){
+            $activity_attribute['date'] = $values['selected_date'];
+            $activity_attribute['quantity'] = $values['selected_quantity'];
+            $activity_attribute['price'] = $values['selected_price'];
+			$activity_attribute['time'] = $values['selected_time'];
+            $activity_attribute['total_price'] = $values['total_price'];
+            array_push($main_activity_array[$values['activity_id']]['attribute'],$activity_attribute);
+          }
+          else{
+            $activity_array['activity_id'] = $values['activity_id'];
+            $activity_attribute['date'] = $values['selected_date'];
+            $activity_attribute['quantity'] = $values['selected_quantity'];
+            $activity_attribute['price'] = $values['selected_price'];
+			$activity_attribute['time'] = $values['selected_time'];
+            $activity_attribute['total_price'] = $values['total_price'];
+            $activity_array['attribute'] = [];
+            array_push($activity_array['attribute'],$activity_attribute);
+            $main_activity_array[$values['activity_id']] = $activity_array;
+          }
+         // echo $values['addon_id'];
+        }
+        return $main_activity_array;
+      }
+}
+
 function getDatesFromRange($start, $end, $format = 'Y-m-d') {
   $array = array();
   $interval = new DateInterval('P1D');
@@ -86,7 +152,7 @@ function check_reservation_availability($check_in_date, $check_out_date){
 
 	// $sql_query = "select count(*) from wp_reservations";
 	// $sql_query .= " where daterange(check_in_date, check_out_date, '[]') && daterange('".$check_in_dat."', '".$check_out_date."', '[]')";
-	
+
 	$result = $wpdb->get_results($sql_query);
 	$row_count = count($result);
 	return ($row_count == 0)?true:false;
@@ -173,6 +239,12 @@ function make_booking(){
 	$user_data = $_POST['user_data'];
 	$selected_activity_data = $_POST['selected_activity_data'];
 	$selected_addon_data = $_POST['selected_addon_data'];
+	$isExist = check_reservation_availability($check_in_date, $check_out_date);
+	if(!$isExist){
+		$data['status'] = '0';
+		$data['data']['message'] = 'Reservation is not available for selected date and nights';
+		sendResponse($data);
+	}
 	$insert['check_in_date'] = $check_in_date;
 	$insert['check_out_date'] = $check_out_date;
 	$insert['number_of_night'] = $number_of_night;

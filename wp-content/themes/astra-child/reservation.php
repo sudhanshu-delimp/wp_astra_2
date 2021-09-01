@@ -20,7 +20,7 @@
                 <li id="payment"><strong>Activities</strong></li>
                 <li id="confirm"><strong>Guest Details</strong></li>
                 <li id="preview"><strong>preview</strong></li>
-                
+
               </ul> <!-- fieldsets -->
               <div>
                 <fieldset id="step-one">
@@ -29,7 +29,7 @@
                     <span><b>When making room reservations, we have a two night minimum for Garden Bungalows and a
                         four-night minimum for Waterfront Bungalows.</b><br>
                       Please select below and then click 'Check Now'.</span>
-                    <div class="form-contain">
+                    <div class="form-contain"  id="step-one-contain">
                       <div class="form-group col-sm-12 bold">
                         <label for="arrival_date">Arrival Date<sup></label>
                         <input class="form-control" name="arrival_date" type="text" id="arrival_date"
@@ -113,27 +113,27 @@
                       <span><label for="first_name">First name</label></span>
                       <div class="input-wrap"><input type="text" name="first_name" class="form-control" id="first_name" required></div>
                       </div>
-                      
+
                       <div class="req">
                       <span><label for="last_name">Last name</label></span>
                       <div class="input-wrap"><input type="text" name="last_name" class="form-control" id="last_name" required></div>
                       </div>
-                      
+
                       <div class="req">
                       <span><label for="address_one">Address</label></span>
                       <div class="input-wrap"><input type="text" name="address_one" id="address_one" class="form-control" required></div>
                       </div>
-                      
+
                       <div>
                       <span><label for="address_two">Address</label></span>
                       <div class="input-wrap"><input type="text" name="address_two" id="address_two" class="form-control"></div>
                       </div>
-                      
+
                       <div class="thre-col req">
                       <span><label for="city">City</label></span>
                       <div class="input-wrap"><input type="text" name="city" id="city" class="form-control" required></div>
                       </div>
-                      
+
                       <div class="ful-col thre-col req">
                       <span><label for="state">State/Province</label></span>
                       <div class="input-wrap"> <select name="state" id="state" class="form-control" required>
@@ -180,32 +180,32 @@
                       <option value="NS">Nova Scotia </option>
                       </select></div>
                       </div>
-                      
+
                       <div class="thre-col req">
                       <span><label for="zip_code">Zip/Postal Code</label></span>
                       <div class="input-wrap"><input type="text" name="zip_code" class="form-control" id="zip_code" required></div>
                       </div>
-                      
+
                       <div class="thre-col">
                       <span><label for="country">Country</label></span>
                       <div class="input-wrap"><input type="text" name="country" class="form-control" id="country" required></div>
                       </div>
-                      
+
                       <div class="req">
                       <span><label for="phone">Phone Number</label></span>
                       <div class="input-wrap"><input type="text" name="phone" id="phone" required></div>
                       </div>
-                      
+
                       <div>
                       <span><label for="mobile">Mobile Phone</label></span>
                       <div class="input-wrap"><input type="text" name="mobile" id="mobile"></div>
                       </div>
-                      
+
                       <div class="req">
                       <span><label for="email">E-mail Address</label></span>
                       <div class="input-wrap"><input type="email" name="email" id="email" class="form-control" required></div>
                       </div>
-                      
+
                       </div>
                       </form>
 
@@ -221,14 +221,14 @@
                       look
                       like this
                     </span>
-                    <div class=" available_preview load">
+                    <div class="available_preview load" id="step-five-contain">
 
                     </div>
                   </div>
                   <input type="button" name="previous" class="previous action-button-previous" value="Previous" />
-                  <input type="button" name="next" step="step-five" class="next-step action-button" value="Confirm" />
+                  <input type="button" name="next" step="step-five" id="step-five-contain-btn" disabled class="next-step action-button" value="Confirm" />
                 </fieldset>
-               
+
               </div>
             </div>
           </div>

@@ -85,6 +85,7 @@ var error_Attr = function(form_Id, message = '', flag = 0, time = 2000){
 }
 
 var general_Attr = function(form_Id, message_type = 1, message = '', flag = 0, time = 2000){
+   // console.log(message_type);
     removeAlert();
     var msg_class = "alert-success";
     var i_class = "fa-check-circle";
@@ -103,6 +104,7 @@ var general_Attr = function(form_Id, message_type = 1, message = '', flag = 0, t
     else if(message_type == 4){
       msg_class = "alert-warning";
       i_class = "fa-cog fa-spin";
+      jQuery(form_Id+"-btn").attr("disabled","disabled");
     }
     if(form_Id!="" && message!=""){
 			if(Array.isArray(message)){
@@ -148,7 +150,7 @@ var redirecting_Attr = function(form_Id, message = ''){
 }
 var removeAlert=function(args){
   if(args!=""){
-    jQuery(args).remove(); $(".alert").remove();
+    jQuery(args).remove(); jQuery(".alert").remove();
   }else{
     jQuery(".alert").remove();
   }

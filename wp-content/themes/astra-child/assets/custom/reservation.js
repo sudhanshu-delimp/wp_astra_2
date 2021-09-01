@@ -132,13 +132,16 @@ var process_step_one = function(){
     data: data,
     dataType:'json',
     beforeSend: function(){
+      general_Attr("#step-one-contain", 4, 'Processing...');
       jQuery(".available_addons").html('<i class="fa fa-spinner fa-pulse fa-3x fa-fw"></i><span class="sr-only">Loading...</span>');
     },
     success: function(response){
+      console.log(response.message);
       if(response.status === '1'){
+        removeAlert();
         jQuery(".available_addons").html(response.available_addons);
         selected_date_data = response.selected_date_data;
-        console.log(response);
+        
 
         //Add Class Active
         jQuery("#progressbar li").eq(jQuery("fieldset").index(next_fs)).addClass("active");
@@ -161,6 +164,7 @@ var process_step_one = function(){
         });
       }
       else{
+        general_Attr("#step-one-contain", 2, response.message);
         return false;
       }
     }
@@ -271,6 +275,7 @@ var get_preview_data = function(){
     success: function(response){
       console.log(response);
        jQuery(".available_preview").html(response.available_preview);
+       jQuery("#step-five-contain-btn").attr("disabled","disabled");
     }
   });
 }
@@ -293,9 +298,22 @@ var make_booking = function(){
     beforeSend: function(){
       jQuery(".available_activities").html('<i class="fa fa-spinner fa-pulse fa-3x fa-fw"></i><span class="sr-only">Loading...</span>');
       console.log(data);
+      general_Attr("#step-five-contain", 4, 'Processing...');
+      document.getElementById("step-five-contain").scrollIntoView();
     },
     success: function(response){
+      if(response.status === '1'){
+        general_Attr("#step-five-contain", 1, response.data.message);
+      }
+      else{
+        general_Attr("#step-five-contain", 2, response.data.message);
+      }
       console.log(response);
+      //jQuery.scrollTo(jQuery('#step-five-contain'), 1000);
+      //document.getElementById("step-five-contain").scrollIntoView();
+      jQuery([document.documentElement, document.body]).animate({
+        scrollTop: $("#page").offset().top
+    }, 2000);
        //jQuery(".available_preview").html(response.available_preview);
     }
   });
@@ -421,4 +439,13 @@ jQuery(document).on('click','.remove-activity',function(e){
   var init_options = jQuery("#time-hide-"+activity_id).html();
   jQuery("#time-"+activity_id).html(init_options);
   jQuery("#date-"+activity_id).val("");
+});
+
+jQuery(document).on('click','#confirm_by_user',function(){
+  if(!this.checked){
+    jQuery("#step-five-contain-btn").attr("disabled","disabled");
+  }
+  else{
+    jQuery("#step-five-contain-btn").removeAttr("disabled");
+  }
 });
