@@ -243,7 +243,7 @@ var get_preview_data = function(){
     },
     success: function(response){
       console.log(response);
-       //jQuery(".available_preview").html(response.available_preview);
+       jQuery(".available_preview").html(response.available_preview);
     }
   });
 }
