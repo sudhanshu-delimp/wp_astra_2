@@ -226,7 +226,7 @@
                     </div>
                   </div>
                   <input type="button" name="previous" class="previous action-button-previous" value="Previous" />
-                  <input type="button" name="next" step="step-five" id="step-five-contain-btn" disabled class="next-step action-button" value="Confirm" />
+                  <input type="button" name="next" step="step-five" id="step-five-contain-btn" disabled class="next-step action-button confirm_top" value="Confirm" />
                 </fieldset>
                 <fieldset id="step-six">
                 <div class="form-card">
@@ -253,6 +253,8 @@
     </div>
   </div>
 </div>
+
+
 <style media="screen">
 
 

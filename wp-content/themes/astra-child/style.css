@@ -867,6 +867,9 @@ font-size: 18px;
 .reservation_id {
     color: #e1c01b;
 }
+.confirm_top:disabled {
+    opacity: 0.3;
+}
 @media screen and (max-width:767px) {
     #msform fieldset .form-card {
         padding: 20px 0px;
