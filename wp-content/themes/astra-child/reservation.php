@@ -20,7 +20,7 @@
                 <li id="payment"><strong>Activities</strong></li>
                 <li id="confirm"><strong>Guest Details</strong></li>
                 <li id="preview"><strong>preview</strong></li>
-
+                <li id="success"><strong>Finish</strong></li>
               </ul> <!-- fieldsets -->
               <div>
                 <fieldset id="step-one">
@@ -214,7 +214,7 @@
                   <input type="button" name="next" step="step-four" class="next-step action-button" value="Next Step" />
                 </fieldset>
                 <fieldset id="step-five">
-                  <div class="form-card">
+                <div class="form-card">
                     <h2 class="fs-title">Booking Preview</h2>
 
                     <span class="card-sub-head">Please enter Guest information then click 'Continue'. Required fields
@@ -228,7 +228,23 @@
                   <input type="button" name="previous" class="previous action-button-previous" value="Previous" />
                   <input type="button" name="next" step="step-five" id="step-five-contain-btn" disabled class="next-step action-button" value="Confirm" />
                 </fieldset>
+                <fieldset id="step-six">
+                <div class="form-card">
+                    <h2 class="fs-title">Finish</h2>
 
+                    <span class="card-sub-head">Your reservation has been booked. reservation ID : <span class="reservation_id">123456</span>
+                    </span>
+                    <div class=" load" id="step-five-contain">
+                         <div class="msg_succsess">
+                             <div class="icon_succsess"><i class="fas fa-check"></i></div>
+                             <div class="data_succsess"><h3>Your reservation has been success.</h3></div>
+                         </div>                      
+                    </div>
+                  </div>
+                  <a href="#" class="back_home" > Back Home</a>
+                
+                  
+                </fieldset>                         
               </div>
             </div>
           </div>
