@@ -45,12 +45,12 @@
                                           ?>
                         </select>
                       </div>
-                      <div class="form-group col-sm-12 bold long-box">
+                      <!-- <div class="form-group col-sm-12 bold long-box">
                         <label for="accommodation">Accommodation<sup></label>
                         <select class="form-control" name="accommodation" id="accommodation" required>
                           <option value="0">All Room Types</option>
                         </select>
-                      </div>
+                      </div> -->
                       <div class="form-group col-sm-12 bold">
                         <label for="adults_per_room">Adults per Room<sup></label>
                         <select class="form-control" name="adults_per_room" id="adults_per_room" required>
@@ -137,6 +137,7 @@
                       <div class="ful-col thre-col req">
                       <span><label for="state">State/Province</label></span>
                       <div class="input-wrap"> <select name="state" id="state" class="form-control" required>
+                      <option value="AB">Select state</option>
                       <option value="AB">Alberta </option>
                       <option value="AK">Alaska </option>
                       <option value="AL">Alabama </option>
@@ -217,10 +218,10 @@
                 <div class="form-card">
                     <h2 class="fs-title">Booking Preview</h2>
 
-                    <span class="card-sub-head">Please enter Guest information then click 'Continue'. Required fields
+                    <!-- <span class="card-sub-head">Please enter Guest information then click 'Continue'. Required fields
                       look
                       like this
-                    </span>
+                    </span> -->
                     <div class="available_preview load" id="step-five-contain">
 
                     </div>
