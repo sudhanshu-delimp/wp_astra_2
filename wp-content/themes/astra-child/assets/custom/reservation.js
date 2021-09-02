@@ -315,6 +315,7 @@ var make_booking = function(){
       if(response.status === '1'){
         general_Attr("#step-five-contain", 1, response.data.message);
         jQuery("#reservation_id").html(response.data.reservation_id);
+        jQuery("html, body").animate({ scrollTop: 0 }, "slow");
         //Add Class Active
         jQuery("#progressbar li").eq(jQuery("fieldset").index(next_fs)).addClass("active");
 
@@ -337,6 +338,7 @@ var make_booking = function(){
       }
       else{
         general_Attr("#step-five-contain", 2, response.data.message);
+        jQuery("html, body").animate({ scrollTop: 0 }, "slow");
       }
       console.log(response);
     }
