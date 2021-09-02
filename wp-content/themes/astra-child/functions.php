@@ -176,8 +176,8 @@ function process_step_one(){
 		$data['selected_date_data'] = [
 		'check_in_date'=>$data['check_in_date'],
 		'check_out_date'=>$data['check_out_date'],
-		'number_of_night'=>$data['number_of_night'],
-		'adults_per_room'=>$data['adults_per_room']
+		'number_of_night'=>$number_of_night,
+		'adults_per_room'=>$adults_per_room
 		];
 	}
 	else{

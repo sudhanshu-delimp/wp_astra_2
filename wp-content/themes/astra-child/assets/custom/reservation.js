@@ -1,4 +1,5 @@
-var selected_date_data = [], elected_activity_data = [], selected_addon_data = [] , user_data = {}, selected_date_data = {};
+var selected_date_data = [], selected_activity_data = [], selected_addon_data = [] , user_data = {}, selected_date_data = {};
+var activity_flag = 1;
 var current_fs, next_fs, previous_fs; //fieldsets
 var opacity;
 jQuery(document).ready(function(){
@@ -28,8 +29,24 @@ jQuery(".next-step").click(function(){
   console.log(step_number);
   switch(step_number){
     case 'step-one':{
-      process_step_one();
-      return false;
+      var check_in_date = getDateFormat(jQuery("#arrival_date").val());
+      var number_of_night = jQuery("#number_of_night").val();
+      console.log(selected_date_data);
+      console.log("pre_number_of_night: "+selected_date_data.number_of_night);
+      console.log("current_number_of_night: "+number_of_night);
+      console.log("pre_check_in_date: "+selected_date_data.check_in_date);
+      console.log("current_check_in_date: "+check_in_date);
+      if(selected_date_data.check_in_date===undefined || selected_date_data.check_in_date!==check_in_date || selected_date_data.number_of_night!=number_of_night){
+        console.log("get data");
+        activity_flag = 1;
+        process_step_one();
+        return false;
+      }
+      else{
+        activity_flag = 0;
+        console.log("put old data");
+      }
+      
     } break;
     case 'step-two':{
       selected_addon_data = process_step_two();
@@ -43,8 +60,6 @@ jQuery(".next-step").click(function(){
         return false;
       }
       else{
-        //console.log(selected_date_data);
-        //console.log(Object.keys(selected_date_data).length);
         get_preview_data();
       }
     } break;
@@ -132,11 +147,11 @@ var process_step_one = function(){
     data: data,
     dataType:'json',
     beforeSend: function(){
+      console.log(data);
       general_Attr("#step-one-contain", 4, 'Processing...');
       jQuery(".available_addons").html('<i class="fa fa-spinner fa-pulse fa-3x fa-fw"></i><span class="sr-only">Loading...</span>');
     },
     success: function(response){
-      console.log(response.message);
       if(response.status === '1'){
         removeAlert();
         jQuery(".available_addons").html(response.available_addons);
@@ -188,7 +203,10 @@ var process_step_two = function(){
       addons.push(addon_data);
     }
   });
-  get_activity_list();
+  console.log("selected_activity_data: "+selected_activity_data);
+  if(activity_flag == 1){
+    get_activity_list();
+  }
   return addons;
 }
 
@@ -232,9 +250,6 @@ var process_step_four = function(){
       // email: {
       //   remote: "The email is already taken"
       // }
-    },
-    submitHandler: function(form) {
-      //jQuery(form).ajaxSubmit(form_options);
     }
   });
   var user = {};
@@ -244,13 +259,10 @@ var process_step_four = function(){
       if(Array.isArray(x)){
         jQuery.each(x, function(index, field){
           var user_data = {};
-          //user_data[field.name] = field.value;
-          //user.push(user_data);
           user[field.name] = field.value;
         });
       }
   }
-  //user = JSON.stringify(user);
   return user;
 }
 
@@ -269,7 +281,7 @@ var get_preview_data = function(){
     data: data,
     dataType:'json',
     beforeSend: function(){
-      jQuery(".available_activities").html('<i class="fa fa-spinner fa-pulse fa-3x fa-fw"></i><span class="sr-only">Loading...</span>');
+      jQuery(".available_preview").html('<i class="fa fa-spinner fa-pulse fa-3x fa-fw"></i><span class="sr-only">Loading...</span>');
       console.log(data);
     },
     success: function(response){
@@ -320,6 +332,7 @@ var make_booking = function(){
 }
 
 var get_activity_list = function(){
+   
   var data = {};
   data['action'] = 'get_activity_list';
   data['arrival_date'] = getDateFormat(jQuery("#arrival_date").val());

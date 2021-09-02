@@ -91,7 +91,7 @@
                   <div class="form-card">
                     <h2 class="fs-title">Check Activities Availability</h2>
 
-                    <div class="row available_activities load">
+                    <div class="row available_activities load" activity_check_in_date = "" activity_number_of_night = "">
 
                     </div>
                   </div>
