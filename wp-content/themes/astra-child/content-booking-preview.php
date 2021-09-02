@@ -20,7 +20,7 @@ if($args['number_of_night'] > 11){
         <h3>You are booking:</h3>
     </div>
     <div class="boooking_details_data">
-          <div><h3>Nights Stay</h3></div>
+          <div><h3>Number of nights</h3></div>
           <div><h5><?php echo $args['number_of_night']; ?></h5></div>
           <div><h3>Arrival Date</h3></div>
           <div><h5><?php echo getDateTime($args['check_in_date'],'l, F d, Y'); ?></h5></div>

@@ -309,24 +309,36 @@ var make_booking = function(){
     dataType:'json',
     beforeSend: function(){
       jQuery(".available_activities").html('<i class="fa fa-spinner fa-pulse fa-3x fa-fw"></i><span class="sr-only">Loading...</span>');
-      console.log(data);
       general_Attr("#step-five-contain", 4, 'Processing...');
-      document.getElementById("step-five-contain").scrollIntoView();
     },
     success: function(response){
       if(response.status === '1'){
         general_Attr("#step-five-contain", 1, response.data.message);
+        jQuery("#reservation_id").html(response.data.reservation_id);
+        //Add Class Active
+        jQuery("#progressbar li").eq(jQuery("fieldset").index(next_fs)).addClass("active");
+
+        //show the next fieldset
+        next_fs.show();
+        //hide the current fieldset with style
+        current_fs.animate({opacity: 0}, {
+        step: function(now) {
+        // for making fielset appear animation
+        opacity = 1 - now;
+
+        current_fs.css({
+        'display': 'none',
+        'position': 'relative'
+        });
+        next_fs.css({'opacity': opacity});
+        },
+        duration: 600
+        });
       }
       else{
         general_Attr("#step-five-contain", 2, response.data.message);
       }
       console.log(response);
-      //jQuery.scrollTo(jQuery('#step-five-contain'), 1000);
-      //document.getElementById("step-five-contain").scrollIntoView();
-      jQuery([document.documentElement, document.body]).animate({
-        scrollTop: $("#page").offset().top
-    }, 2000);
-       //jQuery(".available_preview").html(response.available_preview);
     }
   });
 }

@@ -227,23 +227,22 @@
                   </div>
                   <input type="button" name="previous" class="previous action-button-previous" value="Previous" />
                   <input type="button" name="next" step="step-five" id="step-five-contain-btn" disabled class="next-step action-button confirm_top" value="Confirm" />
+                  
                 </fieldset>
                 <fieldset id="step-six">
                 <div class="form-card">
                     <h2 class="fs-title">Finish</h2>
 
-                    <span class="card-sub-head">Your reservation has been booked. reservation ID : <span class="reservation_id">123456</span>
+                    <span class="card-sub-head">Your reservation has been booked. reservation ID : <span id="reservation_id">123456</span>
                     </span>
-                    <div class=" load" id="step-five-contain">
+                    <div class=" load" id="step-six-contain">
                          <div class="msg_succsess">
                              <div class="icon_succsess"><i class="fas fa-check"></i></div>
-                             <div class="data_succsess"><h3>Your reservation has been success.</h3></div>
+                             <div class="data_succsess"><h3>Your reservation has been done successfully.</h3></div>
                          </div>                      
                     </div>
                   </div>
-                  <a href="#" class="back_home" > Back Home</a>
-                
-                  
+                  <a href="<?php echo get_site_url(); ?>" class="back_home" > Back Home</a>  
                 </fieldset>                         
               </div>
             </div>
