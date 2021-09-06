@@ -2,12 +2,6 @@
 <?php
   get_header();
   global $wpdb;
-  $today = getDateTime();
-  $current_date = explode("-",$today);
-  $current_year = $current_date[0];
-  $current_day = $current_date[2];
-  $current_month = $current_date[1];
-  $months = monthList();
 ?>
 <!-- MultiStep Form -->
 <div class="container-fluid" id="grad1">
@@ -38,33 +32,37 @@
                     <div class="form-contain"  id="step-one-contain">
                       <div class="form-group col-sm-12 bold">
                         <label for="arrival_date">Arrival Date<sup></label>
+                        <input class="form-control" name="arrival_date" type="text" id="arrival_date"
+                          placeholder="Select Arrival Date" autocomplete="off" required>
                           <select class="form-control" name="selected_month" onchange="updateCal()" id="selected_month" required>
-                            <?php
-                            foreach($months as $key=>$month){
-                              $selected = ($key==$current_month)?'selected':'';
-                              echo '<option value="'.$key.'" '.$selected.'>'.$month.'</option>';
-                            }
-                            ?>
+                            <option value="01">January</option>
+                            <option value="02">February</option>
+                            <option value="03">March</option>
+                            <option value="04">April</option>
+                            <option value="05">May</option>
+                            <option value="06">June</option>
+                            <option value="07">July</option>
+                            <option value="08">August</option>
+                            <option value="09">September</option>
+                            <option value="10">October</option>
+                            <option value="11">November</option>
+                            <option value="12">December</option>
                           </select>
                           <select class="form-control" name="selected_day" onchange="updateCal()" id="selected_day" required>
                             <?php
                             for($i=1;$i<=31;$i++){
                               $value = (strlen($i) == 1)?'0'.$i:$i;
-                              $selected = (intval($value)==$current_day)?'selected':'';
-                              echo '<option value="'.$value.'" '.$selected.'>'.$i.'</option>';
+                              echo '<option value="'.$value.'">'.$i.'</option>';
                             }
                             ?>
                           </select>
                           <select class="form-control" name="selected_year" onchange="updateCal()" id="selected_year" required>
                             <?php
-                            for($i=$current_year;$i<=($current_year+4);$i++){
-                              $selected = ($i==$current_year)?'selected':'';
-                              echo '<option value="'.$i.'" '.$selected.'>'.$i.'</option>';
+                            for($i=2021;$i<=2025;$i++){
+                              echo '<option value="'.$i.'">'.$i.'</option>';
                             }
                             ?>
                           </select>
-                          <input class="form-control" name="arrival_date" type="hidden" id="arrival_date"
-                            placeholder="Select Arrival Date" autocomplete="off" required>
                       </div>
                       <div class="form-group col-sm-12 bold">
                         <label for="number_of_night">Number of Nights<sup></label>

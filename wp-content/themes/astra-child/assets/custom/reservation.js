@@ -2,6 +2,18 @@ var selected_date_data = [], selected_activity_data = [], selected_addon_data = 
 var activity_flag = 1;
 var current_fs, next_fs, previous_fs; //fieldsets
 var opacity;
+
+var updateCal = function(){
+  var selected_month = jQuery("#selected_month").val();
+  var selected_day = jQuery("#selected_day").val();
+  var selected_year = jQuery("#selected_year").val();
+  var time_string = selected_month+'-'+selected_day+'-'+parseInt(selected_year);
+  console.log(time_string);
+  jQuery('#arrival_date').datepicker().datepicker('setDate', time_string);
+  jQuery(".ui-datepicker-trigger").click();
+  //jQuery('#arrival_date').datepicker('setDate', '05-15-2021');
+}
+
 jQuery(document).ready(function(){
 
 jQuery("#arrival_date").datepicker({
@@ -9,16 +21,19 @@ jQuery("#arrival_date").datepicker({
   numberOfMonths: 2,
   showButtonPanel: true,
   dateFormat:'mm-dd-yy',
-  // changeMonth: true,
-  // changeYear: true,
-  // yearRange: "-5:+0"
   showOn: "button",
   buttonImage: wp_base_url+"/wp-content/uploads/2021/08/datepicker.png",
   buttonImageOnly: true,
   //buttonText: "Select date"
+  onSelect: function(dateText, inst) {
+     var date_string = dateText.split("-");
+     jQuery("#selected_month").val(date_string[0]);
+     jQuery("#selected_day").val(date_string[1]);
+     jQuery("#selected_year").val(date_string[2]);
+  }
 });
 jQuery('#arrival_date').datepicker('setDate', 'today');
-
+jQuery(".ui-datepicker-trigger").click();
 
 
 jQuery(".next-step").click(function(){
@@ -31,11 +46,6 @@ jQuery(".next-step").click(function(){
     case 'step-one':{
       var check_in_date = getDateFormat(jQuery("#arrival_date").val());
       var number_of_night = jQuery("#number_of_night").val();
-      console.log(selected_date_data);
-      console.log("pre_number_of_night: "+selected_date_data.number_of_night);
-      console.log("current_number_of_night: "+number_of_night);
-      console.log("pre_check_in_date: "+selected_date_data.check_in_date);
-      console.log("current_check_in_date: "+check_in_date);
       if(selected_date_data.check_in_date===undefined || selected_date_data.check_in_date!==check_in_date || selected_date_data.number_of_night!=number_of_night){
         console.log("get data");
         activity_flag = 1;
@@ -46,7 +56,7 @@ jQuery(".next-step").click(function(){
         activity_flag = 0;
         console.log("put old data");
       }
-      
+
     } break;
     case 'step-two':{
       selected_addon_data = process_step_two();
@@ -124,6 +134,8 @@ jQuery(".submit").click(function(){
 
 });
 
+
+
 jQuery(document).on('change','.all_day',function(){
   var addon_id = jQuery(this).attr('addon-id');
   var selected_value = jQuery(this).val();
@@ -156,7 +168,7 @@ var process_step_one = function(){
         removeAlert();
         jQuery(".available_addons").html(response.available_addons);
         selected_date_data = response.selected_date_data;
-        
+
 
         //Add Class Active
         jQuery("#progressbar li").eq(jQuery("fieldset").index(next_fs)).addClass("active");
@@ -191,7 +203,7 @@ var process_step_two = function(){
   jQuery('.selected-addons').each(function(index, ele){
     var element = jQuery(ele).find('option:selected');
     if(element.val() > 0){
-      var addon_id = element.attr("addon-id"); 
+      var addon_id = element.attr("addon-id");
       var date = element.attr("date");
       var price = element.attr("price");
       var addon_data = {};
@@ -301,7 +313,7 @@ var make_booking = function(){
   data['user_data'] = user_data;
   data['selected_addon_data'] = selected_addon_data;
   data['selected_activity_data'] = selected_activity_data;
-  
+
   jQuery.ajax({
     url:admin_ajax_url,
     type: "POST",
@@ -346,7 +358,7 @@ var make_booking = function(){
 }
 
 var get_activity_list = function(){
-   
+
   var data = {};
   data['action'] = 'get_activity_list';
   data['arrival_date'] = getDateFormat(jQuery("#arrival_date").val());
@@ -479,8 +491,3 @@ jQuery(document).on('click','#confirm_by_user',function(){
 
 
 // top
-
-
-
-
-	

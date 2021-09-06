@@ -34,6 +34,24 @@ function child_enqueue_styles() {
 add_action( 'wp_enqueue_scripts', 'child_enqueue_styles', 100 );
 
 /*start custom functions*/
+function monthList(){
+	$months = [
+		'01'=>'January',
+		'02'=>'February',
+		'03'=>'March',
+		'04'=>'April',
+		'05'=>'May',
+		'06'=>'June',
+		'07'=>'July',
+		'08'=>'August',
+		'09'=>'September',
+		'10'=>'October',
+		'11'=>'November',
+		'12'=>'December'
+	];
+	return $months;
+}
+
 function getDateTime($datetime='',$format='Y-m-d H:i:s') {
 	$format = trim($format)=='' ? 'Y-m-d H:i:s' : $format;
 	$datetime = (trim($datetime)=='') ? date($format) : $datetime;
@@ -160,9 +178,14 @@ function check_reservation_availability($check_in_date, $check_out_date){
 
 function process_step_one(){
 	$data = [];
+	$today = getDateTime('','Y-m-d');
 	$data['check_in_date'] = getDateTime($_POST['arrival_date'], 'Y-m-d');
 	$data['check_out_date'] = getNextDate($_POST['arrival_date'], intval($_POST['number_of_night']));
-
+  if(strtotime($data['check_in_date'])<strtotime($today)){
+		$data['status'] = '0';
+		$data['message'] = 'Please do not select previous past dates.';
+		sendResponse($data);
+	}
 	$is_reservation_available = check_reservation_availability($data['check_in_date'], $data['check_out_date']);
 	if($is_reservation_available){
 		$data['status'] = '1';
