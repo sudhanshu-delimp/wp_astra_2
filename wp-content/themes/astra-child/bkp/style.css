@@ -60,12 +60,7 @@ Template: astra
     text-align: left;
     color: #9E9E9E
   }
- .page-template-reservation .headTopMain i {
-    color: #000 !important;
-}
-.page-template-reservation .headTopMain span.elementor-icon-list-text{
-	 color: #000 !important;
-}
+  
   #msform input,
   #msform textarea {
     padding: 0px 8px 4px 8px;

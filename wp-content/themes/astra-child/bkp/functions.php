@@ -251,15 +251,14 @@ function make_booking(){
 	$insert['adults_per_room'] = $adults_per_room;
 	$insert['user_data'] = json_encode($user_data);
 	$insert['addon_data'] = json_encode($selected_addon_data);
+	$insert['addon_data'] = json_encode($selected_addon_data);
 	$insert['activity_data'] = json_encode($selected_activity_data);
 	$insert['status'] = '1';
 	$response = $wpdb->insert('wp_reservations', $insert);
 	if($response){
-		$booking_id = str_replace("-","",getDateTime($check_in_date,'y-m-d'))."".str_replace("-","",getDateTime($check_out_date,'y-m-d'))."".$wpdb->insert_id;
 		$data['status'] = '1';
-		$data['data']['reservation_id'] = $booking_id;
+		$data['data']['reservation_id'] = $wpdb->insert_id;
 		$data['data']['message'] = 'Your reservation has done successfully.';
-		$wpdb->update('wp_reservations', array('booking_id'=>$booking_id), array('id'=>$wpdb->insert_id));
 	}
 	else{
 		$data['status'] = '0';
