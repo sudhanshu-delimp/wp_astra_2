@@ -11,6 +11,7 @@ var updateCal = function(){
   console.log(time_string);
   jQuery('#arrival_date').datepicker().datepicker('setDate', time_string);
   jQuery(".ui-datepicker-trigger").click();
+  jQuery(document).unbind('mousedown', jQuery.datepicker._checkExternalClick);
   //jQuery('#arrival_date').datepicker('setDate', '05-15-2021');
 }
 
@@ -37,7 +38,7 @@ jQuery("#arrival_date").datepicker({
 });
 jQuery('#arrival_date').datepicker('setDate', 'today');
 jQuery(".ui-datepicker-trigger").click();
-
+jQuery(document).unbind('mousedown', jQuery.datepicker._checkExternalClick);
 
 jQuery(".next-step").click(function(){
   current_fs = jQuery(this).parent();
