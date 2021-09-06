@@ -65,6 +65,9 @@
                           </select>
                           <input class="form-control" name="arrival_date" type="hidden" id="arrival_date"
                             placeholder="Select Arrival Date" autocomplete="off" required>
+                          <div class="calendar-container">
+
+                          </div>
                       </div>
                       <div class="form-group col-sm-12 bold">
                         <label for="number_of_night">Number of Nights<sup></label>

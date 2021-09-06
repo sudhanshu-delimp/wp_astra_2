@@ -25,6 +25,9 @@ jQuery("#arrival_date").datepicker({
   buttonImage: wp_base_url+"/wp-content/uploads/2021/08/datepicker.png",
   buttonImageOnly: true,
   //buttonText: "Select date"
+  beforeShow:function(textbox, instance){
+    jQuery('.calendar-container').html(jQuery('#ui-datepicker-div'));
+  },
   onSelect: function(dateText, inst) {
      var date_string = dateText.split("-");
      jQuery("#selected_month").val(date_string[0]);
