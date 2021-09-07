@@ -253,6 +253,7 @@ function show_booking_preview(){
 
 function make_booking(){
 	global $wpdb;
+	$table_name = $wpdb->prefix."reservations";
 	$insert = [];
 	$data = [];
 	$check_in_date = getDateTime($_POST['arrival_date'], 'Y-m-d');
@@ -273,10 +274,11 @@ function make_booking(){
 	$insert['number_of_night'] = $number_of_night;
 	$insert['adults_per_room'] = $adults_per_room;
 	$insert['user_data'] = json_encode($user_data);
+	$insert['user_name'] = ucfirst($user_data['first_name'])." ".ucfirst($user_data['last_name']);
 	$insert['addon_data'] = json_encode($selected_addon_data);
 	$insert['activity_data'] = json_encode($selected_activity_data);
 	$insert['status'] = '1';
-	$response = $wpdb->insert('wp_reservations', $insert);
+	$response = $wpdb->insert($table_name, $insert);
 	if($response){
 		$booking_id = str_replace("-","",getDateTime($check_in_date,'y-m-d'))."".str_replace("-","",getDateTime($check_out_date,'y-m-d'))."".$wpdb->insert_id;
 		$data['status'] = '1';
