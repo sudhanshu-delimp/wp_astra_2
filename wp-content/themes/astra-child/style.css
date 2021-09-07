@@ -293,10 +293,13 @@ Template: astra
       position: relative;
   }
   .user-row > div label {
-      font-size: 18px;
+      font-size: 16px;
       color: #181818;
       font-weight: 500;
   }
+  a.back_home:hover {
+    color: #181818;
+}
   .user-row .select {
       width: 300px !important;
   }
@@ -373,8 +376,9 @@ Template: astra
       box-shadow: none;
   }
   div#grad1 {
-      background-image: none !important;
-      padding-top: 7em;
+    background-image: none !important;
+    max-width: 1280px;
+    width: 100%;
   }
   .long-box select#accommodation {
       min-width: 190px;
@@ -714,6 +718,9 @@ Template: astra
   table, td, th {
       border: none;
   }
+  #msform .action-button:hover, #msform .action-button:focus {
+    box-shadow: 0 0 0 2px white, 0 0 0 3px #616161;
+}
   div#ui-datepicker-div button {
     position: absolute;
     right: 0;
@@ -731,6 +738,9 @@ Template: astra
 }
 div#ui-datepicker-div button:active {
     outline: none;
+}
+.elementor-sticky--effects .elementor-widget-theme-site-logo img {
+    width: 120px !important;
 }
 .ui-datepicker th {
     font-weight: lighter;
@@ -799,6 +809,9 @@ div#ui-datepicker-div button:active {
       .user-row input {
           width: 100% !important;
       }
+      div#grad1 {
+        padding: 0 30px;
+    }
       .thre-col {
           width: 100% !important;
       }
@@ -923,11 +936,17 @@ font-size: 35px;
 }
 .back_home {
     padding: 10px 25px;
-display: inline-block;
-background-color: #66d7de;
-color: #fff;
-font-weight: 600;
-font-size: 18px;    
+    display: inline-block;
+    background-color: #e1c01b;
+    color: #181818;
+    font-weight: 600;
+    font-size: 18px;    
+}
+.page-template-reservation-php .site-content .ast-container {
+    display: flex;
+    flex-direction: column;
+    max-width: 100%;
+    padding: 0;
 }
 .reservation_id {
     color: #e1c01b;

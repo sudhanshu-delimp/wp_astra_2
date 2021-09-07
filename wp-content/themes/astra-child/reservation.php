@@ -9,6 +9,7 @@
   $current_month = $current_date[1];
   $months = monthList();
 ?>
+<div class="reserve-ban"><img src="http://localhost/wp_astra/wp-content/uploads/2021/09/banner-reserve-scaled.jpg"></div>
 <!-- MultiStep Form -->
 <div class="container-fluid" id="grad1">
   <div class="row justify-content-center mt-0">
@@ -170,6 +171,17 @@
                       <div class="input-wrap"><input type="text" name="city" id="city" class="form-control" required></div>
                       </div>
 
+                      <div class="thre-col">
+                      <span><label for="country">Country</label></span>
+                      <div class="input-wrap"><input type="text" name="country" class="form-control" id="country" required></div>
+                      </div>
+
+
+                      <div class="thre-col req">
+                      <span><label for="zip_code">Zip/Postal Code</label></span>
+                      <div class="input-wrap"><input type="text" name="zip_code" class="form-control" id="zip_code" required></div>
+                      </div>
+
                       <div class="ful-col thre-col req">
                       <span><label for="state">State/Province</label></span>
                       <div class="input-wrap"> <select name="state" id="state" class="form-control" required>
@@ -216,16 +228,6 @@
                       <option value="NM">New Mexico </option>
                       <option value="NS">Nova Scotia </option>
                       </select></div>
-                      </div>
-
-                      <div class="thre-col req">
-                      <span><label for="zip_code">Zip/Postal Code</label></span>
-                      <div class="input-wrap"><input type="text" name="zip_code" class="form-control" id="zip_code" required></div>
-                      </div>
-
-                      <div class="thre-col">
-                      <span><label for="country">Country</label></span>
-                      <div class="input-wrap"><input type="text" name="country" class="form-control" id="country" required></div>
                       </div>
 
                       <div class="req">
