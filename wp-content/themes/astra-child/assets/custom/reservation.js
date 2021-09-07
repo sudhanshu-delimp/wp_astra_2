@@ -20,7 +20,7 @@ jQuery(document).ready(function(){
 jQuery("#arrival_date").datepicker({
   minDate: 0,
   numberOfMonths: 2,
-  showButtonPanel: true,
+  //showButtonPanel: true,
   dateFormat:'mm-dd-yy',
   showOn: "button",
   buttonImage: wp_base_url+"/wp-content/uploads/2021/08/datepicker.png",
@@ -28,6 +28,14 @@ jQuery("#arrival_date").datepicker({
   //buttonText: "Select date"
   beforeShow:function(textbox, instance){
     jQuery('.calendar-container').html(jQuery('#ui-datepicker-div'));
+    setTimeout(function() {
+      jQuery( "<button>", {
+      text: "x",
+      click: function() {
+      jQuery('#ui-datepicker-div').hide();
+      }
+      }).prependTo("#ui-datepicker-div");
+      }, 1 );
   },
   onSelect: function(dateText, inst) {
      var date_string = dateText.split("-");

@@ -109,7 +109,12 @@ Template: astra
   #msform .action-button:focus {
     box-shadow: 0 0 0 2px white, 0 0 0 3px skyblue
   }
-  
+  #msform .action-button-previous {
+    background: #e1c01b !important;
+    padding: 13px 20px !important;
+    width: 184px !important;
+    color: #000;
+}
   #msform .action-button-previous {
     width: 100px;
     background: #616161;
@@ -393,14 +398,25 @@ Template: astra
   h2.main-head:before {
       content: "";
       position: absolute;
-      border-bottom: 1px solid #66d7de;
+      border-bottom: 1px solid #e1c01b;
       width: 38%;
       left: 0;
       right: 0;
       margin: 0 auto;
       bottom: -0.5em;
   }
-  
+  .ui-datepicker-close:before {
+    content: "x";
+    position: absolute;
+    top: -9%;
+    z-index: 999999;
+    border: 1px solid #454545;
+    width: 30px;
+    height: 30px;
+    line-height: 27px;
+    border-radius: 50%;
+    font-size: 20px;
+}
   .ui-datepicker .ui-datepicker-title select {
       padding: 4px 6px;
   }
@@ -412,22 +428,32 @@ Template: astra
       background: transparent !important;
   }
   .ui-state-highlight, .ui-widget-content .ui-state-highlight, .ui-widget-header .ui-state-highlight {
-      border: 1px solid #66d7de;
-      background: #66d7de !important;
-      color: #ffff;
-      border-radius: 50%;
-  }
+    border: 1px solid #e1c01b;
+    background: #e1c01b !important;
+    color: #000;
+    border-radius: 50%;
+}
   a.ui-state-default:hover {
-      background: #66d7de !important;
-      border: 1px solid #66d7de;
-      border-radius: 50%;
-      color: #fff;
+    background: #e1c01b !important;
+    border: 1px solid #e1c01b;
+    border-radius: 50%;
+    color: #000;
   }
   .ui-datepicker-header {
-      height: 40px;
+    background: transparent;
+    border: none;
   }
+  .ui-datepicker-buttonpane {
+    display: none;
+}
   div#ui-datepicker-div {
-      width: 700px !important;
+    width: 700px !important;
+    position: relative !important;
+    opacity: 1 !important;
+    left: 0 !important;
+    top: 0 !important;
+    margin-bottom: 2em;
+    border: none;
   }
   .ui-datepicker td span, .ui-datepicker td a {
       height: 40px;
@@ -486,9 +512,10 @@ Template: astra
       border-radius: 0 !important;
   }
   #msform .action-button-previous{
-      background: #66d7de !important;
-      padding: 13px 20px !important;
-      width: 184px !important;
+     background: #e1c01b !important;
+    padding: 13px 20px !important;
+    width: 184px !important;
+    color: #000;
   }
   .available_addons .card-wrap {
       display: flex;
@@ -529,6 +556,16 @@ Template: astra
       font-size: 26px;
       color: #181818;
   }
+  .date-fin .pad {
+    margin-left: 7px !important;
+}
+.ui-state-active, .ui-widget-content .ui-state-active{
+    border: 1px solid #e1c01b !important;
+    background: #e1c01b !important;
+    font-weight: normal;
+    color: #000;
+    border-radius: 50%;
+}
   .card-pic p {
       color: #181818;
       font-size: 16px;
@@ -562,24 +599,24 @@ Template: astra
   
   
   #progressbar {
-      display: flex;
-      width: 744px;
-      height: 25px;
-      background-color: #ccc;
-      -moz-border-radius: 10px;
-      -webkit-border-radius: 10px;
-      border-radius: 10px;
-      margin: 50px auto 30px auto;
-      font-family: 'arial';
-      font-weight: 700;
-      font-size: 11px;
-      line-height: 13px;
-      color: #000;
-      position: relative;
-      text-transform: uppercase;
-      background-color: #f3f1ef !important;
-      overflow: hidden;
-      list-style: none;
+    display: flex;
+    width: 744px;
+    height: 24px;
+    background-color: #ccc;
+    -moz-border-radius: 10px;
+    -webkit-border-radius: 10px;
+    border-radius: 10px;
+    margin: 50px auto 30px auto;
+    font-family: 'arial';
+    font-weight: 700;
+    font-size: 11px;
+    line-height: 13px;
+    color: #e0bf1b;
+    position: relative;
+    text-transform: uppercase;
+    background-color: #181818 !important;
+    overflow: hidden;
+    list-style: none;
   }
   #progressbar:after, #progressbar:before {
       display: block;
@@ -634,40 +671,42 @@ Template: astra
       border-bottom-right-radius: 10px;
   }
   #progressbar li:after, #progressbar li:before {
-      width: 0;
-      height: 0;
-      display: block;
-      border: 13px solid transparent;
-      border-left-color: #fff;
-      position: absolute;
-      top: 0;
-      left: auto;
-      right:-23px;
-      content: "";
-      z-index: 200;
+    width: 0;
+    height: 0;
+    display: block;
+    border: 13px solid transparent;
+    border-left-color: #fff;
+    position: absolute;
+    top: 0;
+    left: auto;
+    right: -25px;
+    content: "";
+    z-index: 200;
   }
   #progressbar li:before {
-      z-index: 300;
-      border: 13px solid transparent;
-      border-left-color: #f3f1ef;
-      right:-20px;
-      background: transparent;
-      padding: 0;
+    z-index: 300;
+    border: 14px solid transparent;
+    border-left-color: #181818;
+    right: -23px;
+    background: transparent;
+    padding: 0;
+    top: -1px;
   }
   #progressbar li.active:before, #progressbar li.active:after {
       background: #87ceeb00;
   }
-  #progressbar .active  {
-      color: #fff;
-      background-color: #66d7de;
-  }
-  #progressbar li.active:before {
-      border-left-color: #66d7de;
-  }
+  #progressbar .active {
+    color: #000;
+    background-color: #e1c01b;
+}
+#progressbar li.active:before {
+    border-left-color: #e1c01b;
+}
   input.next-step.action-button {
-      background: #66d7de !important;
-      padding: 13px 20px !important;
-      width: 184px !important;
+    background: #e1c01b !important;
+    padding: 13px 20px !important;
+    width: 184px !important;
+    color: #000 !important;
   }
   img.ui-datepicker-trigger {
       padding-left: 5px;
@@ -675,6 +714,27 @@ Template: astra
   table, td, th {
       border: none;
   }
+  div#ui-datepicker-div button {
+    position: absolute;
+    right: 0;
+    background: transparent;
+    color: #181818;
+    border: 1px solid #181818;
+    width: 30px !important;
+    height: 30px !important;
+    display: block;
+    border-radius: 50%;
+    padding: 0;
+    top: -1.2em;
+    font-size: 21px;
+    line-height: 22px;
+}
+div#ui-datepicker-div button:active {
+    outline: none;
+}
+.ui-datepicker th {
+    font-weight: lighter;
+}
   .reserve-user .form-contain .form-group {
       padding-left: 0;
       padding-right: 0;

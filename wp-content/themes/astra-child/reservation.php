@@ -34,9 +34,9 @@
                     <h2 class="fs-title">Check Room Availability</h2>
                     <span><b>When making room reservations, we have a two night minimum for Garden Bungalows and a
                         four-night minimum for Waterfront Bungalows.</b><br>
-                      Please select below and then click 'Check Now'.</span>
+                      <i>Please select below and then click</i> 'Check Now'.</span>
                     <div class="form-contain"  id="step-one-contain">
-                      <div class="form-group col-sm-12 bold">
+                      <div class="form-group col-sm-12 bold date-fin">
                         <label for="arrival_date">Arrival Date<sup></label>
                           <select class="form-control" name="selected_month" onchange="updateCal()" id="selected_month" required>
                             <?php
@@ -46,7 +46,7 @@
                             }
                             ?>
                           </select>
-                          <select class="form-control" name="selected_day" onchange="updateCal()" id="selected_day" required>
+                          <select class="form-control pad" name="selected_day" onchange="updateCal()" id="selected_day" required>
                             <?php
                             for($i=1;$i<=31;$i++){
                               $value = (strlen($i) == 1)?'0'.$i:$i;
@@ -55,7 +55,7 @@
                             }
                             ?>
                           </select>
-                          <select class="form-control" name="selected_year" onchange="updateCal()" id="selected_year" required>
+                          <select class="form-control pad" name="selected_year" onchange="updateCal()" id="selected_year" required>
                             <?php
                             for($i=$current_year;$i<=($current_year+4);$i++){
                               $selected = ($i==$current_year)?'selected':'';
@@ -65,10 +65,11 @@
                           </select>
                           <input class="form-control" name="arrival_date" type="hidden" id="arrival_date"
                             placeholder="Select Arrival Date" autocomplete="off" required>
-                          <div class="calendar-container">
+                            
+                      </div>
+                      <div class="calendar-container">
 
                           </div>
-                      </div>
                       <div class="form-group col-sm-12 bold">
                         <label for="number_of_night">Number of Nights<sup></label>
                         <select class="form-control" name="number_of_night" id="number_of_night" required>
@@ -78,6 +79,7 @@
                                           }
                                           ?>
                         </select>
+
                       </div>
                       <!-- <div class="form-group col-sm-12 bold long-box">
                         <label for="accommodation">Accommodation<sup></label>
