@@ -8,7 +8,6 @@ var updateCal = function(){
   var selected_day = jQuery("#selected_day").val();
   var selected_year = jQuery("#selected_year").val();
   var time_string = selected_month+'-'+selected_day+'-'+parseInt(selected_year);
-  console.log(time_string);
   jQuery('#arrival_date').datepicker().datepicker('setDate', time_string);
   jQuery(".ui-datepicker-trigger").click();
   jQuery(document).unbind('mousedown', jQuery.datepicker._checkExternalClick);
@@ -32,7 +31,7 @@ jQuery("#arrival_date").datepicker({
       jQuery( "<button>", {
       text: "x",
       click: function() {
-      jQuery('#ui-datepicker-div').hide();
+      jQuery(".ui-datepicker-trigger").click();
       }
       }).prependTo("#ui-datepicker-div");
       }, 1 );
