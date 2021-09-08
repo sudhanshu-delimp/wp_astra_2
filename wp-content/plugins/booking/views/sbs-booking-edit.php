@@ -114,22 +114,24 @@
 
     </div>
     </div>
+    <br>
+      <table class="add-tab">
+      <tr><th>Date</th><th>Time</th><th>Quantity</th> <th>Price</th></tr>
     <?php
     foreach($activity['attribute'] as $key_c=>$activity_attribute){
       $activity_total = $activity_total+$activity_attribute['total_price'];
       ?>
-      <br>
-      <table class="add-tab">
-      <tr><th>Date</th><th>Time</th><th>Quantity</th> <th>Price</th></tr>
+      
       <tr><td><?php echo getDateTime($activity_attribute['date'],'l, F d,Y'); ?></td>
       <td></span><span><?php echo $activity_attribute['time']; ?></td>
       <td><?php echo $activity_attribute['quantity']; ?></td>
       <td>@ $<?php echo $activity_attribute['price']; ?>/each</td>
     </tr>
-    </table>
+    
       <?php
     }
     ?>
+    </table>
     </div>
       <?php
     }

@@ -712,6 +712,9 @@ Template: astra
     padding: 0;
     top: -1px;
   }
+  .toplevel_page_sbs-booking-list .sorting-indicator {
+    visibility: visible !important;
+}
   #progressbar li.active:before, #progressbar li.active:after {
       background: #87ceeb00;
   }
@@ -797,6 +800,7 @@ div#ui-datepicker-div button:active {
     width: 23%;
     margin-right: 2%;
 }
+
   /* loader */
   .load {
       justify-content: center;
