@@ -16,7 +16,6 @@
     <div class="col-11 col-sm-12 col-md-12 col-lg-12 text-center p-0 mt-3 mb-2">
       <div class="card px-0 pt-4 pb-0 mt-3 mb-3">
         <h2 class="main-head">Reservations</h2>
-
         <div class="row">
           <div class="col-md-12 mx-0">
             <div id="msform">
@@ -66,7 +65,7 @@
                           </select>
                           <input class="form-control" name="arrival_date" type="hidden" id="arrival_date"
                             placeholder="Select Arrival Date" autocomplete="off" required>
-                            
+
                       </div>
                       <div class="calendar-container">
 
@@ -132,7 +131,7 @@
 
                     </div>
                   </div>
-                  <input type="button" name="previous" class="previous action-button-previous" value="Previous" />
+                  <input type="button" name="previous" step="step-three" class="previous action-button-previous" value="Previous" />
                   <input type="button" name="next" step="step-three" class="next-step action-button"
                     value="Next Step" />
                 </fieldset>
@@ -173,7 +172,19 @@
 
                       <div class="thre-col">
                       <span><label for="country">Country</label></span>
-                      <div class="input-wrap"><input type="text" name="country" class="form-control" id="country" required></div>
+                       <select name="country" id="country" class="form-control booking-country" required>
+                         <option value="">Select Country</option>
+                         <?php
+                         $table_name_178 = $wpdb->prefix.'countries';
+                         $sql_query = "SELECT * FROM {$table_name_178}";
+                         $countries = $wpdb->get_results($sql_query);
+                         if(!empty($countries)){
+                           foreach($countries as $country){
+                               echo '<option value="'.$country->name.'" country-id="'.$country->id.'">'.$country->name.'</option>';
+                           }
+                         }
+                        ?>
+                       </select>
                       </div>
 
 
@@ -184,50 +195,11 @@
 
                       <div class="ful-col thre-col req">
                       <span><label for="state">State/Province</label></span>
-                      <div class="input-wrap"> <select name="state" id="state" class="form-control" required>
-                      <option value="AB">Select state</option>
-                      <option value="AB">Alberta </option>
-                      <option value="AK">Alaska </option>
-                      <option value="AL">Alabama </option>
-                      <option value="AR">Arkansas </option>
-                      <option value="AZ">Arizona </option>
-                      <option value="BC">British Columbia </option>
-                      <option value="CA">California </option>
-                      <option value="CO">Colorado </option>
-                      <option value="CT">Connecticut </option>
-                      <option value="DC">District of Columbia </option>
-                      <option value="DE">Delaware </option>
-                      <option value="FL">Florida </option>
-                      <option value="GA">Georgia </option>
-                      <option value="GU">Guam </option>
-                      <option value="HI">Hawaii </option>
-                      <option value="IA">Iowa </option>
-                      <option value="ID">Idaho </option>
-                      <option value="IL">Illinois </option>
-                      <option value="IN">Indiana </option>
-                      <option value="KS">Kansas </option>
-                      <option value="KY">Kentucky </option>
-                      <option value="LA">Louisiana </option>
-                      <option value="MA">Massachusetts </option>
-                      <option value="MB">Manitoba </option>
-                      <option value="MD">Maryland </option>
-                      <option value="ME">Maine </option>
-                      <option value="MI">Michigan </option>
-                      <option value="MN">Minnesota </option>
-                      <option value="MO">Missouri </option>
-                      <option value="MS">Mississippi </option>
-                      <option value="MT">Montana </option>
-                      <option value="NA">International </option>
-                      <option value="NB">New Brunswick </option>
-                      <option value="NC">North Carolina </option>
-                      <option value="ND">North Dakota </option>
-                      <option value="NE">Nebraska </option>
-                      <option value="NF">Newfoundland </option>
-                      <option value="NH">New Hampshire </option>
-                      <option value="NJ">New Jersey </option>
-                      <option value="NM">New Mexico </option>
-                      <option value="NS">Nova Scotia </option>
-                      </select></div>
+                      <div class="input-wrap">
+                        <select name="state" id="state" class="form-control available_states" required>
+                          <option value="">Select Country First</option>
+                        </select>
+                      </div>
                       </div>
 
                       <div class="req">
