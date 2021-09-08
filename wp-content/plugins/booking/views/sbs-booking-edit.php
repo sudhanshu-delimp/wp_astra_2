@@ -118,20 +118,15 @@
     foreach($activity['attribute'] as $key_c=>$activity_attribute){
       $activity_total = $activity_total+$activity_attribute['total_price'];
       ?>
-      <div class="facilities_details_date book-sec">
-      <div>
-      <span>Date :</span><span><?php echo getDateTime($activity_attribute['date'],'l, F d,Y'); ?></span>
-      </div>
-      <div>
-      <span>Time :</span><span><?php echo $activity_attribute['time']; ?></span>
-      </div>
-      <div>
-      <span>Quantity :</span><span><?php echo $activity_attribute['quantity']; ?></span>
-      </div>
-      <div>
-      <span>Price :</span><span>@ $<?php echo $activity_attribute['price']; ?>/each</span>
-      </div>
-      </div>
+      <br>
+      <table class="add-tab">
+      <tr><th>Date</th><th>Time</th><th>Quantity</th> <th>Price</th></tr>
+      <tr><td><?php echo getDateTime($activity_attribute['date'],'l, F d,Y'); ?></td>
+      <td></span><span><?php echo $activity_attribute['time']; ?></td>
+      <td><?php echo $activity_attribute['quantity']; ?></td>
+      <td>@ $<?php echo $activity_attribute['price']; ?>/each</td>
+    </tr>
+    </table>
       <?php
     }
     ?>
