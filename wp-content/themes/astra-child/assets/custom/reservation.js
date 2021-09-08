@@ -89,6 +89,7 @@ jQuery(".next-step").click(function(){
     } break;
     case 'step-three':{
       selected_activity_data = process_step_three();
+      jQuery("html, body").animate({ scrollTop: 0 }, "slow");
     } break;
     case 'step-four':{
       user_data = process_step_four();
@@ -199,6 +200,7 @@ var process_step_one = function(){
         removeAlert();
         jQuery(".available_addons").html(response.available_addons);
         selected_date_data = response.selected_date_data;
+        jQuery("html, body").animate({ scrollTop: 0 }, "slow");
 
         //Add Class Active
         jQuery("#progressbar li").eq(jQuery("fieldset").index(next_fs)).addClass("active");
@@ -330,6 +332,7 @@ var get_preview_data = function(){
       console.log(response);
        jQuery(".available_preview").html(response.available_preview);
        jQuery("#step-five-contain-btn").attr("disabled","disabled");
+       jQuery("html, body").animate({ scrollTop: 0 }, "slow");
     }
   });
 }
@@ -404,6 +407,7 @@ var get_activity_list = function(){
     success: function(response){
       jQuery(".available_activities").html(response.available_activities);
       jQuery(".all-time").attr("disabled","disabled");
+      jQuery("html, body").animate({ scrollTop: 0 }, "slow");
     }
   });
 }
