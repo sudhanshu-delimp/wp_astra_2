@@ -31,14 +31,14 @@ function sbs_booking_list_fun(){
     include_once plugin_dir_path(__FILE__).'views/sbs-booking-edit.php';
     $template = ob_get_contents();
     ob_end_clean();
-    echo $template;
+    echo "<div class='booking-container'>".$template."<div>";
   }
   else{
     ob_start();
     include_once plugin_dir_path(__FILE__).'views/sbs-booking-list.php';
     $template = ob_get_contents();
     ob_end_clean();
-    echo $template;
+    echo "<div class='booking-container'>".$template."<div>";
   }
 }
 ?>
