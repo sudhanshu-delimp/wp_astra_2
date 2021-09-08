@@ -305,7 +305,7 @@ Template: astra
   }
   .reserve-ban img {
     width: 100%;
-    height: 700px;
+    height: 450px;
     object-fit: cover;
     object-position: bottom;
 }
@@ -822,6 +822,20 @@ div#ui-datepicker-div button:active {
       .user-row {
           flex-direction: column;
       }
+      .reserve-ban img {
+        height: auto;
+    }
+    .reserve-user span {
+        font-size: 15px;
+    }
+    .ui-datepicker-multi-2 .ui-datepicker-group {
+        width: 100%;
+        float: none;
+    }
+    .date-fin .pad {
+        margin-left: 0!important;
+        margin-top: 1em !important;
+    }
       .user-row input {
           width: 100% !important;
       }
