@@ -9,7 +9,7 @@
 #!wp-content/themes/
 
 # ignore these plugins
-wp-content/plugins/*
+#wp-content/plugins/*
 
 # ignore specific themes
 #wp-content/themes/twenty*/
