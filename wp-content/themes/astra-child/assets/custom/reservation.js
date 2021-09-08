@@ -9,10 +9,11 @@ var updateCal = function(){
   var selected_year = jQuery("#selected_year").val();
   var time_string = selected_month+'-'+selected_day+'-'+parseInt(selected_year);
   jQuery('#arrival_date').datepicker().datepicker('setDate', time_string);
-  jQuery(".ui-datepicker-trigger").click();
+  //jQuery(".ui-datepicker-trigger").click();
   jQuery(document).unbind('mousedown', jQuery.datepicker._checkExternalClick);
-  //jQuery('#arrival_date').datepicker('setDate', '05-15-2021');
 }
+
+
 
 jQuery(document).ready(function(){
 
@@ -31,16 +32,30 @@ jQuery("#arrival_date").datepicker({
       jQuery( "<button>", {
       text: "x",
       click: function() {
+       jQuery(".ui-datepicker-trigger").click();
+       //jQuery("#ui-datepicker-div").hide();
+      }
+      }).prependTo("#ui-datepicker-div");
+      },1);
+  },
+  onChangeMonthYear: function () {
+    setTimeout(function() {
+      jQuery( "<button>", {
+      text: "x",
+      click: function() {
       jQuery(".ui-datepicker-trigger").click();
       }
       }).prependTo("#ui-datepicker-div");
-      }, 1 );
+      }, 1);
   },
   onSelect: function(dateText, inst) {
      var date_string = dateText.split("-");
      jQuery("#selected_month").val(date_string[0]);
      jQuery("#selected_day").val(date_string[1]);
      jQuery("#selected_year").val(date_string[2]);
+     setTimeout(function(){
+       jQuery(".ui-datepicker-trigger").click();
+     },250);
   }
 });
 jQuery('#arrival_date').datepicker('setDate', 'today');
