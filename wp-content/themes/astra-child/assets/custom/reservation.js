@@ -1,5 +1,5 @@
 var selected_date_data = [], selected_activity_data = [], selected_addon_data = [] , user_data = {}, selected_date_data = {};
-var activity_flag = 1;
+var activity_flag = 0;
 var current_fs, next_fs, previous_fs; //fieldsets
 var opacity;
 
@@ -12,8 +12,6 @@ var updateCal = function(){
   //jQuery(".ui-datepicker-trigger").click();
   jQuery(document).unbind('mousedown', jQuery.datepicker._checkExternalClick);
 }
-
-
 
 jQuery(document).ready(function(){
 
@@ -58,6 +56,7 @@ jQuery("#arrival_date").datepicker({
      },250);
   }
 });
+
 jQuery('#arrival_date').datepicker('setDate', 'today');
 jQuery(".ui-datepicker-trigger").click();
 jQuery(document).unbind('mousedown', jQuery.datepicker._checkExternalClick);
@@ -74,7 +73,7 @@ jQuery(".next-step").click(function(){
       var number_of_night = jQuery("#number_of_night").val();
       if(selected_date_data.check_in_date===undefined || selected_date_data.check_in_date!==check_in_date || selected_date_data.number_of_night!=number_of_night){
         console.log("get data");
-        activity_flag = 1;
+        //activity_flag = 1;
         process_step_one();
         return false;
       }
@@ -86,6 +85,7 @@ jQuery(".next-step").click(function(){
     } break;
     case 'step-two':{
       selected_addon_data = process_step_two();
+      console.log("activity_flag: "+activity_flag);
     } break;
     case 'step-three':{
       selected_activity_data = process_step_three();
@@ -129,7 +129,10 @@ jQuery(".previous").click(function(){
 
 current_fs = jQuery(this).parent();
 previous_fs = jQuery(this).parent().prev();
-
+var step_number = jQuery(this).attr('step');
+if(step_number == "step-three"){
+    activity_flag = 0;
+}
 //Remove class active
 jQuery("#progressbar li").eq(jQuery("fieldset").index(current_fs)).removeClass("active");
 
@@ -186,6 +189,8 @@ var process_step_one = function(){
     dataType:'json',
     beforeSend: function(){
       console.log(data);
+      activity_flag = 1;
+      console.log("activity_flag_before: "+activity_flag);
       general_Attr("#step-one-contain", 4, 'Processing...');
       jQuery(".available_addons").html('<i class="fa fa-spinner fa-pulse fa-3x fa-fw"></i><span class="sr-only">Loading...</span>');
     },
@@ -194,7 +199,6 @@ var process_step_one = function(){
         removeAlert();
         jQuery(".available_addons").html(response.available_addons);
         selected_date_data = response.selected_date_data;
-
 
         //Add Class Active
         jQuery("#progressbar li").eq(jQuery("fieldset").index(next_fs)).addClass("active");
@@ -241,7 +245,6 @@ var process_step_two = function(){
       addons.push(addon_data);
     }
   });
-  console.log("selected_activity_data: "+selected_activity_data);
   if(activity_flag == 1){
     get_activity_list();
   }
@@ -515,5 +518,29 @@ jQuery(document).on('click','#confirm_by_user',function(){
   }
 });
 
-
+jQuery(document).on('change','.booking-country',function(){
+  var element = jQuery(this).find('option:selected');
+  var country_id = element.attr("country-id");
+  var data = {};
+  data['action'] = 'get_selected_country_states';
+  data['country_id'] = country_id;
+  jQuery.ajax({
+    url:admin_ajax_url,
+    type: "POST",
+    data: data,
+    dataType:'json',
+    beforeSend: function(){
+      jQuery(".available_states").attr("disabled","disabled");
+    },
+    success: function(response){
+      if(response.status == '1'){
+        jQuery(".available_states").html(response.data.available_states);
+        jQuery(".available_states").removeAttr("disabled");
+      }
+      else{
+        console.log(response.data);
+      }
+    }
+  });
+});
 // top

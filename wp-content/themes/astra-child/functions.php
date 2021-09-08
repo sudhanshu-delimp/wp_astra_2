@@ -293,6 +293,36 @@ function make_booking(){
 	sendResponse($data);
 }
 
+function get_selected_country_states(){
+	global $wpdb;
+	$data = $error = [];
+	$data['status'] = '0';
+	$country_id = isset($_POST['country_id'])?trim($_POST['country_id']):0;
+	if($country_id == 0){
+		$error[] = "Invalid country id.";
+	}
+	if(count($error) == 0){
+		$table_name_304 = $wpdb->prefix.'states';
+		$sql_query = "SELECT * FROM {$table_name_304} WHERE country_id = {$country_id}";
+		$states = $wpdb->get_results($sql_query);
+		if(!empty($states)){
+			ob_start();
+			get_template_part('content-states-listing',null,['states'=>$states]);
+			$available_states = ob_get_clean();
+			$data['status'] = '1';
+			$data['data']['available_states'] = $available_states;
+			$data['data']['message'] = 'States are found.';
+		}
+		else{
+			$data['data']['error'] = ['States are not available.'];
+		}
+	}
+	else{
+		$data['data']['error'] = $error;
+	}
+	sendResponse($data);
+}
+
 add_action('wp_ajax_process_step_one', 'process_step_one');
 add_action('wp_ajax_nopriv_process_step_one', 'process_step_one');
 add_action('wp_ajax_get_activity_list', 'get_activity_list');
@@ -304,6 +334,8 @@ add_action('wp_ajax_nopriv_show_booking_preview', 'show_booking_preview');
 add_action('wp_ajax_make_booking', 'make_booking');
 add_action('wp_ajax_nopriv_make_booking', 'make_booking');
 
+add_action('wp_ajax_get_selected_country_states', 'get_selected_country_states');
+add_action('wp_ajax_nopriv_get_selected_country_states', 'get_selected_country_states');
 /*end reservation process functions*/
 
 //dd_filter('acf/settings/remove_wp_meta_box', '__return_false');
