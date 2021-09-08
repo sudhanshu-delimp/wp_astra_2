@@ -26,7 +26,7 @@
                 <li id="payment"><strong>Activities</strong></li>
                 <li id="confirm"><strong>Guest Details</strong></li>
                 <li id="preview"><strong>preview</strong></li>
-                <li id="success"><strong>Finish</strong></li>
+                <li id="success"><strong>Confirmation</strong></li>
               </ul> <!-- fieldsets -->
               <div>
                 <fieldset id="step-one">
