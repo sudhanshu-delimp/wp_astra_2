@@ -9,7 +9,7 @@
   $current_month = $current_date[1];
   $months = monthList();
 ?>
-<div class="reserve-ban"><img src="http://localhost/wp_astra/wp-content/uploads/2021/09/banner-reserve-scaled.jpg"></div>
+<div class="reserve-ban"><img src="http://localhost/wp_astra/wp-content/uploads/2021/09/fun-two.jpg"></div>
 <!-- MultiStep Form -->
 <div class="container-fluid" id="grad1">
   <div class="row justify-content-center mt-0">

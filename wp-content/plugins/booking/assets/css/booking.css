@@ -1,0 +1,76 @@
+.booking_add_ons img {
+    width: 100%;
+}
+.booking-container {
+    width: 80%;
+    max-width: 100%;
+    background: #fff;
+    padding: 30px;
+    margin-top: 2em;
+    box-shadow: 0 1px 4px rgba(0,0,0,0.15);
+}
+.book-sec {
+    border: 1px solid #eee;
+}
+.book-sec div:last-child {
+    border-bottom: none;
+}
+.book-sec div span:first-child {
+    font-weight: 600;
+}
+.book-sec div {
+    display: flex;
+    justify-content: space-between;
+    background: #fff;
+    border-bottom: 1px solid #eee;
+    padding: 10px 15px;
+    font-size: 16px;
+}
+.book-sec div:nth-child(even) {
+    background: #e8e8e8;
+}
+.booking-container h2 {
+    font-size: 26px;
+    border-bottom: 1px solid #ddd;
+    padding-bottom: 21px;
+}
+.booking_add_ons h3 {
+    background: #000;
+    margin: 0;
+    display: inline-block;
+    padding: 15px 20px;
+    color: #fff;
+    text-transform: capitalize;
+    border-radius: 4px 4px 0 0;
+}
+.booking_add_ons {
+    margin-bottom: 3em;
+}
+.booking-container h1 {
+    margin-bottom: 1.5em;
+}
+.facilities_ct {
+    display: flex;
+    gap: 20px;
+}
+.facilities_ct .facilities_img {
+    width: 40%;
+}
+.facilities_ct .facilities_ctnt {
+    width: fit-content;
+    font-size: 16px;
+}
+.book-add .booking_add_ons {
+    background: #f7f7f7;
+    padding: 30px;
+}
+.book-add h3 {
+    background: transparent;
+    color: #181818;
+    padding: 0;
+    margin-bottom: 1em;
+    font-size: 26px;
+}
+.facilities_details_date {
+    margin-top: 2em;
+}

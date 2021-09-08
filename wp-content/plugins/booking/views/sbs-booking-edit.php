@@ -19,31 +19,21 @@
       Booking Id: <?php echo $booking->booking_id; ?>
    </h1>
 </div>
-<div class="row">
+<div class="row book-sec">
   <div class="col-sm-6">
-    Number of nights
+    <span>Number of nights :</span>
+    <span> <?php echo $booking->number_of_night;?></span>
   </div>
   <div class="col-sm-6">
-    <?php echo $booking->number_of_night;?>
+    <span>Arrival Date :</span><span><?php echo getDateTime($booking->check_in_date,'l, F d, Y'); ?></span>
   </div>
   <div class="col-sm-6">
-    Arrival Date
+    <span>Departure Date :</span><span> <?php echo getDateTime($booking->check_out_date,'l, F d, Y'); ?></span>
   </div>
   <div class="col-sm-6">
-    <?php echo getDateTime($booking->check_in_date,'l, F d, Y'); ?>
+    <span>Adults :</span><span><?php echo $booking->adults_per_room; ?></span>
   </div>
-  <div class="col-sm-6">
-    Departure Date
-  </div>
-  <div class="col-sm-6">
-    <?php echo getDateTime($booking->check_out_date,'l, F d, Y'); ?>
-  </div>
-  <div class="col-sm-6">
-    Adults
-  </div>
-  <div class="col-sm-6">
-    <?php echo $booking->adults_per_room; ?>
-  </div>
+  
 
 </div>
 
@@ -61,12 +51,14 @@
       ?>
       <div class="booking_add_ons">
       <h3><?php echo $result->post_title; ?></h3>
-      <div class="charges_entry">
+      <div class="charges_entry book-sec">
       <?php
         foreach($addon['attribute'] as $key_c=>$addon_attribute){
           $addon_total = $addon_total+$addon_attribute['total_price'];
           ?>
-          <span><?php echo getDateTime($addon_attribute['date'],'d F'); ?></span><span><?php echo $addon_attribute['quantity'];?> @ $<?php echo $addon_attribute['price'];?> each</span>
+          <div><span>Date :</span><span><?php echo getDateTime($addon_attribute['date'],'d F'); ?></span></div>
+          <div><span>Quantity :</span><span><?php echo $addon_attribute['quantity'];?></span></div>
+          <div><span>Price :</span><span>@ $<?php echo $addon_attribute['price'];?> each</span></div>
           <?php
         }
       ?>
@@ -80,7 +72,7 @@
 <div class="row">
 <h2>Activities</h2>
 </div>
-<div class="row">
+<div class="row book-add">
 <?php
   $activities = json_decode($booking->activity_data,true);
   if(!empty($activities)){
@@ -102,28 +94,27 @@
       <?php
     }
     ?>
-    <div class="facilities_data">
-    <p>
+    <div class="facilities_ctnt">
     <?php echo $result->post_content; ?>
-    </p>
+  
     </div>
     </div>
     <?php
     foreach($activity['attribute'] as $key_c=>$activity_attribute){
       $activity_total = $activity_total+$activity_attribute['total_price'];
       ?>
-      <div class="facilities_details_date">
+      <div class="facilities_details_date book-sec">
       <div>
-      <span><?php echo getDateTime($activity_attribute['date'],'l, F d,Y'); ?></span>
+      <span>Date :</span><span><?php echo getDateTime($activity_attribute['date'],'l, F d,Y'); ?></span>
       </div>
       <div>
-      <span><?php echo $activity_attribute['time']; ?></span>
+      <span>Time :</span><span><?php echo $activity_attribute['time']; ?></span>
       </div>
       <div>
-      <span><?php echo $activity_attribute['quantity']; ?></span>
+      <span>Quantity :</span><span><?php echo $activity_attribute['quantity']; ?></span>
       </div>
       <div>
-      <span>@ $<?php echo $activity_attribute['price']; ?>/each</span>
+      <span>Price :</span><span>@ $<?php echo $activity_attribute['price']; ?>/each</span>
       </div>
       </div>
       <?php
@@ -135,7 +126,7 @@
   }
 ?>
 </div>
-<div class="boooking_details_data data_second">
+<div class="boooking_details_data data_second book-sec">
       <!-- <div><h3>Activities Tax</h3></div>
       <div><h5>$18.76</h5></div> -->
       <!-- <div><h3>Activities Total(Tax Include)</h3></div>
@@ -143,44 +134,31 @@
       <?php
       if(isset($addon_total) && $addon_total>0){
         ?>
-        <div><h3>Add ons Total</h3></div>
-        <div><h5>$<?php echo number_format($addon_total,2); ?></h5></div>
+        <div><span>Add ons Total :</span><span>$<?php echo number_format($addon_total,2); ?></span></div>
         <?php
       }
       ?>
       <?php
       if(isset($activity_total) && $activity_total>0){
         ?>
-        <div><h3>Activity Total</h3></div>
-        <div><h5>$<?php echo number_format($activity_total,2); ?></h5></div>
+        <div><span>Activity Total :</span><span>$<?php echo number_format($activity_total,2); ?></span></div>
         <?php
       }
       ?>
 
-      <div><h3>Booking Total</h3></div>
-      <div><h5>$<?php echo number_format($night_price,2); ?></h5></div>
+      <div><span>Booking Total :</span><span>$<?php echo number_format($night_price,2); ?></span></div>
       <!-- <div><h3>Add on Tax</h3></div>
       <div><h5>$75.00</h5></div> -->
-      <div><h3>Total</h3></div>
-      <div><h5>$<?php echo number_format(($night_price+$addon_total+$activity_total),2);?></h5></div>
-      <div><h3>Guest Name</h3></div>
-      <div><h5><?php echo $user->first_name." ".$user->last_name; ?></h5></div>
-      <div><h3>Address 1</h3></div>
-      <div><h5><?php echo $user->address_one; ?></h5></div>
-      <div><h3>Address 2</h3></div>
-      <div><h5><?php echo $user->address_two; ?></h5></div>
-      <div><h3>City</h3></div>
-      <div><h5><?php echo $user->city; ?></h5></div>
-      <div><h3>State/Province</h3></div>
-      <div><h5><?php echo $user->state; ?></h5></div>
-      <div><h3>Zip/Postal Code</h3></div>
-      <div><h5><?php echo $user->zip_code; ?> <?php echo $user->country; ?></h5></div>
-      <div><h3>E-mail Address</h3></div>
-      <div><h5><?php echo $user->email; ?></h5></div>
-      <div><h3>Phone</h3></div>
-      <div><h5><?php echo $user->phone; ?></h5></div>
-      <div><h3>Mobile Phone</h3></div>
-      <div><h5><?php echo $user->mobile; ?></h5></div>
+      <div><span>Total :</span><span>$<?php echo number_format(($night_price+$addon_total+$activity_total),2);?></span></div>
+      <div><span>Guest Name :</span><span><?php echo $user->first_name." ".$user->last_name; ?></span></div>
+      <div><span>Address 1 :</span><span><?php echo $user->address_one; ?></span></div>
+      <div><span>Address 2 :</span><span><?php echo $user->address_two; ?></span></div>
+      <div><span>City :</span><span><?php echo $user->city; ?></span></div>
+      <div><span>State/Province :</span><span><?php echo $user->state; ?></span></div>
+      <div><span>Zip/Postal Code :</span><span><?php echo $user->zip_code; ?> <?php echo $user->country; ?></span></div>
+      <div><span>E-mail Address :</span><span><?php echo $user->email; ?></span></div>
+      <div><span>Phone :</span><span><?php echo $user->phone; ?></span></div>
+      <div><span>Mobile Phone :</span><span><?php echo $user->mobile; ?></span></div>
       <!-- <div><h3>Credit Card</h3></div>
       <div><h5>American Express ************4242 Expiry 2/2024</h5></div>
       <div><h3>Special Requests</h3></div>

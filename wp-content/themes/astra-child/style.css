@@ -303,7 +303,23 @@ Template: astra
   .user-row .select {
       width: 300px !important;
   }
-  
+  .reserve-ban img {
+    width: 100%;
+    height: 700px;
+    object-fit: cover;
+    object-position: bottom;
+}
+.reserve-ban:before {
+    content: "";
+    position: absolute;
+    background: #00000014;
+    width: 100%;
+    height: 100%;
+    z-index: 9;
+}
+.reserve-ban {
+    position: relative;
+}
   .user-row .btn-primary {
       background: #000;
       border: none;
