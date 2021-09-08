@@ -6,7 +6,7 @@ if(!empty($states)){
   <?php
   foreach($states as $key=>$state){
     ?>
-    <option value="<?php echo $state->id; ?>"><?php echo $state->name; ?></option>
+    <option value="<?php echo $state->name; ?>"><?php echo $state->name; ?></option>
     <?php
   }
 }
