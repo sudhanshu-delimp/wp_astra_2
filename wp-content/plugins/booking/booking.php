@@ -14,6 +14,7 @@ if($page == "sbs-booking-list"){
 
 function sbs_booking_style_and_scripts(){
    wp_enqueue_style( 'sbs-booking-bootstrap.min-css', plugins_url('/booking/assets/css/bootstrap.min.css'),  __FILE__);
+   wp_enqueue_style( 'sbs-booking-css', plugins_url('/booking/assets/css/booking.css'),  __FILE__);
 
    wp_enqueue_script( 'sbs-booking-bootstrap.min-script', plugins_url('/booking/assets/js/bootstrap.min.js'), array('jquery'), rand(), true );
 }
