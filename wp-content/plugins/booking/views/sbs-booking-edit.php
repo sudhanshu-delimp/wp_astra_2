@@ -51,17 +51,23 @@
       ?>
       <div class="booking_add_ons">
       <h3><?php echo $result->post_title; ?></h3>
-      <div class="charges_entry book-sec">
+      <div class="charges_entry">
+      <table class="add-tab">
+      <tr><th>Date</th><th>Quantity</th><th>Price</th></tr>
       <?php
         foreach($addon['attribute'] as $key_c=>$addon_attribute){
           $addon_total = $addon_total+$addon_attribute['total_price'];
           ?>
-          <div><span>Date :</span><span><?php echo getDateTime($addon_attribute['date'],'d F'); ?></span></div>
-          <div><span>Quantity :</span><span><?php echo $addon_attribute['quantity'];?></span></div>
-          <div><span>Price :</span><span>@ $<?php echo $addon_attribute['price'];?> each</span></div>
+            <tr>
+              <td><?php echo getDateTime($addon_attribute['date'],'d F'); ?></td>
+              <td><?php echo $addon_attribute['quantity'];?></td>
+              <td>@ $<?php echo $addon_attribute['price'];?> each</td>
+            </tr>
+          
           <?php
         }
       ?>
+      </table>
       </div>
       </div>
       <?php

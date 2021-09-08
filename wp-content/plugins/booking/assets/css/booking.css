@@ -35,13 +35,16 @@
     padding-bottom: 21px;
 }
 .booking_add_ons h3 {
-    background: #000;
     margin: 0;
-    display: inline-block;
-    padding: 15px 20px;
-    color: #fff;
+    color: #000;
     text-transform: capitalize;
     border-radius: 4px 4px 0 0;
+    margin-bottom: 1em;
+    font-size: 21px;
+    position: relative;
+}
+table.add-tab th {
+    background: #181818;
 }
 .booking_add_ons {
     margin-bottom: 3em;
@@ -64,6 +67,9 @@
     background: #f7f7f7;
     padding: 30px;
 }
+.book-sec div span {
+    width: 48%;
+}
 .book-add h3 {
     background: transparent;
     color: #181818;
@@ -73,4 +79,57 @@
 }
 .facilities_details_date {
     margin-top: 2em;
+}
+
+.toplevel_page_sbs-booking-list th {
+    background: #000;
+    font-size: 16px;
+    color: #fff !important;
+}
+th.sorted.desc .sorting-indicator:before {
+    color: #fff;
+}
+tbody#the-list td {
+    font-size: 14px;
+}
+.toplevel_page_sbs-booking-list th:hover a {
+    background: #E1C01B;
+    color: #000;
+}
+.toplevel_page_sbs-booking-list th:hover .sorting-indicator:before {
+    color: #000 !important;
+}
+table.add-tab {
+    width: 100%;
+    text-align: center;
+    font-size: 16px;
+}
+table.add-tab td {
+    background: #e8e8e8;
+    padding: 10px;
+}
+.toplevel_page_sbs-booking-list th a {
+    font-size: 16px;
+    color: #fff;
+}
+table.add-tab th {
+    padding: 10px;
+}
+input#search-submit {
+    background: #000;
+    border: transparent;
+    color: #fff;
+}
+h3.list-head {
+    font-size: 30px;
+    margin-bottom: 0;
+}
+.sorting-indicator:before {
+    color: #fff !important;
+}
+@media only screen and (max-width:767px){
+    .booking-container p.search-box {
+        position: initial;
+        margin-top: 2em;
+    }
 }
