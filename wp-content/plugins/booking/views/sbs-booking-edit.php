@@ -33,17 +33,20 @@
   <div class="col-sm-6">
     <span>Adults :</span><span><?php echo $booking->adults_per_room; ?></span>
   </div>
-  
+
 
 </div>
 
-<div class="row">
-<h2>Add Ons</h2>
-</div>
-<div class="row">
+
 <?php
   $addons = json_decode($booking->addon_data,true);
   if(!empty($addons)){
+    ?>
+    <div class="row">
+    <h2>Add Ons</h2>
+    </div>
+    <div class="row">
+    <?php
     $addons = getAddonDataCollection($addons);
     foreach($addons as $key=>$addon){
       $sql_query  = "select * from wp_posts where id ='".$addon['addon_id']."'";
@@ -63,7 +66,7 @@
               <td><?php echo $addon_attribute['quantity'];?></td>
               <td>@ $<?php echo $addon_attribute['price'];?> each</td>
             </tr>
-          
+
           <?php
         }
       ?>
@@ -72,16 +75,22 @@
       </div>
       <?php
     }
+    ?>
+    </div>
+    <?php
   }
 ?>
-</div>
-<div class="row">
-<h2>Activities</h2>
-</div>
-<div class="row book-add">
+
+
 <?php
   $activities = json_decode($booking->activity_data,true);
   if(!empty($activities)){
+    ?>
+    <div class="row">
+    <h2>Activities</h2>
+    </div>
+    <div class="row book-add">
+    <?php
     $activities = getActivityDataCollection($activities);
     foreach($activities as $key=>$activity){
       $sql_query  = "select * from wp_posts where id ='".$activity['activity_id']."'";
@@ -102,7 +111,7 @@
     ?>
     <div class="facilities_ctnt">
     <?php echo $result->post_content; ?>
-  
+
     </div>
     </div>
     <?php
@@ -129,9 +138,12 @@
     </div>
       <?php
     }
+    ?>
+    </div>
+    <?php
   }
 ?>
-</div>
+
 <div class="boooking_details_data data_second book-sec">
       <!-- <div><h3>Activities Tax</h3></div>
       <div><h5>$18.76</h5></div> -->

@@ -25,7 +25,7 @@ function sbs_booking_list_table(){
 
 function sbs_booking_list_fun(){
   $action = isset($_GET['action'])?trim($_GET['action']):"";
-  if($action == "sgs-booking-edit"){
+  if($action == "sgs-booking-view"){
     $booking_id = isset($_GET['booking_id'])?intval($_GET['booking_id']):"";
     ob_start();
     include_once plugin_dir_path(__FILE__).'views/sbs-booking-edit.php';

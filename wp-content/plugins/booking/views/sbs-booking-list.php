@@ -92,7 +92,7 @@ class SBS_Booking_List extends WP_List_Table{
 
   public function column_booking_id($item){
     $action = [
-      "edit"=>sprintf('<a href="?page=%s&action=%s&booking_id=%s">Edit</a>',$_GET['page'],'sgs-booking-edit',$item->id),
+      "view"=>sprintf('<a href="?page=%s&action=%s&booking_id=%s">View</a>',$_GET['page'],'sgs-booking-view',$item->id),
       "delete"=>sprintf('<a href="?page=%s&action=%s&booking_id=%s">Delete</a>',$_GET['page'],'sgs-booking-delete',$item->id)
     ];
     return sprintf('%1s %2s',$item->booking_id,$this->row_actions($action));
