@@ -65,7 +65,8 @@ class SBS_Booking_List extends WP_List_Table{
       "user_name"=>"Customer Name",
       "check_in_date"=>"Checkin Date",
       "check_out_date"=>"Checkout Date",
-      "created_at"=>"Booking Date"
+      "created_at"=>"Booking Date",
+      "action"=>"Action",
     ];
     return $columns;
   }
@@ -97,6 +98,9 @@ class SBS_Booking_List extends WP_List_Table{
       }break;
       case 'created_at':{
         return getDateTime($item->$column_name, 'Y-m-d h:i A');
+      }break;
+      case 'action':{
+        return sprintf('<a class="text-info" href="?page=%s&action=%s&booking_id=%s">View</a>',$_GET['page'],'sgs-booking-view',$item->id).' | '.sprintf('<a class="text-red" href="?page=%s&action=%s&booking_id=%s">Delete</a>',$_GET['page'],'sgs-booking-delete',$item->id);
       }break;
       default:
         return "no value";
