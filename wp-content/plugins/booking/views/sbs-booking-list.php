@@ -4,6 +4,7 @@ require_once(ABSPATH.'wp-admin/includes/class-wp-list-table.php');
 class SBS_Booking_List extends WP_List_Table{
 
   public function prepare_items(){
+    $this->process_bulk_action();
     $per_page = 10;
     $current_page = $this->get_pagenum();
 
@@ -59,6 +60,7 @@ class SBS_Booking_List extends WP_List_Table{
 
   public function get_columns(){
     $columns = [
+      "cb"=>"<input type='checkbox'/>",
       "booking_id"=>"Booking Id",
       "user_name"=>"Customer Name",
       "check_in_date"=>"Checkin Date",
@@ -66,6 +68,17 @@ class SBS_Booking_List extends WP_List_Table{
       "created_at"=>"Booking Date"
     ];
     return $columns;
+  }
+
+  public function column_cb($item){
+    return sprintf('<input type="checkbox" name="booking_id[]" value="%s"/>',$item->id);
+  }
+
+  public function get_bulk_actions(){
+    $actions = [
+      "sgs-booking-bulk-delete" =>"Delete"
+    ];
+    return $actions;
   }
 
   public function column_default($item, $column_name){
@@ -97,6 +110,27 @@ class SBS_Booking_List extends WP_List_Table{
     ];
     return sprintf('%1s %2s',$item->booking_id,$this->row_actions($action));
   }
+
+  public static function delete_booking($id) {
+		global $wpdb;
+    $table_name_117 = $wpdb->prefix.'reservations';
+    $wpdb->delete( $table_name_117, array( 'id' => $id ) );
+	}
+
+  public function process_bulk_action(){
+    $current_action =  $this->current_action();
+    $booking_id = $_REQUEST['booking_id'];
+    if($current_action==='sgs-booking-bulk-delete') {
+      foreach($booking_id as $b_id){
+        self::delete_booking($b_id);
+      }
+      echo '<div class="notice notice-success is-dismissible"><p>Deleted Successfully..</p></div>';
+    }
+    else if($current_action==='sgs-booking-delete'){
+      self::delete_booking($booking_id);
+      echo '<div class="notice notice-success is-dismissible"><p>Deleted Successfully..</p></div>';
+    }
+  }
 }
 
 function sbs_show_booking_list(){
@@ -106,7 +140,9 @@ function sbs_show_booking_list(){
   echo '<form method="POST" name="frn_search_booking" action="'.$_SERVER['PHP_SELF'].'?page=sbs-booking-list">';
   $booking_list->search_box("Search","search-booking");
   echo '</form>';
+  echo '<form method="POST" name="frn_bulk_action" action="'.$_SERVER['PHP_SELF'].'?page=sbs-booking-list">';
   $booking_list->display();
+  echo '</form>';
 }
 
 sbs_show_booking_list();
