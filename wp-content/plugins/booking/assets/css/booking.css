@@ -98,6 +98,9 @@ tbody#the-list td {
 .toplevel_page_sbs-booking-list th:hover .sorting-indicator:before {
     color: #000 !important;
 }
+a.text-red {
+    color: #b32d2e;
+}
 table.add-tab {
     width: 100%;
     text-align: center;
