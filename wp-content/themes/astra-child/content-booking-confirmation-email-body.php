@@ -85,7 +85,7 @@ $user = json_decode($booking->user_data);
       <div class="row" style="background: #fff; padding: 30px; box-shadow:0 1px 4px rgb(0 0 0 / 6%);">
         <div class="email-head" style="text-align: center;">
           <div class="email-header">
-            <img src="image/logo.png" width="150px">
+            <img src="<?php echo get_site_url("wp-content/uploads/2021/08/gold-logogold-logo.png"); ?>" width="150px">
           </div>
           <div class="header-ctnt" style="text-align: left;">
             <span><h1 style="color: #1d2327; font-size: 30px;">Thank You for Reservation</h1></span>
