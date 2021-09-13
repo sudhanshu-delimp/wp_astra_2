@@ -323,6 +323,86 @@ function get_selected_country_states(){
 	sendResponse($data);
 }
 
+//define("SENDINBLUE_API_KEY","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");
+define("SENDINBLUE_API_KEY","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");
+define("SENDER_NAME","Sudhanshu");
+define("SENDER_EMAIL","employee11.delimp@gmail.com");
+define("ADMIN_NAME","Sudhanshu Admin");
+define("ADMIN_EMAIL","sudhanshu+admin@delimp.com");
+
+function sendInBlueEmail($email_data){
+	  $url = "https://api.sendinblue.com/v3/smtp/email";
+		$ch = curl_init($url);
+		curl_setopt($ch, CURLOPT_SSL_VERIFYHOST, 0);
+	  curl_setopt($ch, CURLOPT_SSL_VERIFYPEER, 0);
+	  curl_setopt($ch, CURLOPT_POST, 1);
+	  curl_setopt($ch, CURLOPT_POSTFIELDS, $email_data);
+	  curl_setopt($ch, CURLOPT_RETURNTRANSFER, 1);
+	  curl_setopt($ch, CURLOPT_FOLLOWLOCATION, 1);
+	  curl_setopt($ch, CURLOPT_HTTPHEADER, [
+	    "Accept: application/json",
+	    "Content-Type: application/json",
+	    "api-key: ".SENDINBLUE_API_KEY,
+	  ]);
+		$result = curl_exec($ch);
+	  curl_close($ch);
+	  return json_decode($result);
+}
+
+function send_booking_confirmation_email_to_customer(){
+	$email_data = [];
+	$email_data['to'] = [];
+
+	$booking_id = (isset($_POST['booking_id']))?trim($_POST['booking_id']):0;
+	$subject = (isset($_POST['subject']))?trim($_POST['subject']):"";
+	$to_email = (isset($_POST['to_email']))?trim($_POST['to_email']):"";
+	$to_name = (isset($_POST['to_name']))?trim($_POST['to_name']):"";
+	/*START SENDER AND TO USER INFO*/
+	$email_data['sender']['name'] = SENDER_NAME;
+	$email_data['sender']['email'] = SENDER_EMAIL;
+	$user = [];
+	$user['email'] = $to_email;
+	$user['name'] = $to_name;
+	array_push($email_data['to'],$user);
+  /*END SENDER AND TO USER INFO*/
+	$email_data['subject'] = (!empty($subject))?$subject:"Email Subject";
+	/*START GET EMAIL BODY DATA FROM TEMPLATE*/
+	ob_start();
+	get_template_part('content-booking-confirmation-email-body',null,["booking_id"=>$booking_id]);
+	$available_email_body = ob_get_clean();
+	/*END GET EMAIL BODY DATA FROM TEMPLATE*/
+	$email_data['htmlContent'] = $available_email_body;
+	$email_data = json_encode($email_data);
+	$emailResponse = sendInBlueEmail($email_data);
+	sendResponse($emailResponse);
+}
+
+function send_booking_intimation_email_to_admin(){
+	$email_data = [];
+	$email_data['to'] = [];
+
+	$booking_id = (isset($_POST['booking_id']))?trim($_POST['booking_id']):0;
+	$subject = (isset($_POST['subject']))?trim($_POST['subject']):"";
+	/*START SENDER AND TO USER INFO*/
+	$email_data['sender']['name'] = SENDER_NAME;
+	$email_data['sender']['email'] = SENDER_EMAIL;
+	$user = [];
+	$user['email'] = ADMIN_EMAIL;
+	$user['name'] = ADMIN_NAME;
+	array_push($email_data['to'],$user);
+  /*END SENDER AND TO USER INFO*/
+	$email_data['subject'] = (!empty($subject))?$subject:"Email Subject";
+	/*START GET EMAIL BODY DATA FROM TEMPLATE*/
+	ob_start();
+	get_template_part('content-booking-intimation-email-body',null,["booking_id"=>$booking_id]);
+	$available_email_body = ob_get_clean();
+	/*END GET EMAIL BODY DATA FROM TEMPLATE*/
+	$email_data['htmlContent'] = $available_email_body;
+	$email_data = json_encode($email_data);
+	$emailResponse = sendInBlueEmail($email_data);
+	sendResponse($emailResponse);
+}
+
 add_action('wp_ajax_process_step_one', 'process_step_one');
 add_action('wp_ajax_nopriv_process_step_one', 'process_step_one');
 add_action('wp_ajax_get_activity_list', 'get_activity_list');
@@ -336,6 +416,12 @@ add_action('wp_ajax_nopriv_make_booking', 'make_booking');
 
 add_action('wp_ajax_get_selected_country_states', 'get_selected_country_states');
 add_action('wp_ajax_nopriv_get_selected_country_states', 'get_selected_country_states');
+
+add_action('wp_ajax_send_booking_confirmation_email_to_customer', 'send_booking_confirmation_email_to_customer');
+add_action('wp_ajax_nopriv_send_booking_confirmation_email_to_customer', 'send_booking_confirmation_email_to_customer');
+
+add_action('wp_ajax_send_booking_intimation_email_to_admin', 'send_booking_intimation_email_to_admin');
+add_action('wp_ajax_nopriv_send_booking_intimation_email_to_admin', 'send_booking_intimation_email_to_admin');
 /*end reservation process functions*/
 
 //dd_filter('acf/settings/remove_wp_meta_box', '__return_false');

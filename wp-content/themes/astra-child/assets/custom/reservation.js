@@ -380,11 +380,58 @@ var make_booking = function(){
         },
         duration: 600
         });
+        console.log(response);
+        sendBookingConfirmationEmail(response.data.reservation_id);
+        sendBookingIntimationEmail(response.data.reservation_id);
       }
       else{
+        console.log(response);
         general_Attr("#step-five-contain", 2, response.data.message);
         jQuery("html, body").animate({ scrollTop: 0 }, "slow");
       }
+    }
+  });
+}
+
+var sendBookingConfirmationEmail = function(booking_id){
+  var data = {};
+  data['action'] = 'send_booking_confirmation_email_to_customer';
+  data['booking_id'] = booking_id;
+  data['subject'] = "Booking Confirmation: "+booking_id;
+  data['to_email'] = user_data.email;
+  data['to_name'] = user_data.first_name+" "+user_data.last_name;
+  jQuery.ajax({
+    url:admin_ajax_url,
+    type: "POST",
+    data: data,
+    dataType:'json',
+    beforeSend: function(){
+      console.log("sending email to the customer");
+      console.log(data);
+    },
+    success: function(response){
+      console.log("email has been sent to the customer");
+      console.log(response);
+    }
+  });
+}
+
+var sendBookingIntimationEmail = function(booking_id){
+  var data = {};
+  data['action'] = 'send_booking_intimation_email_to_admin';
+  data['booking_id'] = booking_id;
+  data['subject'] = "Booking Intimation: "+booking_id;
+  jQuery.ajax({
+    url:admin_ajax_url,
+    type: "POST",
+    data: data,
+    dataType:'json',
+    beforeSend: function(){
+      console.log("sending email to the admin");
+      console.log(data);
+    },
+    success: function(response){
+      console.log("email has been sent to the admin");
       console.log(response);
     }
   });
