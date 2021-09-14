@@ -323,8 +323,8 @@ function get_selected_country_states(){
 	sendResponse($data);
 }
 
-//define("SENDINBLUE_API_KEY","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");
-define("SENDINBLUE_API_KEY","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");
+define("SENDINBLUE_API_KEY","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");
+//define("SENDINBLUE_API_KEY","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");
 define("SENDER_NAME","Sudhanshu");
 define("SENDER_EMAIL","employee11.delimp@gmail.com");
 define("ADMIN_NAME","Sudhanshu Admin");
