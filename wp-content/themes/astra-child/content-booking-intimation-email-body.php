@@ -25,8 +25,8 @@ $user = json_decode($booking->user_data);
     <title>Email Template</title>
   </head>
   <body style="margin:0px; padding:30px; font-size: 16px; color: #1d2327; background: #f7f7f7;">
-    <div class="email-section" style="width: 1280px; max-width: 100%; margin: 0 auto;">
-      <div class="row" style="background: #fff; padding: 30px; box-shadow:0 1px 4px rgb(0 0 0 / 6%);">
+    <div class="email-section" style="width: 100%; max-width: 100%; margin: 0 auto;">
+    <div style="padding: 30px; box-shadow:0 1px 4px rgb(0 0 0 / 6%);">
         <div class="email-head" style="text-align: center;">
           <div class="email-header">
             <img src="<?php echo get_site_url("wp-content/uploads/2021/08/gold-logogold-logo.png"); ?>" width="150px">
@@ -40,10 +40,12 @@ $user = json_decode($booking->user_data);
           <span><h4  style="font-size: 20px; margin-bottom: 0;">Thomas,</h4></span>
           <span><p>Thank You for your Reservation. Lorem Ipsum is simply dummy text of the printing and typesetting industry. .</p></span>
           <div class="email-info">
-            <div><span>Number of nights :</span><span><?php echo $booking->number_of_night;?></span></div>
-            <div><span>Arrival Date :</span><span><?php echo getDateTime($booking->check_in_date,'l, F d, Y'); ?></span></div>
-            <div><span>Departure Date :</span><span><?php echo getDateTime($booking->check_out_date,'l, F d, Y'); ?></span></div>
-            <div><span>Adults :</span><span><?php echo $booking->adults_per_room; ?></span></div>
+          <table style="width: 100%; text-align: left; border-collapse: collapse;">
+          <tr style="border-bottom: 1px solid #ddd;"><td style="padding: 10px 10px; background: #f2f1f1;">Number of nights :</td><td style="padding: 10px 10px; background: #f2f1f1;"><?php echo $booking->number_of_night;?></td></tr>
+          <tr style="border-bottom: 1px solid #ddd;"><td style="padding: 10px 10px; background: #f2f1f1;">Arrival Date :</td><td style="padding: 10px 10px; background: #f2f1f1;"><?php echo getDateTime($booking->check_in_date,'l, F d, Y'); ?></td></tr>
+          <tr style="border-bottom: 1px solid #ddd;"><td style="padding: 10px 10px; background: #f2f1f1;">Departure Date :</td><td style="padding: 10px 10px; background: #f2f1f1;"><?php echo getDateTime($booking->check_out_date,'l, F d, Y'); ?></td></tr>
+          <tr><td style="padding: 10px 10px; background: #f2f1f1;">Adults :</td><td style="padding: 10px 10px; background: #f2f1f1;"><?php echo $booking->adults_per_room; ?></td></tr>
+            </table>
           </div>
           <div class="addon-row">
           <?php
@@ -138,74 +140,49 @@ $user = json_decode($booking->user_data);
         </div>
 
         <br><br>
-        <div class="email-info" style="border: 1px solid #dddd;">
+        <div class="email-info">
+        <table style="width: 100%; text-align: left; border-collapse: collapse;">
           <?php
           if(isset($addon_total) && $addon_total>0){
             ?>
-            <div style="display: flex; justify-content: space-between; border-bottom: 1px solid #ddd; background: #f2f1f1;">
-              <span style="=width: 50%; padding: 10px;">Add ons Total :</span>
-              <span  style="=width: 50%; padding: 10px;">$<?php echo number_format($addon_total,2); ?></span>
-            </div>
+           
+           <tr style="border-bottom: 1px solid #ddd;"><td style="padding: 10px 10px; background: #f2f1f1;">Add ons Total :</td><td style="padding: 10px 10px; background: #f2f1f1;">$<?php echo number_format($addon_total,2); ?></td></tr>
             <?php
           }
           if(isset($activity_total) && $activity_total>0){
             ?>
-            <div style="display: flex; justify-content: space-between; border-bottom: 1px solid #ddd; background: #f2f1f1;">
-              <span style="=width: 50%; padding: 10px;">Activity Total :</span>
-              <span style="=width: 50%; padding: 10px;">$<?php echo number_format($activity_total,2); ?></span>
-            </div>
+            <tr style="border-bottom: 1px solid #ddd;"><td style="padding: 10px 10px; background: #f2f1f1;">Activity Total :</td><td style="padding: 10px 10px; background: #f2f1f1;">$<?php echo number_format($activity_total,2); ?></td></tr>
             <?php
           }
           ?>
-          <div style="display: flex; justify-content: space-between; border-bottom: 1px solid #ddd; background: #f2f1f1;">
-            <span style="=width: 50%; padding: 10px;">Booking Total :</span>
-            <span style="=width: 50%; padding: 10px;">$<?php echo number_format($night_price,2); ?></span>
-          </div>
-          <div style="display: flex; justify-content: space-between; border-bottom: 1px solid #ddd; background: #f2f1f1;">
-            <span style="=width: 50%; padding: 10px;">Total :</span>
-            <span style="=width: 50%; padding: 10px;">$<?php echo number_format(($night_price+$addon_total+$activity_total),2);?></span>
-          </div>
-          <div style="display: flex; justify-content: space-between; border-bottom: 1px solid #ddd; background: #f2f1f1;">
-            <span style="=width: 50%; padding: 10px;">Guest Name :</span>
-            <span style="=width: 50%; padding: 10px;"><?php echo $user->first_name." ".$user->last_name; ?></span>
-          </div>
-          <div style="display: flex; justify-content: space-between; border-bottom: 1px solid #ddd; background: #f2f1f1;">
-            <span style="=width: 50%; padding: 10px;">Address 1 :</span>
-            <span style="=width: 50%; padding: 10px;"><?php echo $user->address_one; ?></span>
-          </div>
-          <div style="display: flex; justify-content: space-between; border-bottom: 1px solid #ddd; background: #f2f1f1;">
-            <span style="=width: 50%; padding: 10px;">Address 2 :</span>
-            <span style="=width: 50%; padding: 10px;"><?php echo $user->address_two; ?></span>
-          </div>
-          <div style="display: flex; justify-content: space-between; border-bottom: 1px solid #ddd; background: #f2f1f1;">
-            <span style="=width: 50%; padding: 10px;">City :</span>
-            <span style="=width: 50%; padding: 10px;"><?php echo $user->city; ?></span>
-          </div>
-          <div style="display: flex; justify-content: space-between; border-bottom: 1px solid #ddd; background: #f2f1f1;">
-            <span style="=width: 50%; padding: 10px;">State/Province :</span>
-            <span style="=width: 50%; padding: 10px;"><?php echo $user->state; ?></span>
-          </div>
-          <div style="display: flex; justify-content: space-between; border-bottom: 1px solid #ddd; background: #f2f1f1;">
-            <span style="=width: 50%; padding: 10px;">Zip/Postal Code :</span>
-            <span style="=width: 50%; padding: 10px;"><?php echo $user->zip_code; ?> <?php echo $user->country; ?></span>
-          </div>
-          <div style="display: flex; justify-content: space-between; border-bottom: 1px solid #ddd; background: #f2f1f1;">
-            <span style="=width: 50%; padding: 10px;">E-mail Address :</span>
-            <span style="=width: 50%; padding: 10px;"><?php echo $user->email; ?></span>
-          </div>
-          <div style="display: flex; justify-content: space-between; border-bottom: 1px solid #ddd; background: #f2f1f1;">
-            <span style="=width: 50%; padding: 10px;">Phone :</span>
-            <span style="=width: 50%; padding: 10px;"><?php echo $user->phone; ?></span>
-          </div>
-          <div style="display: flex; justify-content: space-between; border-bottom: 1px solid #ddd; background: #f2f1f1;">
-            <span style="=width: 50%; padding: 10px;">Mobile Phone :</span>
-            <span style="=width: 50%; padding: 10px;"><?php echo $user->mobile; ?></span>
-          </div>
+          <tr style="border-bottom: 1px solid #ddd;"><td style="padding: 10px 10px; background: #f2f1f1;">Booking Total :</td><td style="padding: 10px 10px; background: #f2f1f1;">$<?php echo number_format($night_price,2); ?></td></tr>
+         
+          <tr style="border-bottom: 1px solid #ddd;"><td style="padding: 10px 10px; background: #f2f1f1;">Total :</td><td style="padding: 10px 10px; background: #f2f1f1;">$<?php echo number_format(($night_price+$addon_total+$activity_total),2);?></td></tr>
+          
+          <tr style="border-bottom: 1px solid #ddd;"><td style="padding: 10px 10px; background: #f2f1f1;">Guest Name :</td><td style="padding: 10px 10px; background: #f2f1f1;"><?php echo $user->first_name." ".$user->last_name; ?></td></tr>
+         
+          <tr style="border-bottom: 1px solid #ddd;"><td style="padding: 10px 10px; background: #f2f1f1;">Address 1 :</td><td style="padding: 10px 10px; background: #f2f1f1;"><?php echo $user->address_one; ?></td></tr>
+         
+          <tr style="border-bottom: 1px solid #ddd;"><td style="padding: 10px 10px; background: #f2f1f1;">Address 2 :</td><td style="padding: 10px 10px; background: #f2f1f1;"><?php echo $user->address_two; ?></td></tr>
+          
+          <tr style="border-bottom: 1px solid #ddd;"><td style="padding: 10px 10px; background: #f2f1f1;">City :</td><td style="padding: 10px 10px; background: #f2f1f1;"><?php echo $user->city; ?></td></tr>
+         
+          <tr style="border-bottom: 1px solid #ddd;"><td style="padding: 10px 10px; background: #f2f1f1;">State/Province :</td><td style="padding: 10px 10px; background: #f2f1f1;"><?php echo $user->state; ?></td></tr>
+          
+          <tr style="border-bottom: 1px solid #ddd;"><td style="padding: 10px 10px; background: #f2f1f1;">Zip/Postal Code :</td><td style="padding: 10px 10px; background: #f2f1f1;"><?php echo $user->zip_code; ?> <?php echo $user->country; ?></td></tr>
+          
+          <tr style="border-bottom: 1px solid #ddd;"><td style="padding: 10px 10px; background: #f2f1f1;">E-mail Address :</td><td style="padding: 10px 10px; background: #f2f1f1;"><?php echo $user->email; ?></td></tr>
+          
+          <tr style="border-bottom: 1px solid #ddd;"><td style="padding: 10px 10px; background: #f2f1f1;">Phone :</td><td style="padding: 10px 10px; background: #f2f1f1;"><?php echo $user->phone; ?></td></tr>
+         
+          <tr><td style="padding: 10px 10px; background: #f2f1f1;">Mobile Phone :</td><td style="padding: 10px 10px; background: #f2f1f1;"><?php echo $user->mobile; ?></td></tr>
+          
+        </table>
         </div>
         <br><br>
-        <div class="email-footer" style="display: flex; flex-direction: column; font-size: 18px; line-height: 24px;">
-          <span>Thanks</span>
-          <span>The Chateau On The Ocean</span>
+        <div class="email-footer" style="font-size: 18px; line-height: 18px;">
+          <div>Thanks</div><br>
+          <div>The Chateau On The Ocean</div>
         </div>
       </div>
     </div>
