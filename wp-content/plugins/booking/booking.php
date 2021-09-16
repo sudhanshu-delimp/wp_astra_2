@@ -136,7 +136,12 @@ function crunchify_activity_custom_post_type() {
 	register_post_type( 'Activities', $args );
 }
 
-function create_plugin_database_table(){
+function sbs_booking_plugin_activation(){
+  do_action('create_plugin_database_table');
+  do_action('sbs_init_booking_settings');
+}
+
+function sbs_create_plugin_database_table(){
     global $table_prefix, $wpdb;
     $tblname = 'reservations';
     $wp_track_table = $table_prefix . "$tblname ";
@@ -159,5 +164,16 @@ function create_plugin_database_table(){
         dbDelta($sql);
     }
 }
-register_activation_hook( __FILE__, 'create_plugin_database_table' );
+
+function sbs_init_booking_settings(){
+  add_option('sbs_admin_name', 'info one');
+  add_option('sbs_admin_email', 'info@example.com');
+  add_option('sbs_from_name', 'info two');
+  add_option('sbs_from_email', 'info2@example.com');
+  add_option('sbs_sendinblue_api_key', '*****************');
+}
+
+register_activation_hook( __FILE__, 'sbs_booking_plugin_activation' );
+add_action('sbs_create_plugin_database_table','sbs_create_plugin_database_table');
+add_action('sbs_init_booking_settings','sbs_init_booking_settings');
 ?>
