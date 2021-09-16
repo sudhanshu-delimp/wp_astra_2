@@ -37,8 +37,8 @@ $user = json_decode($booking->user_data);
           </div>
         </div>
         <div class="email-body">
-          <span><h4  style="font-size: 20px; margin-bottom: 0;">Thomas,</h4></span>
-          <span><p>Thank You for your Reservation. Lorem Ipsum is simply dummy text of the printing and typesetting industry. .</p></span>
+          <span><h4  style="font-size: 20px; margin-bottom: 0;">Hi Admin,</h4></span>
+          <span><p>You have received booking.</p></span>
           <div class="email-info">
           <table style="width: 100%; text-align: left; border-collapse: collapse;">
           <tr style="border-bottom: 1px solid #ddd;"><td style="padding: 10px 10px; background: #f2f1f1;">Number of nights :</td><td style="padding: 10px 10px; background: #f2f1f1;"><?php echo $booking->number_of_night;?></td></tr>
