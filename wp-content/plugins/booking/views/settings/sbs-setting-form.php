@@ -1,4 +1,4 @@
-<h1>Settings</h1>
+<h1>Booking Settings</h1>
 <?php
 $this->upadteSettings();
 ?>
