@@ -140,7 +140,7 @@ class SBS_Booking_List extends WP_List_Table{
 function sbs_show_booking_list(){
   $booking_list = new SBS_Booking_List();
   $booking_list->prepare_items();
-  echo '<h3 class="list-head">Booking List</h3>';
+  echo '<h3 class="list-head">Bookings</h3>';
   echo '<form method="POST" name="frn_search_booking" action="'.$_SERVER['PHP_SELF'].'?page=sbs-booking-list">';
   $booking_list->search_box("Search","search-booking");
   echo '</form>';

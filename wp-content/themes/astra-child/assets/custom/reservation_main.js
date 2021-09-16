@@ -66,26 +66,30 @@ jQuery(".next-step").click(function(){
   next_fs = jQuery(this).parent().next();
 
   var step_number = jQuery(this).attr('step');
+  console.log(step_number);
   switch(step_number){
     case 'step-one':{
       var check_in_date = getDateFormat(jQuery("#arrival_date").val());
       var number_of_night = jQuery("#number_of_night").val();
       if(selected_date_data.check_in_date===undefined || selected_date_data.check_in_date!==check_in_date || selected_date_data.number_of_night!=number_of_night){
+        console.log("get data");
         //activity_flag = 1;
         process_step_one();
         return false;
       }
       else{
         activity_flag = 0;
+        console.log("put old data");
       }
 
     } break;
     case 'step-two':{
       selected_addon_data = process_step_two();
+      console.log("activity_flag: "+activity_flag);
     } break;
     case 'step-three':{
       selected_activity_data = process_step_three();
-      jQuery("html, body").animate({ scrollTop: jQuery(".reserve-ban").height() }, "slow");
+      jQuery("html, body").animate({ scrollTop: jQuery(".reserve-ban").height(); }, "slow");
     } break;
     case 'step-four':{
       user_data = process_step_four();
@@ -154,6 +158,7 @@ duration: 600
 
 
 jQuery(".submit").click(function(){
+  //console.log("submit");
   return false;
 })
 
@@ -184,7 +189,9 @@ var process_step_one = function(){
     data: data,
     dataType:'json',
     beforeSend: function(){
+      console.log(data);
       activity_flag = 1;
+      console.log("activity_flag_before: "+activity_flag);
       general_Attr("#step-one-contain", 4, 'Processing...');
       jQuery(".available_addons").html('<i class="fa fa-spinner fa-pulse fa-3x fa-fw"></i><span class="sr-only">Loading...</span>');
     },
@@ -193,7 +200,7 @@ var process_step_one = function(){
         removeAlert();
         jQuery(".available_addons").html(response.available_addons);
         selected_date_data = response.selected_date_data;
-        jQuery("html, body").animate({ scrollTop: jQuery(".reserve-ban").height() }, "slow");
+        jQuery("html, body").animate({ scrollTop: jQuery(".reserve-ban").height(); }, "slow");
 
         //Add Class Active
         jQuery("#progressbar li").eq(jQuery("fieldset").index(next_fs)).addClass("active");
@@ -291,6 +298,7 @@ var process_step_four = function(){
   });
   var user = {};
   if (form.valid() === true) {
+    console.log("++++++++++++++++++++++++++++++++++++++");
       var x = jQuery('form').serializeArray();
       if(Array.isArray(x)){
         jQuery.each(x, function(index, field){
@@ -318,12 +326,13 @@ var get_preview_data = function(){
     dataType:'json',
     beforeSend: function(){
       jQuery(".available_preview").html('<i class="fa fa-spinner fa-pulse fa-3x fa-fw"></i><span class="sr-only">Loading...</span>');
-
+      console.log(data);
     },
     success: function(response){
+      console.log(response);
        jQuery(".available_preview").html(response.available_preview);
        jQuery("#step-five-contain-btn").attr("disabled","disabled");
-       jQuery("html, body").animate({ scrollTop: jQuery(".reserve-ban").height() }, "slow");
+       jQuery("html, body").animate({ scrollTop: jQuery(".reserve-ban").height(); }, "slow");
     }
   });
 }
@@ -371,12 +380,14 @@ var make_booking = function(){
         },
         duration: 600
         });
+        console.log(response);
         sendBookingConfirmationEmail(response.data.reservation_id);
         sendBookingIntimationEmail(response.data.reservation_id);
       }
       else{
+        console.log(response);
         general_Attr("#step-five-contain", 2, response.data.message);
-        jQuery("html, body").animate({ scrollTop: jQuery(".reserve-ban").height() }, "slow");
+        jQuery("html, body").animate({ scrollTop: jQuery(".reserve-ban").height(); }, "slow");
       }
     }
   });
@@ -395,8 +406,12 @@ var sendBookingConfirmationEmail = function(booking_id){
     data: data,
     dataType:'json',
     beforeSend: function(){
+      console.log("sending email to the customer");
+      console.log(data);
     },
     success: function(response){
+      console.log("email has been sent to the customer");
+      console.log(response);
     }
   });
 }
@@ -412,8 +427,12 @@ var sendBookingIntimationEmail = function(booking_id){
     data: data,
     dataType:'json',
     beforeSend: function(){
+      console.log("sending email to the admin");
+      console.log(data);
     },
     success: function(response){
+      console.log("email has been sent to the admin");
+      console.log(response);
     }
   });
 }
@@ -435,7 +454,7 @@ var get_activity_list = function(){
     success: function(response){
       jQuery(".available_activities").html(response.available_activities);
       jQuery(".all-time").attr("disabled","disabled");
-      jQuery("html, body").animate({ scrollTop: jQuery(".reserve-ban").height() }, "slow");
+      jQuery("html, body").animate({ scrollTop: jQuery(".reserve-ban").height(); }, "slow");
     }
   });
 }
@@ -460,7 +479,7 @@ jQuery(document).on('change','.choose-date',function(){
         }
       });
     }else{
-
+      console.log("not exist");
     }
     /*end code */
     jQuery(".time-"+activity_id).removeAttr('disabled');
@@ -512,6 +531,7 @@ var addActivityInQueue = function(activity_id, selected_date, selected_time, sel
     data: data,
     dataType:'json',
     beforeSend: function(){
+      console.log(data);
     },
     success: function(response){
       jQuery("#activity-box-"+activity_id).append(response.activity_content);
@@ -570,8 +590,9 @@ jQuery(document).on('change','.booking-country',function(){
         jQuery(".available_states").removeAttr("disabled");
       }
       else{
-
+        console.log(response.data);
       }
     }
   });
 });
+// top
