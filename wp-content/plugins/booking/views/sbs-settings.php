@@ -1,5 +1,13 @@
 <?php
 global $wpdb;
+if(isset($_POST['booking_settings'])){
+  update_option('sbs_admin_name',$_POST['sbs_admin_name']);
+  update_option('sbs_admin_email',$_POST['sbs_admin_email']);
+  update_option('sbs_from_name',$_POST['sbs_from_name']);
+  update_option('sbs_from_email',$_POST['sbs_from_email']);
+  update_option('sbs_sendinblue_api_key',$_POST['sbs_sendinblue_api_key']);
+  echo '<div class="notice notice-success is-dismissible"><p>Data has been Updated Successfully..</p></div>';
+}
 ?>
 <form class="" action="<?php echo $_SERVER['PHP_SELF'].'?page=sbs-booking-setting'; ?>" method="post">
   <div class="">
