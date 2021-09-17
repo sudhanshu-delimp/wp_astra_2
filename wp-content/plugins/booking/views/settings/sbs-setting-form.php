@@ -2,7 +2,7 @@
 <?php
 $this->upadteSettings();
 ?>
-<form class="" action="<?php echo $_SERVER['PHP_SELF'].'?page=sbs-booking-setting'; ?>" method="post">
+<form class="book-form" action="<?php echo $_SERVER['PHP_SELF'].'?page=sbs-booking-setting'; ?>" method="post">
   <div class="">
     <label for="">Admin Name</label>
     <input type="text" name="sbs_admin_name" value="<?php echo get_option('sbs_admin_name');?>">
@@ -23,7 +23,7 @@ $this->upadteSettings();
     <label for="">Sendinblue api key</label>
     <input type="text" name="sbs_sendinblue_api_key" value="<?php echo get_option('sbs_sendinblue_api_key');?>">
   </div>
-  <div class="">
+  <div class="sub-btn">
     <input type="submit" name="booking_settings" value="Save">
   </div>
 </form>

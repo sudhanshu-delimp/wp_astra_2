@@ -128,6 +128,51 @@ h3.list-head {
 .sorting-indicator:before {
     color: #fff !important;
 }
+form.book-form div {
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+    gap: 10px;
+}
+form.book-form {
+    display: flex;
+    justify-content: space-between;
+    align-items: end;
+    gap: 20px;
+    flex-wrap: wrap;
+}
+form.book-form input {
+    border: none;
+    border-bottom: 1px solid #ddd;
+    border-radius: 0;
+    font-size: 15px;
+    padding: 5px 0;
+}
+form.book-form input:focus {
+    outline: none;
+    border-bottom: 1px solid #000;
+    box-shadow: none;
+}
+.sub-btn {
+    width: auto !important;
+}
+.sub-btn input {
+    background: #000;
+    border-bottom: none;
+    color: #fff;
+    display: inline-block;
+    padding: 10px 30px !important;
+    cursor: pointer;
+}
+.notice-success {
+    margin-left: 0 !important;
+    margin-bottom: 1em;
+}
+form.book-form div label {
+    font-weight: 600;
+    font-size: 15px;
+    color: #181818;
+}
 @media only screen and (max-width:767px){
     .booking-container p.search-box {
         position: initial;
