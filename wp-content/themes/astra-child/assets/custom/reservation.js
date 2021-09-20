@@ -575,3 +575,13 @@ jQuery(document).on('change','.booking-country',function(){
     }
   });
 });
+
+var phone_input = jQuery("input[name=phone]");
+var mobile_input = jQuery("input[name=mobile]");
+phone_input.intlTelInput({
+    allowDropdown:true,
+    //onlyCountries: ['sa'],
+    separateDialCode:true,
+  }).on('countrychange', function (e, countryData) {
+    jQuery("input[name=code]").val((input.intlTelInput("getSelectedCountryData").dialCode));
+  });

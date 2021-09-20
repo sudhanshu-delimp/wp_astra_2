@@ -21,6 +21,7 @@ function child_enqueue_styles() {
 	wp_enqueue_style( 'astra-child-bootstrap.min-css', 'https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css', array('astra-theme-css'), CHILD_THEME_ASTRA_CHILD_VERSION, 'all' );
 	wp_enqueue_style( 'astra-child-font-awesome-css', 'https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.0.3/css/font-awesome.css', array('astra-theme-css'), CHILD_THEME_ASTRA_CHILD_VERSION, 'all' );
 	wp_enqueue_style( 'astra-child-jquery-ui-css','//code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css', array('astra-theme-css'));
+	wp_enqueue_style( 'astra-child-intl-tel-input-css', 'https://cdnjs.cloudflare.com/ajax/libs/intl-tel-input/17.0.0/css/intlTelInput.css', array('astra-theme-css'), CHILD_THEME_ASTRA_CHILD_VERSION, 'all' );
 	wp_enqueue_style( 'astra-child-theme-css', get_stylesheet_directory_uri() . '/style.css', array('astra-theme-css'));
 
 	wp_enqueue_script( 'astra-child-bootstrap.min-script', 'https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js', array('jquery'), CHILD_THEME_ASTRA_CHILD_VERSION, true );
@@ -28,7 +29,7 @@ function child_enqueue_styles() {
 	wp_enqueue_script( 'astra-child-jquery.form-script', get_stylesheet_directory_uri().'/assets/custom/jquery.form.js', array('jquery'), CHILD_THEME_ASTRA_CHILD_VERSION, true );
 	wp_enqueue_script( 'astra-child-custom-main-script', get_stylesheet_directory_uri().'/assets/custom/custom-main.js', array('jquery'), CHILD_THEME_ASTRA_CHILD_VERSION, true );
 	wp_enqueue_script( 'astra-child-jquery-ui-script', 'https://code.jquery.com/ui/1.12.1/jquery-ui.js', array('jquery'), CHILD_THEME_ASTRA_CHILD_VERSION, true );
-
+	wp_enqueue_script( 'astra-child-intl-tel-input-script', 'https://cdnjs.cloudflare.com/ajax/libs/intl-tel-input/17.0.0/js/intlTelInput-jquery.min.js', array('jquery'), CHILD_THEME_ASTRA_CHILD_VERSION, true );
 	wp_enqueue_script( 'astra-child-reservation-script', get_stylesheet_directory_uri().'/assets/custom/reservation.js', array('jquery'), CHILD_THEME_ASTRA_CHILD_VERSION, true );
 }
 add_action( 'wp_enqueue_scripts', 'child_enqueue_styles', 100 );
