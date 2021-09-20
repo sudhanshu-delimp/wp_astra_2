@@ -322,13 +322,13 @@ function get_selected_country_states(){
 	}
 	sendResponse($data);
 }
-
-//define("SENDINBLUE_API_KEY","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");
-define("SENDINBLUE_API_KEY","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");
-define("SENDER_NAME","Sudhanshu");
-define("SENDER_EMAIL","employee11.delimp@gmail.com");
-define("ADMIN_NAME","Sudhanshu Admin");
-define("ADMIN_EMAIL","sudhanshu+admin@delimp.com");
+//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
+//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
+define("SENDINBLUE_API_KEY",get_option('sbs_sendinblue_api_key'));
+define("SENDER_NAME",get_option('sbs_from_name'));
+define("SENDER_EMAIL",get_option('sbs_from_email'));
+define("ADMIN_NAME",get_option('sbs_admin_name'));
+define("ADMIN_EMAIL",get_option('sbs_admin_email'));
 
 function sendInBlueEmail($email_data){
 	  $url = "https://api.sendinblue.com/v3/smtp/email";

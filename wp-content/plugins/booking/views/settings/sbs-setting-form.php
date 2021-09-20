@@ -9,7 +9,7 @@ $this->upadteSettings();
   </div>
   <div class="">
     <label for="">Admin Email</label>
-    <input type="text" name="sbs_admin_email" value="<?php echo get_option('sbs_admin_email');?>">
+    <input type="email" name="sbs_admin_email" value="<?php echo get_option('sbs_admin_email');?>">
   </div>
   <div class="">
     <label for="">From Name</label>
@@ -17,7 +17,7 @@ $this->upadteSettings();
   </div>
   <div class="">
     <label for="">From Email</label>
-    <input type="text" name="sbs_from_email" value="<?php echo get_option('sbs_from_email');?>">
+    <input type="email" name="sbs_from_email" value="<?php echo get_option('sbs_from_email');?>">
   </div>
   <div class="">
     <label for="">Sendinblue api key</label>
