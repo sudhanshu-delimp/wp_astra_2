@@ -286,7 +286,7 @@ Template: astra
       border: 1px solid #bebebe !important;
       height: 37px;
       padding: 7px !important;
-      color: #181818 !important;
+      color: #181818 ;
   }
   .req label {
       font-weight: 700 !important;
@@ -316,6 +316,11 @@ Template: astra
     width: 100%;
     height: 100%;
     z-index: 9;
+}
+.form-control:disabled, .form-control[readonly] {
+    background-color: #e9ecef !important;
+    opacity: 1;
+    color: #8f9295 !important;
 }
 .reserve-ban {
     position: relative;
