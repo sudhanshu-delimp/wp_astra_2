@@ -256,7 +256,7 @@ Template: astra
       padding: 7px !important;
       color: #181818 !important;
       width: 32% !important;
-      margin-left: 20px;
+      
       
   }
   .user-row {
@@ -288,14 +288,29 @@ Template: astra
       padding: 7px !important;
       color: #181818 ;
   }
+  .req .iti__flag-container {
+    position: absolute !important;
+    width: 100%;
+}
+.iti__flag-container .iti__arrow {
+    width: auto !important;
+}
+.iti__selected-flag {
+    background-color: transparent !important;
+}
+.cont .text-danger {
+    right: 0;
+}
   .req label {
       font-weight: 700 !important;
       position: relative;
   }
   .user-row > div label {
-      font-size: 16px;
-      color: #181818;
-      font-weight: 500;
+    font-size: 16px;
+    color: #181818;
+    display: flex;
+    flex-direction: row-reverse;
+    justify-content: flex-end;
   }
   a.back_home:hover {
     color: #181818;
@@ -780,17 +795,18 @@ div#ui-datepicker-div button:active {
       position: relative;
   }
   .user-row span {
-      min-width: 142px;
+      min-width: 190px;
   }
   .req label {
       position: relative;
   }
   .req label:before {
       content: "*";
-      right: 0;
-      position: absolute;
-      transform: translate(11px, -3px);
+      display: block;
   }
+  .iti--separate-dial-code {
+    margin-bottom: 25px;
+}
   p.text-danger {
       padding-left: 20px;
       position: absolute;

@@ -1,4 +1,4 @@
-<?php /*Template Name:Reservation*/ ?>
+-<?php /*Template Name:Reservation*/ ?>
 <?php
   get_header();
   global $wpdb;
@@ -170,7 +170,7 @@
                       <div class="input-wrap"><input type="text" name="city" id="city" class="form-control" required></div>
                       </div>
 
-                      <div class="thre-col">
+                      <div class="thre-col cont">
                       <span><label for="country">Country</label></span>
                        <select name="country" id="country" class="form-control booking-country" required>
                          <option value="">Select Country</option>
@@ -193,7 +193,7 @@
                       <div class="input-wrap"><input type="text" name="zip_code" class="form-control" id="zip_code" required></div>
                       </div>
 
-                      <div class="ful-col thre-col req">
+                      <div class="ful-col thre-col req cont">
                       <span><label for="state">State/Province</label></span>
                       <div class="input-wrap">
                         <select name="state" id="state" class="form-control available_states" required>
