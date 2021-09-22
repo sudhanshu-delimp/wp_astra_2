@@ -289,14 +289,20 @@ Template: astra
       color: #181818 ;
   }
   .req .iti__flag-container {
-    position: absolute !important;
-    width: 100%;
+    
+    border: 1px solid #bebebe;
+    border-right: none;
 }
 .iti__flag-container .iti__arrow {
     width: auto !important;
 }
 .iti__selected-flag {
     background-color: transparent !important;
+    display: inline-flex;
+
+}
+.iti--allow-dropdown {
+    display: flex;
 }
 .cont .text-danger {
     right: 0;
