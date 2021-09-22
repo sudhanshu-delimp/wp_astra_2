@@ -1,4 +1,4 @@
--<?php /*Template Name:Reservation*/ ?>
+<?php /*Template Name:Reservation*/ ?>
 <?php
   get_header();
   global $wpdb;

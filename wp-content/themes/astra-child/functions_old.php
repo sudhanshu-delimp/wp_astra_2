@@ -17,14 +17,6 @@ define( 'CHILD_THEME_ASTRA_CHILD_VERSION', '1.0.0' );
  * Enqueue styles
  */
  //echo get_stylesheet_directory_uri() . '/style.css';
- //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
- //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
- define("EMAIL_API_KEY",get_option('sbs_email_api_key'));
- define("SENDER_NAME",get_option('sbs_from_name'));
- define("SENDER_EMAIL",get_option('sbs_from_email'));
- define("ADMIN_NAME",get_option('sbs_admin_name'));
- define("ADMIN_EMAIL",get_option('sbs_admin_email'));
-
 function child_enqueue_styles() {
 	wp_enqueue_style( 'astra-child-bootstrap.min-css', 'https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css', array('astra-theme-css'), CHILD_THEME_ASTRA_CHILD_VERSION, 'all' );
 	wp_enqueue_style( 'astra-child-font-awesome-css', 'https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.0.3/css/font-awesome.css', array('astra-theme-css'), CHILD_THEME_ASTRA_CHILD_VERSION, 'all' );
@@ -331,6 +323,13 @@ function get_selected_country_states(){
 	}
 	sendResponse($data);
 }
+//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
+//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
+define("EMAIL_API_KEY",get_option('sbs_sendinblue_api_key'));
+define("SENDER_NAME",get_option('sbs_from_name'));
+define("SENDER_EMAIL",get_option('sbs_from_email'));
+define("ADMIN_NAME",get_option('sbs_admin_name'));
+define("ADMIN_EMAIL",get_option('sbs_admin_email'));
 
 function sendSmtpEmail($email_data){
 	  $url = "https://api.sendgrid.com/v3/mail/send";
@@ -353,25 +352,27 @@ function sendSmtpEmail($email_data){
 
 function send_booking_confirmation_email_to_customer(){
 	$email_data = [];
+	$email_data['to'] = [];
 
 	$booking_id = (isset($_POST['booking_id']))?trim($_POST['booking_id']):0;
 	$subject = (isset($_POST['subject']))?trim($_POST['subject']):"";
 	$to_email = (isset($_POST['to_email']))?trim($_POST['to_email']):"";
 	$to_name = (isset($_POST['to_name']))?trim($_POST['to_name']):"";
 	/*START SENDER AND TO USER INFO*/
+	$email_data['sender']['name'] = SENDER_NAME;
+	$email_data['sender']['email'] = SENDER_EMAIL;
 	$user = [];
-	$to = [];
-	array_push($to,["email"=>"sudhanshu@delimp.com"]);
-	$user['to'] = $to;
-	$email_data['personalizations'][] = $user;
-	$email_data['from'] = ["email"=>SENDER_EMAIL,"name"=>SENDER_NAME];
-	$email_data['subject'] = $subject;
+	$user['email'] = $to_email;
+	$user['name'] = $to_name;
+	array_push($email_data['to'],$user);
+  /*END SENDER AND TO USER INFO*/
+	$email_data['subject'] = (!empty($subject))?$subject:"Email Subject";
 	/*START GET EMAIL BODY DATA FROM TEMPLATE*/
 	ob_start();
 	get_template_part('content-booking-confirmation-email-body',null,["booking_id"=>$booking_id]);
 	$available_email_body = ob_get_clean();
-	$email_data['content'][] = ["type"=>"text/html","value"=>$available_email_body];
 	/*END GET EMAIL BODY DATA FROM TEMPLATE*/
+	$email_data['htmlContent'] = $available_email_body;
 	$email_data = json_encode($email_data);
 	$emailResponse = sendSmtpEmail($email_data);
 	sendResponse($emailResponse);
@@ -384,45 +385,23 @@ function send_booking_intimation_email_to_admin(){
 	$booking_id = (isset($_POST['booking_id']))?trim($_POST['booking_id']):0;
 	$subject = (isset($_POST['subject']))?trim($_POST['subject']):"";
 	/*START SENDER AND TO USER INFO*/
+	$email_data['sender']['name'] = SENDER_NAME;
+	$email_data['sender']['email'] = SENDER_EMAIL;
 	$user = [];
-	$to = [];
-	array_push($to,["email"=>ADMIN_EMAIL]);
-	$user['to'] = $to;
-	$email_data['personalizations'][] = $user;
-	$email_data['from'] = ["email"=>SENDER_EMAIL,"name"=>SENDER_NAME];
-	$email_data['subject'] = $subject;
+	$user['email'] = ADMIN_EMAIL;
+	$user['name'] = ADMIN_NAME;
+	array_push($email_data['to'],$user);
+  /*END SENDER AND TO USER INFO*/
+	$email_data['subject'] = (!empty($subject))?$subject:"Email Subject";
 	/*START GET EMAIL BODY DATA FROM TEMPLATE*/
 	ob_start();
 	get_template_part('content-booking-intimation-email-body',null,["booking_id"=>$booking_id]);
 	$available_email_body = ob_get_clean();
-	$email_data['content'][] = ["type"=>"text/html","value"=>$available_email_body];
 	/*END GET EMAIL BODY DATA FROM TEMPLATE*/
+	$email_data['htmlContent'] = $available_email_body;
 	$email_data = json_encode($email_data);
 	$emailResponse = sendSmtpEmail($email_data);
 	sendResponse($emailResponse);
-}
-
-
-function sendSms($body,$to){
-  $sms_data = "Body=Hello to all this is from curl";
-  $sms_data .= "&From=+15109534866";
-  $sms_data .= "&To=+919953860393";
-  $url = "https://api.twilio.com/2010-04-01/Accounts/ACdc0633663bce353ec1696a0a639c80dd/Messages.json";
-  $ch = curl_init($url);
-  curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
-  curl_setopt($ch, CURLOPT_ENCODING, '');
-  curl_setopt($ch, CURLOPT_MAXREDIRS, 10);
-  curl_setopt($ch, CURLOPT_TIMEOUT, 0);
-  curl_setopt($ch, CURLOPT_FOLLOWLOCATION, true);
-  curl_setopt($ch, CURLOPT_HTTP_VERSION, CURL_HTTP_VERSION_1_1);
-  curl_setopt($ch, CURLOPT_POSTFIELDS, $sms_data);
-  curl_setopt($ch, CURLOPT_USERPWD, "ACdc0633663bce353ec1696a0a639c80dd:4b709bc3579e5d6c6001f034565fbbda");
-  curl_setopt($ch, CURLOPT_HTTPHEADER, [
-    "Content-Type: application/x-www-form-urlencoded"
-  ]);
-  $result = curl_exec($ch);
-  curl_close($ch);
-  return json_decode($result);
 }
 
 add_action('wp_ajax_process_step_one', 'process_step_one');

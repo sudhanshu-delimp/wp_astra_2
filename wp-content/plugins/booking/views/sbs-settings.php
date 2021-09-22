@@ -16,7 +16,7 @@ class SBS_Booking_Settings{
       update_option('sbs_admin_email',$_POST['sbs_admin_email']);
       update_option('sbs_from_name',$_POST['sbs_from_name']);
       update_option('sbs_from_email',$_POST['sbs_from_email']);
-      update_option('sbs_sendinblue_api_key',$_POST['sbs_sendinblue_api_key']);
+      update_option('sbs_email_api_key',$_POST['sbs_email_api_key']);
       echo '<div class="notice notice-success is-dismissible"><p>Data has been Updated Successfully..</p></div>';
     }
   }

@@ -170,7 +170,7 @@ function sbs_init_booking_settings(){
   add_option('sbs_admin_email', 'info@example.com');
   add_option('sbs_from_name', 'info two');
   add_option('sbs_from_email', 'info2@example.com');
-  add_option('sbs_sendinblue_api_key', '*****************');
+  add_option('sbs_email_api_key', '*****************');
 }
 
 register_activation_hook( __FILE__, 'sbs_booking_plugin_activation' );

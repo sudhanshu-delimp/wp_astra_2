@@ -20,8 +20,8 @@ $this->upadteSettings();
     <input type="email" name="sbs_from_email" value="<?php echo get_option('sbs_from_email');?>">
   </div>
   <div class="">
-    <label for="">Sendinblue api key</label>
-    <input type="text" name="sbs_sendinblue_api_key" value="<?php echo get_option('sbs_sendinblue_api_key');?>">
+    <label for="">Email api key</label>
+    <input type="text" name="sbs_email_api_key" value="<?php echo get_option('sbs_email_api_key');?>">
   </div>
   <div class="sub-btn">
     <input type="submit" name="booking_settings" value="Save">
