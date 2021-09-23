@@ -14,6 +14,10 @@ if($booking->number_of_night > 11){
  //echo 'night price again: '.$night_price;
 }
 $user = json_decode($booking->user_data);
+$sms_body = "Hi ".$booking->user_name.", Your Booking/Reservation Id: ".$booking->booking_id;
+$sms_body .= "\nCheckin Date: ".getDateTime($booking->check_in_date,'l, F d, Y');
+$sms_body .= "\nCheckout Date: ".getDateTime($booking->check_out_date,'l, F d, Y');
+sendSms($sms_body,"+".$user->phone);
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -145,7 +149,7 @@ $user = json_decode($booking->user_data);
           <?php
           if(isset($addon_total) && $addon_total>0){
             ?>
-           
+
            <tr style="border-bottom: 1px solid #ddd;"><td style="padding: 10px 10px; background: #f2f1f1;">Add ons Total :</td><td style="padding: 10px 10px; background: #f2f1f1;">$<?php echo number_format($addon_total,2); ?></td></tr>
             <?php
           }
@@ -156,27 +160,27 @@ $user = json_decode($booking->user_data);
           }
           ?>
           <tr style="border-bottom: 1px solid #ddd;"><td style="padding: 10px 10px; background: #f2f1f1;">Booking Total :</td><td style="padding: 10px 10px; background: #f2f1f1;">$<?php echo number_format($night_price,2); ?></td></tr>
-         
+
           <tr style="border-bottom: 1px solid #ddd;"><td style="padding: 10px 10px; background: #f2f1f1;">Total :</td><td style="padding: 10px 10px; background: #f2f1f1;">$<?php echo number_format(($night_price+$addon_total+$activity_total),2);?></td></tr>
-          
+
           <tr style="border-bottom: 1px solid #ddd;"><td style="padding: 10px 10px; background: #f2f1f1;">Guest Name :</td><td style="padding: 10px 10px; background: #f2f1f1;"><?php echo $user->first_name." ".$user->last_name; ?></td></tr>
-         
+
           <tr style="border-bottom: 1px solid #ddd;"><td style="padding: 10px 10px; background: #f2f1f1;">Address 1 :</td><td style="padding: 10px 10px; background: #f2f1f1;"><?php echo $user->address_one; ?></td></tr>
-         
+
           <tr style="border-bottom: 1px solid #ddd;"><td style="padding: 10px 10px; background: #f2f1f1;">Address 2 :</td><td style="padding: 10px 10px; background: #f2f1f1;"><?php echo $user->address_two; ?></td></tr>
-          
+
           <tr style="border-bottom: 1px solid #ddd;"><td style="padding: 10px 10px; background: #f2f1f1;">City :</td><td style="padding: 10px 10px; background: #f2f1f1;"><?php echo $user->city; ?></td></tr>
-         
+
           <tr style="border-bottom: 1px solid #ddd;"><td style="padding: 10px 10px; background: #f2f1f1;">State/Province :</td><td style="padding: 10px 10px; background: #f2f1f1;"><?php echo $user->state; ?></td></tr>
-          
+
           <tr style="border-bottom: 1px solid #ddd;"><td style="padding: 10px 10px; background: #f2f1f1;">Zip/Postal Code :</td><td style="padding: 10px 10px; background: #f2f1f1;"><?php echo $user->zip_code; ?> <?php echo $user->country; ?></td></tr>
-          
+
           <tr style="border-bottom: 1px solid #ddd;"><td style="padding: 10px 10px; background: #f2f1f1;">E-mail Address :</td><td style="padding: 10px 10px; background: #f2f1f1;"><?php echo $user->email; ?></td></tr>
-          
+
           <tr style="border-bottom: 1px solid #ddd;"><td style="padding: 10px 10px; background: #f2f1f1;">Phone :</td><td style="padding: 10px 10px; background: #f2f1f1;"><?php echo $user->phone; ?></td></tr>
-         
+
           <tr><td style="padding: 10px 10px; background: #f2f1f1;">Mobile Phone :</td><td style="padding: 10px 10px; background: #f2f1f1;"><?php echo $user->mobile; ?></td></tr>
-          
+
         </table>
         </div>
         <br><br>

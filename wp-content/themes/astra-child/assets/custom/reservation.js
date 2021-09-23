@@ -577,11 +577,25 @@ jQuery(document).on('change','.booking-country',function(){
 });
 
 var phone_input = jQuery("input[name=phone]");
-var mobile_input = jQuery("input[name=mobile]");
 phone_input.intlTelInput({
-    allowDropdown:true,
-    //onlyCountries: ['sa'],
-    separateDialCode:true,
-  }).on('countrychange', function (e, countryData) {
-    jQuery("input[name=code]").val((input.intlTelInput("getSelectedCountryData").dialCode));
-  });
+  allowDropdown:true,
+  //onlyCountries: ['sa'],
+  separateDialCode:true,
+});
+var mobile_input = jQuery("input[name=mobile]");
+mobile_input.intlTelInput({
+  allowDropdown:true,
+  //onlyCountries: ['sa'],
+  separateDialCode:true,
+});
+jQuery('.mobile .iti__flag-container, .phone .iti__flag-container').click(function() {
+  var countryCode = jQuery(this).find('.iti__selected-flag').attr('title');
+  var countryCode = countryCode.replace(/[^0-9]/g,'');
+  jQuery(this).parent().find('input').val(countryCode);
+});
+jQuery('.mobile .iti__flag-container, .phone .iti__flag-container').change(function() {
+  var countryCode = jQuery(this).find('.iti__selected-flag').attr('title');
+  var countryCode = countryCode.replace(/[^0-9]/g,'');
+  jQuery(this).parent().find('input').val(countryCode);
+});
+jQuery("input[name=mobile], input[name=phone]").val("1");

@@ -17,13 +17,6 @@ define( 'CHILD_THEME_ASTRA_CHILD_VERSION', '1.0.0' );
  * Enqueue styles
  */
  //echo get_stylesheet_directory_uri() . '/style.css';
- //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
- //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
- define("EMAIL_API_KEY",get_option('sbs_email_api_key'));
- define("SENDER_NAME",get_option('sbs_from_name'));
- define("SENDER_EMAIL",get_option('sbs_from_email'));
- define("ADMIN_NAME",get_option('sbs_admin_name'));
- define("ADMIN_EMAIL",get_option('sbs_admin_email'));
 
 function child_enqueue_styles() {
 	wp_enqueue_style( 'astra-child-bootstrap.min-css', 'https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css', array('astra-theme-css'), CHILD_THEME_ASTRA_CHILD_VERSION, 'all' );
@@ -403,11 +396,11 @@ function send_booking_intimation_email_to_admin(){
 }
 
 
-function sendSms($body,$to){
-  $sms_data = "Body=Hello to all this is from curl";
-  $sms_data .= "&From=+15109534866";
-  $sms_data .= "&To=+919953860393";
-  $url = "https://api.twilio.com/2010-04-01/Accounts/ACdc0633663bce353ec1696a0a639c80dd/Messages.json";
+function sendSms($sms_body,$to_phone){
+  //$sms_data = "Body=".$sms_body;
+  $sms_data = sprintf("Body=%s&From=%s&To=%s",$sms_body,TWILLIO_PHONE_NUMBER,$to_phone);
+  //$sms_data .= "&To=".$to_phone;
+  $url = sprintf("https://api.twilio.com/2010-04-01/Accounts/%s/Messages.json",TWILLIO_ACCOUNT_SID);
   $ch = curl_init($url);
   curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
   curl_setopt($ch, CURLOPT_ENCODING, '');
@@ -416,7 +409,7 @@ function sendSms($body,$to){
   curl_setopt($ch, CURLOPT_FOLLOWLOCATION, true);
   curl_setopt($ch, CURLOPT_HTTP_VERSION, CURL_HTTP_VERSION_1_1);
   curl_setopt($ch, CURLOPT_POSTFIELDS, $sms_data);
-  curl_setopt($ch, CURLOPT_USERPWD, "ACdc0633663bce353ec1696a0a639c80dd:4b709bc3579e5d6c6001f034565fbbda");
+  curl_setopt($ch, CURLOPT_USERPWD, TWILLIO_ACCOUNT_SID.":".TWILLIO_AUTH_TOKEN);
   curl_setopt($ch, CURLOPT_HTTPHEADER, [
     "Content-Type: application/x-www-form-urlencoded"
   ]);

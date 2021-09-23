@@ -6,6 +6,15 @@ Author: Sudhanshu
 Version: 1.0
 */
 
+define("EMAIL_API_KEY",get_option('sbs_email_api_key'));
+define("SENDER_NAME",get_option('sbs_from_name'));
+define("SENDER_EMAIL",get_option('sbs_from_email'));
+define("TWILLIO_ACCOUNT_SID",get_option('sbs_twillio_account_sid'));
+define("TWILLIO_AUTH_TOKEN",get_option('sbs_twillio_auth_token'));
+define("TWILLIO_PHONE_NUMBER",get_option('sbs_twillio_phone_number'));
+define("ADMIN_NAME",get_option('sbs_admin_name'));
+define("ADMIN_EMAIL",get_option('sbs_admin_email'));
+
 $page = isset($_GET['page'])?trim($_GET['page']):'';
 if(in_array($page,['sbs-booking-list','sbs-booking-setting'])){
     add_action( 'admin_enqueue_scripts', 'sbs_booking_style_and_scripts' );
@@ -171,6 +180,9 @@ function sbs_init_booking_settings(){
   add_option('sbs_from_name', 'info two');
   add_option('sbs_from_email', 'info2@example.com');
   add_option('sbs_email_api_key', '*****************');
+  add_option('sbs_twillio_account_sid', '*****************');
+  add_option('sbs_twillio_auth_token', '*****************');
+  add_option('sbs_twillio_phone_number', 'enter your number with + as prefix');
 }
 
 register_activation_hook( __FILE__, 'sbs_booking_plugin_activation' );

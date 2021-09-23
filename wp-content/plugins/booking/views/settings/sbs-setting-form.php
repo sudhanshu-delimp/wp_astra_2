@@ -1,4 +1,4 @@
-<h1>Booking Settings</h1>
+<h1>Settings</h1>
 <?php
 $this->upadteSettings();
 ?>
@@ -22,6 +22,18 @@ $this->upadteSettings();
   <div class="">
     <label for="">Email api key</label>
     <input type="text" name="sbs_email_api_key" value="<?php echo get_option('sbs_email_api_key');?>">
+  </div>
+  <div class="">
+    <label for="">Twilio Account SID</label>
+    <input type="text" name="sbs_twillio_account_sid" value="<?php echo get_option('sbs_twillio_account_sid');?>">
+  </div>
+  <div class="">
+    <label for="">Twilio Auth Token</label>
+    <input type="text" name="sbs_twillio_auth_token" value="<?php echo get_option('sbs_twillio_auth_token');?>">
+  </div>
+  <div class="">
+    <label for="">Twilio Phone Number</label>
+    <input type="text" name="sbs_twillio_phone_number" value="<?php echo get_option('sbs_twillio_phone_number');?>">
   </div>
   <div class="sub-btn">
     <input type="submit" name="booking_settings" value="Save">

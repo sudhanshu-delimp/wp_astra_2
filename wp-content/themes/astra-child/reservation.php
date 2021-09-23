@@ -201,15 +201,14 @@
                         </select>
                       </div>
                       </div>
-
                       <div class="req">
                       <span><label for="phone">Phone Number</label></span>
-                      <div class="input-wrap"><input type="text" name="phone" id="phone" required></div>
+                      <div class="input-wrap phone"><input type="text" name="phone" id="phone" required></div>
                       </div>
 
                       <div>
                       <span><label for="mobile">Mobile Phone</label></span>
-                      <div class="input-wrap"><input type="text" name="mobile" id="mobile"></div>
+                      <div class="input-wrap mobile"><input type="text" name="mobile" id="mobile"></div>
                       </div>
 
                       <div class="req">
